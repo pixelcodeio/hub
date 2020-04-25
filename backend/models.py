@@ -36,7 +36,7 @@ class DailyUpdate:
         }
 
 class Profile:
-    def __init__(self, id, birthday, company_email, position, team, start_date, name, photo_url, timezone, status, interests, intro):
+    def __init__(self, id, birthday, company_email, position, team, start_date, name, slack_internal_name, photo_url, timezone, status, interests, intro):
         self.id = id
         self.birthday = birthday
         self.company_email = company_email
@@ -44,6 +44,7 @@ class Profile:
         self.team = team
         self.start_date = start_date
         self.name = name
+        self.slack_internal_name = slack_internal_name
         self.photo_url = photo_url
         self.timezone = timezone
         self.status = status
@@ -60,6 +61,7 @@ class Profile:
             'team': self.team,
             'start_date': self.start_date,
             'name': self.name,
+            'slack_internal_name': self.slack_internal_name,
             'photo_url': self.photo_url,
             'timezone': self.timezone,
             'status': self.status,

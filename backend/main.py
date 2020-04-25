@@ -99,7 +99,6 @@ def homepage():
     new_hires_pool = [profiles_dict[user_id] for user_id in user_list[:len(user_list) // 2]]
     anniversaries_pool = [profiles_dict[user_id] for user_id in user_list[len(user_list) // 2:]]
     daily_updates = reduce(lambda x,y: x+y,[profile.daily_updates for profile in list(profiles_dict.values())])
-    print([profile.daily_updates for profile in list(profiles_dict.values())])
     daily_updates.sort(key=lambda x: x.sent_at, reverse=True)
     return make_response({
         'anniversaries': [Anniversary(prof).serialize() for prof in random.sample(anniversaries_pool, len(anniversaries_pool) // 2)],
@@ -110,15 +109,20 @@ def homepage():
         'thanks': [thank.serialize() for thank in thanks],
     })
 
-@app.route('/thank', methods=['POST'])
+@app.route('/slack/thank', methods=['POST'])
 def thank():
-    sender_id = request.json['sender_id']
-    recipient_id = request.json['recipient_id']
-    message = request.json['message']
+    sender_id = request.form.get('user_id')
+    message = request.form.get('text')
+    space_bar_index = message.find(' ')
+    recipient_name = message[1:space_bar_index]
+    message = message[space_bar_index + 1:]
 
-    thanks.append(Thank(profiles_dict[sender_id], profiles_dict[recipient_id], message))
+    # TODO: Handle case for @hub
+    recipient_profile = next(prof for prof in list(profiles_dict.values()) if prof.slack_internal_name == recipient_name)
 
-    send_dm_to_user(recipient_id, "{} just thanked you for {}".format(profiles_dict[sender_id].name, message))
+    thanks.append(Thank(profiles_dict[sender_id], recipient_profile.id, message))
+
+    send_dm_to_user(recipient_profile.id, "<@{}> just thanked you for {}!".format(profiles_dict[sender_id].id, message))
     return make_boolean_response()
 
 # Get user's profile
@@ -151,6 +155,7 @@ def reaction_added(payload):
     send_dm_to_user(user_id, "Welcome!")
     send_dm_to_user(user_id, onboarding_questions[0])
 
+# TODO: this whole thing is kinda jank. idk if we care enough to fix tho
 @slack_events_adapter.on('message')
 def message(payload):
     event = payload.get("event", {})
@@ -179,9 +184,7 @@ def daily_update():
     for user_id in user_list:
         send_dm_to_user(user_id, daily_update_question)
 
-# Shutdown your cron thread if the web process is stopped
 atexit.register(lambda: cron.shutdown(wait=False))
 
 if __name__ == "__main__":
-    # daily_update()
     app.run(debug=True)

@@ -15,6 +15,7 @@ def init_profiles():
             'IDK',
             datetime.now(),
             user['real_name'],
+            user['name'],
             user['profile']['image_512'],
             user['tz_offset'],
             user['profile']['status_text'] + user['profile']['status_emoji'],
