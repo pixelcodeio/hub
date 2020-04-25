@@ -75,10 +75,14 @@ export default {
     lineHeight: "13px",
   },
   overline: {
-    fontSize: "11px",
-    fontWeight: 700,
-    letterSpacing: "0.33px",
-    lineHeight: "13px",
-    textTransform: "uppercase",
+    fontSize: "12px",
+    fontWeight: 500,
+    lineHeight: "16px",
   },
+  // overline2: {
+  //   fontSize: "10px",
+  //   fontWeight: 500,
+  //   lineHeight: "14px",
+  //   textTransform: "uppercase",
+  // },
 }

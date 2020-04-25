@@ -1,16 +1,42 @@
 import {
-  User
+  AppAction,
+  Announcement,
+  User,
 } from './types';
+import { Announcements } from 'views/Home/Components/Announcements';
 
 export interface AppState {
-  user?: User;
+  user?: User
+  announcements: Announcement[]
 }
 
-export type AppAction =
-  | { type: "type", value: "value" }
-  | { type: "login", user: User }
-
 export const initialState: AppState = {
+  announcements: [
+    {
+      title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
+      date: "Feburary 1, 2020",
+    },
+    {
+      title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
+      date: "Feburary 1, 2020",
+    },
+    {
+      title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
+      date: "Feburary 1, 2020",
+    },
+    {
+      title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
+      date: "Feburary 1, 2020",
+    },
+    {
+      title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
+      date: "Feburary 1, 2020",
+    },
+    {
+      title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
+      date: "Feburary 1, 2020",
+    },
+  ],
   user: undefined
 };
 

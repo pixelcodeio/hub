@@ -1,4 +1,4 @@
-export { HomeView } from "./HomeView"
-export { TeamsView } from "./TeamsView"
-export { ResourcesView } from "./ResourcesView"
-export { CalendarView } from "./CalendarView"
+export { HomeView } from "./Home"
+export { TeamsView } from "./Teams"
+export { ResourcesView } from "./Resources"
+export { CalendarView } from "./Calendar"
