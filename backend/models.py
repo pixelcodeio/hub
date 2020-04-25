@@ -107,6 +107,7 @@ class Profile:
         instagram,
         personal_site,
         featured_posts,
+        office,
         slack_internal_name
     ):
         self.id = id
@@ -129,6 +130,7 @@ class Profile:
         self.instagram = instagram
         self.personal_site = personal_site
         self.featured_posts = featured_posts
+        self.office = office
 
         # Private fields
         self.slack_internal_name = slack_internal_name
@@ -153,6 +155,7 @@ class Profile:
             'instagram': self.instagram,
             'personal_site': self.personal_site,
             'featured_posts': self.featured_posts,
+            'office': self.office
         })
 
 
