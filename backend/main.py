@@ -5,13 +5,14 @@ import os
 import random
 from functools import reduce
 from urllib.parse import urlparse
+import requests
 
 from flask import Flask, request
 
 import requests
 from apscheduler.scheduler import Scheduler
 from init_profiles import init_profiles
-from models import Anniversary, DailyUpdate, Thank
+from models import Anniversary, DailyUpdate, Poll, Thank
 from slackbot import *
 from slackeventsapi import SlackEventAdapter
 
@@ -28,6 +29,7 @@ onboarding_questions = [
     "What are some of your hobbies? (comma-separated)"
 ]
 thanks = []
+all_polls = {}
 profiles_dict = init_profiles()
 user_list = list(profiles_dict.keys())
 
@@ -143,10 +145,26 @@ def thank():
     )
     return make_boolean_response()
 
+
+@app.route('/poll', methods=['POST'])
+def poll():
+    sender = profiles_dict[request.json['user_id']]
+    text = request.json['text']
+    options = request.json['options']
+    poll_id = str(len(all_polls))
+    all_polls[poll_id] = Poll(poll_id, sender, text, options)
+
+    broadcast_poll(poll_id, text, options, user_list)
+    return make_boolean_response()
+
+@app.route('/polls', methods=['GET'])
+def polls():
+    return make_response([poll.serialize() for poll in list(all_polls.values())])
+
 # Get user's profile
 @app.route('/profile', methods=['GET'])
 def profile():
-    profile_id = request.args.get('profile_id')
+    profile_id = request.args.get('user_id')
     return make_response(profiles_dict[profile_id].serialize() if profile_id in profiles_dict else None)
 
 # Get list of all users?
@@ -160,6 +178,22 @@ def send_message():
     user_id = request.json['user_id']
     message = request.json['message']
     send_dm_to_user(user_id, message)
+
+    return make_boolean_response()
+
+@app.route('/slack/poll', methods=['POST'])
+def receive_vote():
+    payload = json.loads(dict(request.form)['payload'])
+    user_id = payload['user']['id']
+    action = payload['actions'][0]
+    poll_id = action['value']
+    option = action['text']['text']
+    all_polls[poll_id].voters[option].append(user_id)
+    x = requests.post(payload['response_url'], json = {
+        "text": "Thanks for voting! Checkout https://thehub.com to see the results!",
+        "replace_original": "true"
+    })
+    print(x.text)
 
     return make_boolean_response()
 
