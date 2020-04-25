@@ -14,7 +14,7 @@ def init_profiles():
             'CEO',
             'IDK',
             user['profile']['image_512'],
-            "Hi! My name is Kevin and I am very excited to join as a Software Engineer on the Growth team. Before Hub, I was a Software Engineer at Facebook. Feel free to grab time on my calendar and can’t wait to chat with y’all!",
+            "Hey fam im a nerd",
             ['nothing', 'league'],
             None,
             'kc626@pornhub.com',
@@ -35,7 +35,8 @@ def init_profiles():
                 "imageURL": "https://files.slack.com/files-pri/T012HSXD00J-F012BKJ9JJJ/cd1f8e21-64bc-40ef-bb28-59d5559b328c_1_105_c.jpeg",
             },
             "Kevin's grandmas basement",
-            user['name']
+            get_team_icon(),
+            user['name'],
         )
         profiles_dict[user['id']] = profile
     return profiles_dict
