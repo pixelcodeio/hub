@@ -5,16 +5,20 @@ from urllib.parse import urlparse
 import requests
 from flask import Flask, request
 
+from init_profiles import init_profiles
 from slackbot import *
 from slackeventsapi import SlackEventAdapter
 
 app = Flask(__name__)
 app.debug = True
-slack_events_adapter = SlackEventAdapter(
-    'abfc6945359193db5006ee441bffefdd', "/slack/events", app)
+slack_events_adapter = SlackEventAdapter('abfc6945359193db5006ee441bffefdd', "/slack/events", app)
 
-user_list = get_users()
-profiles_dict = {}
+onboarding_questions = [
+    "Give us an intro about yourself.",
+    "What are some of your hobbies? (comma-separated)"
+]
+profiles_dict = init_profiles()
+user_list = profiles_dict.keys()
 
 def make_response(r):
     return {'success': True, 'data': r}
@@ -103,14 +107,30 @@ def send_message():
 @slack_events_adapter.on('reaction_added')
 def reaction_added(payload):
     event = payload.get("event", {})
-
-    channel_id = event.get("channel")
     user_id = event.get("user")
-    text = event.get("text")
 
     send_dm_to_user(user_id, "Welcome!", user_list)
-    print(event)
+    send_dm_to_user(user_id, onboarding_questions[0], user_list)
 
+@slack_events_adapter.on('message')
+def message(payload):
+    event = payload.get("event", {})
+    channel_id = event.get("channel")
+    user_id = event.get("user")
+
+    if user_id not in profiles_dict:
+        return
+
+    last_two_messages = messages_in_channel(channel_id, 2)
+    last_question = last_two_messages[1]['text']
+
+    if last_question == onboarding_questions[0]:
+        profiles_dict[user_id].intro = last_two_messages[0]['text']
+        send_dm_to_user(user_id, onboarding_questions[1], user_list)
+    elif last_question == onboarding_questions[1]:
+        interests = last_two_messages[0]['text'].split(',')
+        profiles_dict[user_id].interests = [interest.strip() for interest in interests]
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

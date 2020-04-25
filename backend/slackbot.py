@@ -42,6 +42,8 @@ def send_dm_to_user(user_id, message, user_list):
     except SlackApiError as e:
         assert e.response["error"]
 
+def messages_in_channel(channel_id, count=100):
+    return client.conversations_history(channel=channel_id, count=count)['messages']
 
 # TODO: we need to add support for commands
 
