@@ -24,7 +24,10 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch }
   switch (currentPage) {
     case "Profile":
       backgroundColor = colors.lightYellow
-      break;
+      break
+    case "Home":
+      backgroundColor = colors.lightTeal
+      break
     default:
       backgroundColor = colors.white100
       break;

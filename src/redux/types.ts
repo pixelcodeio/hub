@@ -27,6 +27,14 @@ export interface Employee {
   featuredPosts: FeaturedPost[]
 }
 
+export interface Celebration {
+  type: CelebrationType
+  employee: Employee
+  numYears?: number
+}
+
+export type CelebrationType = "Birthday" | "Anniversary"
+
 export interface PersonalSite {
   url: string
   description: string

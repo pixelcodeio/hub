@@ -3,6 +3,7 @@ import {
   Anniversary,
   Announcement,
   CalendarEvent,
+  Celebration,
   Employee,
   FeedPost,
   NewHire,
@@ -23,6 +24,7 @@ export interface AppState {
   feed: FeedPost[]
   profile: Employee
   currentPage: Page,
+  celebrations: Celebration[],
 }
 
 const announcement = {
@@ -178,6 +180,25 @@ export const initialState: AppState = {
     {
       type: "DailyUpdate",
       dailyUpdate,
+    },
+  ],
+  celebrations: [
+    {
+      type: "Birthday",
+      employee: kevin,
+    },
+    {
+      type: "Anniversary",
+      employee: kevin,
+      numYears: 5,
+    },
+    {
+      type: "Birthday",
+      employee: kevin,
+    },
+    {
+      type: "Birthday",
+      employee: kevin,
     },
   ]
 };

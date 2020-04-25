@@ -20,4 +20,5 @@ export const colors = {
   purple: "#965FEF",
   lightYellow: "#FAF6F0",
   ashBlue: "#F3F6F7",
+  lightTeal: "#F2F8F6",
 }
