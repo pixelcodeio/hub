@@ -61,9 +61,21 @@ export default function reducer(state: AppState = initialState, action: AppActio
       return state
     case "selectFilter":
       const { filter } = action
-      const filters = selectedFilters.includes(filter)
-        ? selectedFilters.filter(f => f !== filter)
-        : [...selectedFilters, filter]
+      const allFilterPrevSelected = selectedFilters.includes("All")
+      if (filter === "All") {
+        if (allFilterPrevSelected) {
+          return { ...state, selectedFilters }
+        } else {
+          return { ...state, selectedFilters: ["All"] }
+        }
+      }
+      let filters = selectedFilters
+      if (allFilterPrevSelected) {
+        filters = filters.filter(f => f !== "All")
+      }
+      filters = filters.includes(filter)
+        ? filters.filter(f => f !== filter)
+        : [...filters, filter]
       return { ...state, selectedFilters: filters }
     default:
       return state
