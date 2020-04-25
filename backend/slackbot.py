@@ -22,11 +22,10 @@ def get_announcements(profiles_dict):
     for data in response['messages']:
         if data['user'] not in profiles_dict:
             continue
-        text = data['text']
-        profile = profiles_dict[data['user']]
-        sent_at = datetime.fromtimestamp(float(data['ts']))
+        title = data['text']
+        date = datetime.fromtimestamp(float(data['ts']))
 
-        announcements.append(Announcement(text, profile, sent_at))
+        announcements.append(Announcement(title, date))
 
     return announcements
 

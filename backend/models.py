@@ -1,6 +1,16 @@
 import random
+import re
 from datetime import datetime
 
+under_pat = re.compile(r'_([a-z])')
+def underscore_to_camel(name):
+    return under_pat.sub(lambda x: x.group(1).upper(), name)
+
+def convert(d):
+    new_d = {}
+    for k, v in d.items():
+        new_d[underscore_to_camel(k)] = convert(v) if isinstance(v,dict) else v
+    return new_d
 
 class Anniversary:
     def __init__(self, profile):
@@ -8,36 +18,50 @@ class Anniversary:
         self.years = random.randint(1, 5)
 
     def serialize(self):
-        return {
-            'profile': self.profile.serialize(),
+        return convert({
+            'name': self.profile.name,
+            'title': self.profile.title,
+            'team': self.profile.team,
+            'imageURL': self.profile.image_url,
             'years': self.years
-        }
+        })
 
 
 class Announcement:
-    def __init__(self, text, profile, sent_at):
-        self.text = text
+    def __init__(self, title, date):
+        self.title = title
+        self.date = date
+
+    def serialize(self):
+        return convert({
+            'title': self.title,
+            'date': self.date.strftime("%B %-d, %Y")
+        })
+
+class Birthday:
+    def __init__(self, profile):
         self.profile = profile
-        self.sent_at = sent_at
 
     def serialize(self):
-        return {
-            'text': self.text,
-            'profile': self.profile.serialize(),
-            'sent_at': self.sent_at
-        }
+        return convert({
+            'name': self.profile.name,
+            'title': self.profile.title,
+            'team': self.profile.team,
+            'imageURL': self.profile.image_url
+        })
 
-
-class DailyUpdate:
-    def __init__(self, message):
-        self.message = message
-        self.sent_at = datetime.now()
+class NewHire:
+    def __init__(self, profile):
+        self.profile = profile
 
     def serialize(self):
-        return {
-            'message': self.message,
-            'sent_at': self.sent_at
-        }
+        return convert({
+            'name': self.profile.name,
+            'title': self.profile.title,
+            'team': self.profile.team,
+            'imageURL': self.profile.image_url,
+            'blurb': self.profile.blurb
+        })
 
 class Poll:
     def __init__(self, id, sender, text, options):
@@ -54,61 +78,95 @@ class Poll:
             self.voters[option] = [voter_id]
 
     def serialize(self):
-        return {
+        return convert({
             'id': self.id,
             'sender': self.sender.serialize(),
             'text': self.text,
             'options': self.options,
             'votes': self.voters
-        }
+        })
 
 class Profile:
-    def __init__(self, id, birthday, company_email, position, team, start_date, name, slack_internal_name, photo_url, timezone, status, interests, intro):
+    def __init__(
+        self,
+        id,
+        name,
+        title,
+        team,
+        image_url,
+        blurb,
+        interests,
+        manager,
+        email,
+        birthday,
+        pronouns,
+        join_date,
+        twitter,
+        linkedin,
+        facebook,
+        instagram,
+        personal_site,
+        featured_posts,
+        slack_internal_name
+    ):
         self.id = id
-        self.birthday = birthday
-        self.company_email = company_email
-        self.position = position
-        self.team = team
-        self.start_date = start_date
+
+        # Public fields
         self.name = name
-        self.slack_internal_name = slack_internal_name
-        self.photo_url = photo_url
-        self.timezone = timezone
-        self.status = status
+        self.title = title
+        self.team = team
+        self.image_url = image_url
+        self.blurb = blurb
         self.interests = interests
-        self.intro = intro
-        self.daily_updates = []
+        self.manager = manager
+        self.email = email
+        self.birthday = birthday
+        self.pronouns = pronouns
+        self.join_date = join_date
+        self.twitter = twitter
+        self.linkedin = linkedin
+        self.facebook = facebook
+        self.instagram = instagram
+        self.personal_site = personal_site
+        self.featured_posts = featured_posts
+
+        # Private fields
+        self.slack_internal_name = slack_internal_name
 
     def serialize(self):
-        return {
+        return convert({
             'id': self.id,
-            'birthday': self.birthday,
-            'company_email': self.company_email,
-            'position': self.position,
-            'team': self.team,
-            'start_date': self.start_date,
             'name': self.name,
-            'slack_internal_name': self.slack_internal_name,
-            'photo_url': self.photo_url,
-            'timezone': self.timezone,
-            'status': self.status,
+            'title': self.title,
+            'team': self.team,
+            'imageURL': self.image_url,
+            'blurb': self.blurb,
             'interests': self.interests,
-            'intro': self.intro,
-            'daily_updates': [update.serialize() for update in self.daily_updates]
-        }
+            'manager': self.manager,
+            'email': self.email,
+            'birthday': self.birthday.strftime("%B %-d"),
+            'pronouns': self.pronouns,
+            'join_date': self.join_date.strftime("%B %-d, %Y"),
+            'twitter': self.twitter,
+            'linkedin': self.linkedin,
+            'facebook': self.facebook,
+            'instagram': self.instagram,
+            'personal_site': self.personal_site,
+            'featured_posts': self.featured_posts,
+        })
 
 
 class Thank:
-    def __init__(self, sender, recipient, message):
+    def __init__(self, sender, to, message):
         self.sender = sender
-        self.recipient = recipient
+        self.to = to
         self.message = message
-        self.sent_at = datetime.now()
+        self.date = datetime.now()
 
     def serialize(self):
-        return {
-            'sender': self.sender.serialize(),
-            'recipient': self.recipient.serialize(),
+        return convert({
+            'from': self.sender.serialize(),
+            'to': self.to.serialize(),
             'message': self.message,
-            'sent_at': self.sent_at
-        }
+            'date': self.date.strftime("%B %-d, %Y")
+        })
