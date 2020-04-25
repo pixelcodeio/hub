@@ -7,10 +7,12 @@ export type Direction = "vertical" | "horizontal"
 export interface GridListContainerProps extends GridListProps {
   height: number
   direction: Direction
+  style?: any
 }
 
 export const GridListContainer: React.FC<GridListContainerProps> = (props) => {
   const isVertical = props.direction === "vertical"
+  const style = props.style || {}
   return (
     <Box
       display="flex"
@@ -21,6 +23,7 @@ export const GridListContainer: React.FC<GridListContainerProps> = (props) => {
       style={{
         overflowY: isVertical ? "scroll" : undefined,
         overflowX: isVertical ? undefined : "scroll",
+        ...style
       }}
     >
       <GridList {...props} style={{ flexWrap: !isVertical ? "nowrap" : undefined }}>

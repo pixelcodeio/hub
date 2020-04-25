@@ -6,7 +6,6 @@ import {
   Celebration,
   Employee,
   FeedPost,
-  NewHire,
   Page,
   User,
 } from './types';
@@ -16,7 +15,7 @@ export interface AppState {
   companyName: string
   user?: User
   announcements: Announcement[]
-  newHires: NewHire[]
+  recentHires: Employee[]
   calendarEvents: CalendarEvent[]
   birthdays: Employee[]
   anniversaries: Anniversary[]
@@ -91,6 +90,27 @@ const omar = {
   featuredPosts,
 }
 
+const young = {
+  name: "Young Kim",
+  title: "Software Engineer",
+  team: "Growth",
+  imageURL: "https://ca.slack-edge.com/T012HSXD00J-U012J3PCXFV-fad37ca9eb3d-512",
+  blurb: "Hi 👋 I’m Young and I joined Figma after I graduated from Cornell University. Previously, I interned 3 times in all of the Facebook offices (MPK, Seattle, NYC). I am a beast in code and I like to shoot soccer balls over the net. In my free time, I like to play League with Kevin Chan.",
+  interests: ["soccer", "spikeball", "reading", "cooking", "hip-hop"],
+  manager: kevin,
+  email: "omar@figma.com",
+  office: "NYC",
+  birthday: "February 7",
+  pronouns: "he/him",
+  joinDate: "August 18, 2018",
+  twitter: "@omar",
+  linkedin: "linkedin.com/in/omar",
+  facebook: "facebook.com/omar",
+  instagram: "@omar",
+  personalSite,
+  featuredPosts,
+}
+
 const tk = {
   name: "TK Kong",
   title: "Product Designer",
@@ -148,13 +168,7 @@ export const initialState: AppState = {
     numYears: 5,
   }),
   announcements: Array(5).fill(announcement),
-  newHires: Array(6).fill({
-    name: "Kevin Chan",
-    title: "Software Engineer",
-    team: "Growth",
-    imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
-    blurb: "Hi! My name is Kevin and I am very excited to join as a Software Engineer on the Growth team. Before Hub, I was a Software Engineer at Facebook. Feel free to grab time on my calendar and can’t wait to chat with y’all!",
-  }),
+  recentHires: Array(6).fill(young),
   user: undefined,
   feed: [
     {

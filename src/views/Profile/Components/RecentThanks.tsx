@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
-import { AppAction, NewHire, DispatchProps } from "redux/types"
+import { AppAction, Employee, DispatchProps } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
@@ -11,10 +11,10 @@ import { RecentThanksPost } from "./RecentThanksPost";
 
 export interface RecentThanksProps extends DispatchProps {
   companyName: string
-  newHires: NewHire[]
+  recentHires: Employee[]
 }
 
-export const RecentThanksComponent: React.FC<RecentThanksProps> = ({ companyName, newHires }) => {
+export const RecentThanksComponent: React.FC<RecentThanksProps> = ({ companyName, recentHires }) => {
   return (
     <Box>
       <Box display="flex" alignItems="center" justifyContent="space-between">
@@ -26,7 +26,7 @@ export const RecentThanksComponent: React.FC<RecentThanksProps> = ({ companyName
       </Box>
       <Spacer mt={2} />
       <ThankBotContainer py={1.5} px={2}>
-          <Text variant="body1" color={colors.gray4}>Thank Omar by using /thanks @omar in the Hub Slackbot. Try it →</Text>
+        <Text variant="body1" color={colors.gray4}>Thank Omar by using /thanks @omar in the Hub Slackbot. Try it →</Text>
       </ThankBotContainer>
       <Spacer mt={1} />
       <RecentThanksPost />
@@ -43,7 +43,7 @@ const ThankBotContainer = muiStyled(Box)({
 
 const mapStateToProps = (state: AppState) => ({
   companyName: state.companyName,
-  newHires: state.newHires,
+  recentHires: state.recentHires,
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),
