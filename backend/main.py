@@ -5,9 +5,14 @@ import requests
 from flask import Flask, request
 
 from slackbot import *
+from slackeventsapi import SlackEventAdapter
 
 app = Flask(__name__)
 app.debug = True
+slack_events_adapter = SlackEventAdapter(
+    'abfc6945359193db5006ee441bffefdd', "/slack/events", app)
+
+user_list = []
 
 ############################################### HELLO WORLD
 
@@ -64,9 +69,22 @@ def get_users():
 # Send slack message to a specific user?
 @app.route('/slack/message', methods=['POST'])
 def send_message():
+    user_name = request.json['name']
+    message = request.json['message']
+
+    slackbot.send_dm_to_user(user_name, message, user_list)
     return 'yo'
 
-############################################### ENTRYPOINT
+
+@slack_events_adapter.on("reaction_added")
+def update_emoji(payload):
+    """Update the onboarding welcome message after receiving a "reaction_added"
+    event from Slack. Update timestamp for welcome message as well.
+    """
+    event = payload.get("event", {})
+    print(event)
+
 
 if __name__ == "__main__":
+    user_list = get_users()
     app.run(debug=True)
