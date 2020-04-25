@@ -1,2 +1,5 @@
+export { FeedBellIcon } from "./FeedBellIcon"
+export { FeedMessageIcon } from "./FeedMessageIcon"
+export { FeedPrayIcon } from "./FeedPrayIcon"
 export { GoogleCalendarIcon } from "./GoogleCalendarIcon"
 export { PageControl } from "./PageControl"
