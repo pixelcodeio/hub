@@ -15,6 +15,8 @@ import {
   RecentlyJoined,
   RecentHires,
   Celebrations,
+  FeedPoll,
+  SimilarInterests,
 } from "./Components"
 import { Spacer, Text } from "components"
 import { FeedPostComponent } from "./Components/FeedPost"
@@ -40,11 +42,19 @@ export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch }
         </Box>
       </Box>
 
+      <Spacer grid mt={5} />
       <Box px={5}>
-        <Grid container >
-          <Spacer grid mt={5} />
+        <Grid container spacing={5} >
           <Grid item xs={3}>
             <Celebrations />
+          </Grid>
+          <Grid item xs={6}>
+            <FeedPoll />
+            <FeedPoll />
+            <FeedPoll />
+          </Grid>
+          <Grid item xs={3}>
+            <SimilarInterests />
           </Grid>
         </Grid>
       </Box>

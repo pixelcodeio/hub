@@ -24,6 +24,7 @@ export interface AppState {
   profile: Employee
   currentPage: Page,
   celebrations: Celebration[],
+  similarInterests: Employee[],
 }
 
 const announcement = {
@@ -154,6 +155,7 @@ export const initialState: AppState = {
     time: "10:30AM - 11:30AM"
   }),
   selectedFilters: ["All"],
+  similarInterests: Array(5).fill(tk),
   birthdays: Array(4).fill({
     name: "Kevin Chan",
     title: "Software Engineer",
