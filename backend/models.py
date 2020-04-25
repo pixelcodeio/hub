@@ -135,7 +135,7 @@ class Profile:
         # Private fields
         self.slack_internal_name = slack_internal_name
 
-    def serialize(self):
+    def serialize(self, thanks = []):
         return convert({
             'id': self.id,
             'name': self.name,
@@ -155,7 +155,8 @@ class Profile:
             'instagram': self.instagram,
             'personal_site': self.personal_site,
             'featured_posts': self.featured_posts,
-            'office': self.office
+            'office': self.office,
+            'received_thanks': [thank.serialize() for thank in thanks] 
         })
 
 
