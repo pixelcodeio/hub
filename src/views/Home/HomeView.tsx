@@ -8,7 +8,10 @@ import {
   Calendar,
   FeedPost,
   Filters,
-  RecentlyJoined
+  ProfileFeedPost,
+  RecentlyJoined,
+  RecentThanks,
+  RecentThanksPost,
 } from "./Components"
 import { Spacer, Text } from "components"
 import { FeedPostComponent } from "./Components/FeedPost"
@@ -29,8 +32,13 @@ export const HomeView: React.FC<any> = props => {
         </Grid>
         <Grid item xs={9} >
           <Box mx={15}>
-            <Filters />
             <Spacer grid mb={3} />
+            <RecentThanks />
+            <RecentThanksPost />
+            <RecentThanksPost />
+            <ProfileFeedPost />
+            <ProfileFeedPost />
+            <ProfileFeedPost />
           </Box>
         </Grid>
       </Grid>
