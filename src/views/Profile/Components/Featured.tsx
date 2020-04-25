@@ -22,8 +22,23 @@ export const FeaturedComponent: React.FC<FeaturedComponentProps> = ({ profile })
       </Box>
       <Spacer mt={3} />
       <FeaturedPostBox px={2} py={1.5}>
-        <Text variant="body1" underline>{`${profile.personalSite.url} `}</Text>
+        <Text variant="body1" underline>{`${profile.personalSite.url} →`}</Text>
+        <Spacer mt={1} />
+        <Text variant="body1" style={{ fontWeight: 400 }}>{profile.personalSite.description}</Text>
       </FeaturedPostBox>
+      {profile.featuredPosts.map((post, index) => (
+        <>
+          <Spacer mt={1} />
+          <FeaturedPostBox overflow="hidden">
+            <Image height={240} style={{ width: "100%" }} borderRadius={0} url={post.imageURL} />
+            <Box px={2} py={1.5}>
+              <Text variant="body1" >{post.title}</Text>
+              <Spacer mt={1} />
+              <Text variant="body1" style={{ fontWeight: 400 }}>{post.body}</Text>
+            </Box>
+          </FeaturedPostBox>
+        </>
+      ))}
     </Box>
   )
 }
