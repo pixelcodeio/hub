@@ -45,7 +45,7 @@ def get_user_id_for_name(name, user_list):
 # TODO
 
 
-def send_dm_to_user(user_id, message, user_list):
+def send_dm_to_user(user_id, message):
     try:
         response = client.chat_postMessage(
             channel=user_id,

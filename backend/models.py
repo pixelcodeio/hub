@@ -1,5 +1,16 @@
 from datetime import datetime
+import random
 
+class Anniversary:
+    def __init__(self, profile):
+        self.profile = profile
+        self.years = random.randint(1, 5)
+
+    def serialize(self):
+        return {
+            'profile': self.profile.serialize(),
+            'years': self.years
+        }
 class Announcement:
     def __init__(self, text, profile, sent_at):
         self.text = text
@@ -10,6 +21,17 @@ class Announcement:
         return {
             'text': self.text,
             'profile': self.profile.serialize(),
+            'sent_at': self.sent_at
+        }
+
+class DailyUpdate:
+    def __init__(self, message):
+        self.message = message
+        self.sent_at = datetime.now()
+
+    def serialize(self):
+        return {
+            'message': self.message,
             'sent_at': self.sent_at
         }
 
@@ -27,6 +49,7 @@ class Profile:
         self.status = status
         self.interests = interests
         self.intro = intro
+        self.daily_updates = []
     
     def serialize(self):
         return {
@@ -41,5 +64,21 @@ class Profile:
             'timezone': self.timezone,
             'status': self.status,
             'interests': self.interests,
-            'intro': self.intro
+            'intro': self.intro,
+            'daily_updates': [update.serialize() for update in self.daily_updates]
+        }
+
+class Thank:
+    def __init__(self, sender, recipient, message):
+        self.sender = sender
+        self.recipient = recipient
+        self.message = message
+        self.sent_at = datetime.now()
+
+    def serialize(self):
+        return {
+            'sender': self.sender.serialize(),
+            'recipient': self.recipient.serialize(),
+            'message': self.message,
+            'sent_at': self.sent_at
         }

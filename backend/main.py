@@ -1,27 +1,40 @@
 import os
 import json
 from urllib.parse import urlparse
-
+import atexit
 import requests
+from apscheduler.scheduler import Scheduler
 from flask import Flask, request
-
+from functools import reduce
+import operator
 from init_profiles import init_profiles
 from slackbot import *
 from slackeventsapi import SlackEventAdapter
+from models import Anniversary, DailyUpdate, Thank
+import random
 
 app = Flask(__name__)
 app.debug = True
+cron = Scheduler(daemon=True)
+cron.start()
 slack_events_adapter = SlackEventAdapter('abfc6945359193db5006ee441bffefdd', "/slack/events", app)
 
+daily_update_question = "What will you be working on today?"
 onboarding_questions = [
     "Give us an intro about yourself.",
     "What are some of your hobbies? (comma-separated)"
 ]
+thanks = []
 profiles_dict = init_profiles()
-user_list = profiles_dict.keys()
+user_list = list(profiles_dict.keys())
+
+############################################### HELPERS
 
 def make_response(r):
     return {'success': True, 'data': r}
+
+def make_boolean_response():
+    return {'success': True}
 
 ############################################### HELLO WORLD
 
@@ -81,26 +94,52 @@ def oauthv2():
     return oauth_common(code, redirect_uri, base_url)
 
 ############################################### OTHER ROUTES
+@app.route('/homepage', methods=['GET'])
+def homepage():
+    new_hires_pool = [profiles_dict[user_id] for user_id in user_list[:len(user_list) // 2]]
+    anniversaries_pool = [profiles_dict[user_id] for user_id in user_list[len(user_list) // 2:]]
+    daily_updates = reduce(lambda x,y: x+y,[profile.daily_updates for profile in list(profiles_dict.values())])
+    print([profile.daily_updates for profile in list(profiles_dict.values())])
+    daily_updates.sort(key=lambda x: x.sent_at, reverse=True)
+    return make_response({
+        'anniversaries': [Anniversary(prof).serialize() for prof in random.sample(anniversaries_pool, len(anniversaries_pool) // 2)],
+        'announcements': [ann.serialize() for ann in get_announcements(profiles_dict)],
+        'birthdays': [prof.serialize() for prof in random.sample(list(profiles_dict.values()), 4)],
+        'daily_updates': [update.serialize() for update in daily_updates],
+        'new_hires': [prof.serialize() for prof in random.sample(new_hires_pool, len(new_hires_pool) // 2)],
+        'thanks': [thank.serialize() for thank in thanks],
+    })
 
-# Get announcemenets
-@app.route('/announcements', methods=['GET'])
-def announcements():
-    return make_response([ann.serialize() for ann in get_announcements(profiles_dict)])
+@app.route('/thank', methods=['POST'])
+def thank():
+    sender_id = request.json['sender_id']
+    recipient_id = request.json['recipient_id']
+    message = request.json['message']
+
+    thanks.append(Thank(profiles_dict[sender_id], profiles_dict[recipient_id], message))
+
+    send_dm_to_user(recipient_id, "{} just thanked you for {}".format(profiles_dict[sender_id].name, message))
+    return make_boolean_response()
 
 # Get user's profile
 @app.route('/profile', methods=['GET'])
 def profile():
-    return 'yo'
+    profile_id = request.args.get('profile_id')
+    return make_response(profiles_dict[profile_id].serialize() if profile_id in profiles_dict else None)
 
 # Get list of all users?
-@app.route('/users', methods=['GET'])
+@app.route('/profiles', methods=['GET'])
 def get_users():
-    return 'yo'
+    return make_response([profile.serialize() for profile in profiles_dict.values()])
 
 # Send slack message to a specific user?
 @app.route('/slack/message', methods=['POST'])
 def send_message():
-    return 'yo'
+    user_id = request.json['user_id']
+    message = request.json['message']
+    send_dm_to_user(user_id, message)
+
+    return make_boolean_response()
 
 # Send new hire message
 # Using reaction_added j cuz its easy to trigger
@@ -109,8 +148,8 @@ def reaction_added(payload):
     event = payload.get("event", {})
     user_id = event.get("user")
 
-    send_dm_to_user(user_id, "Welcome!", user_list)
-    send_dm_to_user(user_id, onboarding_questions[0], user_list)
+    send_dm_to_user(user_id, "Welcome!")
+    send_dm_to_user(user_id, onboarding_questions[0])
 
 @slack_events_adapter.on('message')
 def message(payload):
@@ -126,11 +165,23 @@ def message(payload):
 
     if last_question == onboarding_questions[0]:
         profiles_dict[user_id].intro = last_two_messages[0]['text']
-        send_dm_to_user(user_id, onboarding_questions[1], user_list)
+        send_dm_to_user(user_id, onboarding_questions[1])
     elif last_question == onboarding_questions[1]:
         interests = last_two_messages[0]['text'].split(',')
         profiles_dict[user_id].interests = [interest.strip() for interest in interests]
+    elif last_question == daily_update_question:
+        profiles_dict[user_id].daily_updates.append(DailyUpdate(last_two_messages[0]['text']))
     
+############################################### CRON JOBS
+
+@cron.interval_schedule(days=1)
+def daily_update():
+    for user_id in user_list:
+        send_dm_to_user(user_id, daily_update_question)
+
+# Shutdown your cron thread if the web process is stopped
+atexit.register(lambda: cron.shutdown(wait=False))
 
 if __name__ == "__main__":
+    # daily_update()
     app.run(debug=True)
