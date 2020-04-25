@@ -4,7 +4,7 @@ import { applyMiddleware, createStore } from 'redux';
 import reducer from './redux/reducer';
 import thunk from 'redux-thunk';
 
-import { HomeView, TeamsView, ResourcesView, CalendarView } from "views"
+import { HomeView, TeamsView, ResourcesView, CalendarView, SignInView, SignUpView } from "views"
 import { theme } from "theme/theme"
 import { ThemeProvider as SCThemeProvider } from "styled-components"
 import { ThemeProvider } from "@material-ui/core"
@@ -26,6 +26,12 @@ class App extends React.Component {
             <Router>
               <NavBar />
               <Switch>
+                <Route path="/signin">
+                  <SignInView />
+                </Route>
+                <Route path="/signup">
+                  <SignUpView />
+                </Route>
                 <Route path="/(home|)">
                   <HomeView />
                 </Route>
