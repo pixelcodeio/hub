@@ -14,7 +14,7 @@ export interface RecentHiresProps extends DispatchProps {
 
 export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ recentHires }) => {
   return (
-    <Container py={5} px={3}>
+    <Box pt={7}>
       <Box display="flex" alignItems="center">
         <Text variant="h6">{"Recent Hires"}</Text>
         <Spacer ml={1} />
@@ -45,16 +45,16 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ recentHires }
                 <Button border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>👋</Button>
               </Box>
               <Spacer mt={2} />
-              <BlurbBox display="flex" flexWrap="wrap" px={2} py={2}>
-                <Text variant="body1">
+              <Box py={2}>
+                <Text variant="body1" style={{ fontWeight: 400 }}>
                   {newHire.blurb}
                 </Text>
-              </BlurbBox>
+              </Box>
             </NewHireBox>
           </GridListTile>
         ))}
       </GridListContainer>
-    </Container>
+    </Box>
   )
 }
 
@@ -63,15 +63,10 @@ const Container = muiStyled(Box)({
   height: "380px",
 })
 
-const BlurbBox = muiStyled(Box)({
-  backgroundColor: colors.gray1,
-  width: "288px",
-  height: "120px",
-  borderRadius: "20px",
-})
-
 const NewHireBox = muiStyled(Box)({
   backgroundColor: colors.white100,
+  border: `1px solid ${colors.gray2}`,
+  borderRadius: "8px",
 })
 
 const mapStateToProps = (state: AppState) => ({
