@@ -11,31 +11,17 @@ import { PageControl } from "assets"
 import { colors } from "theme/colors"
 import { fontWeight } from "styled-system";
 
-export interface FeedPostProps extends DispatchProps {
-  feedPost: FeedPostModel
+export interface ProfileFeedPostProps extends DispatchProps {
 }
 
-export const FeedPostComponent: React.FC<FeedPostProps> = ({ feedPost }) => {
-  let icon
-  switch (feedPost.type) {
-    case "Thanks":
-      icon = <FeedPrayIcon />
-    default:
-      icon = <FeedMessageIcon />
-  }
+export const ProfileFeedPostComponent: React.FC<ProfileFeedPostProps> = ({}) => {
   return (
     <Container py={2} px={2} mb={1}>
-      <Box display="flex" alignItems="center" justifyContent="space-between">
-        <Box display="flex" alignItems="center">
-          {icon}
-          <Spacer ml={1} />
-          <Text variant="body2" style={{ color: `${colors.gray4}`, fontWeight: "500" }}>February 1, 2020</Text>
-        </Box>
-      </Box>
-      <Spacer mt={1.5} />
-      <Text variant="body1" style={{ fontWeight: 600 }}>TK Kong thanked Kevin Chan.</Text>
+      <Text variant="body2" color={colors.gray4} style={{fontWeight: "500" }}>February 1, 2020</Text>
       <Spacer mt={1} />
-      <Text variant="body1" style={{ fontWeight: 400 }}>Today, I am working on squashing some bugs and tomorrow probably too.</Text>
+      <Text variant="h6" style={{ fontWeight: 600 }}>Who is your favorite artist?</Text>
+      <Spacer mt={0.75} />
+      <Text variant="body2" style={{ fontWeight: 400 }}>Kanye West is the reincarceration of God.</Text>
     </Container>
   )
 }
@@ -54,7 +40,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),
 });
 
-export const FeedPost = connect(
+export const ProfileFeedPost = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(FeedPostComponent);
+)(ProfileFeedPostComponent);

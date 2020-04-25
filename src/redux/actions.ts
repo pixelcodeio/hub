@@ -1,4 +1,4 @@
-import { AppAction } from './types';
+import { AppAction, Page } from './types';
 import { API } from "API"
 
 const sharedAPI = API.getInstance()
@@ -13,4 +13,8 @@ export const login = () => {
 
 export const selectFilter = (filter: string) => {
   return { type: "selectFilter", filter }
+}
+
+export const setCurrentPage = (page: Page) => {
+  return { type: "setCurrentPage", page }
 }

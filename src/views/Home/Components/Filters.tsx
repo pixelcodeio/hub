@@ -6,7 +6,7 @@ import { AppAction, DispatchProps, Employee } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
-import { GridListContainer, Image, Text, Spacer } from "components"
+import { GridListContainer, Image, Button, Text, Spacer } from "components"
 import { PageControl } from "assets"
 import { colors } from "theme/colors"
 
@@ -29,14 +29,15 @@ export const FiltersComponent: React.FC<FiltersComponentProps> = ({ dispatch, se
       {Object.entries(filters).map(([key, value]) => {
         const isSelected = selectedFilters.includes(key)
         return (
-          <FilterButton
+          <Button
+            backgroundColor={isSelected ? colors.black100 : colors.white100}
+            border={isSelected ? undefined : "1px solid #EEEEEE"}
+            borderRadius={8}
+            padding={12}
             onClick={() => onSelectFilter(key)}
-            style={{
-              backgroundColor: isSelected ? colors.black100 : colors.white100,
-              border: isSelected ? undefined : "1px solid #EEEEEE",
-            }}>
+            style={{ marginRight: "8px" }}>
             <Text variant="body1" color={isSelected ? colors.white100 : colors.black100}>{value}</Text>
-          </FilterButton>
+          </Button>
         )
       })}
     </Container>
