@@ -2,8 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './redux/reducer';
-import { Theme } from "components"
 import { Home } from "views"
+import { theme } from "theme/theme"
+import { ThemeProvider as SCThemeProvider } from "styled-components"
+import { ThemeProvider } from "@material-ui/core"
+
+
 
 class App extends React.Component {
   store = createStore(reducer)
@@ -11,9 +15,11 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={this.store}>
-        <Theme>
-          <Home />
-        </Theme>
+        <SCThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
+            <Home />
+          </ThemeProvider>
+        </SCThemeProvider>
       </Provider>
     )
   }
