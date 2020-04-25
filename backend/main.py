@@ -107,15 +107,23 @@ def oauthv2():
 ############################################### OTHER ROUTES
 @app.route('/homepage', methods=['GET'])
 def homepage():
+    user_id = request.args.get('user_id')
+    req_user_profile = profiles_dict[user_id]
+
     half_list_index = len(user_list) // 2
     new_hires_pool = [profiles_dict[user_id] for user_id in user_list[:half_list_index]]
     anniversaries_pool = [profiles_dict[user_id] for user_id in user_list[half_list_index:]]
+
+    def similar_in_interest(p1, p2):
+        return p1 != p2 and len(set(p1.interests).intersection(p2.interests)) > 0
+    similar_interests = [profile for profile in list(profiles_dict.values()) if similar_in_interest(profile, req_user_profile)]
 
     return make_response({
         'anniversaries': [Anniversary(prof).serialize() for prof in random.sample(anniversaries_pool, len(anniversaries_pool) // 2)],
         'birthdays': [Birthday(prof).serialize() for prof in random.sample(list(profiles_dict.values()), 4)],
         'new_hires': [NewHire(prof).serialize() for prof in random.sample(new_hires_pool, len(new_hires_pool) // 2)],
-        'polls': [poll.serialize() for poll in list(all_polls.values())]
+        'polls': [poll.serialize() for poll in list(all_polls.values())],
+        'similar_interests': [prof.serialize() for prof in similar_interests]
     })
 
 @app.route('/poll', methods=['POST'])
