@@ -28,6 +28,7 @@ onboarding_questions = [
     "Give us an intro about yourself.",
     "What are some of your hobbies? (comma-separated)"
 ]
+poll_confirmation = "Thanks for voting! Checkout https://thehub.com to see the results!"
 thanks = []
 all_polls = {}
 profiles_dict = init_profiles()
@@ -185,15 +186,13 @@ def send_message():
 def receive_vote():
     payload = json.loads(dict(request.form)['payload'])
     user_id = payload['user']['id']
-    action = payload['actions'][0]
-    poll_id = action['value']
-    option = action['text']['text']
-    all_polls[poll_id].voters[option].append(user_id)
+    poll_id = str(payload['message']['blocks'][0]['block_id'])
+    option = payload['actions'][0]['text']['text']
+    all_polls[poll_id].add_vote(option, user_id)
     x = requests.post(payload['response_url'], json = {
-        "text": "Thanks for voting! Checkout https://thehub.com to see the results!",
+        "text": poll_confirmation,
         "replace_original": "true"
     })
-    print(x.text)
 
     return make_boolean_response()
 
@@ -207,7 +206,6 @@ def reaction_added(payload):
     send_dm_to_user(user_id, "Welcome!")
     send_dm_to_user(user_id, onboarding_questions[0])
 
-# TODO: this whole thing is kinda jank. idk if we care enough to fix tho
 @slack_events_adapter.on('message')
 def message(payload):
     event = payload.get("event", {})
@@ -218,16 +216,22 @@ def message(payload):
         return
 
     last_two_messages = messages_in_channel(channel_id, 2)
-    last_question = last_two_messages[1]['text']
+    last_question = last_two_messages[1]
 
-    if last_question == onboarding_questions[0]:
+    if last_question['text'] == onboarding_questions[0]:
         profiles_dict[user_id].intro = last_two_messages[0]['text']
         send_dm_to_user(user_id, onboarding_questions[1])
-    elif last_question == onboarding_questions[1]:
+    elif last_question['text'] == onboarding_questions[1]:
         interests = last_two_messages[0]['text'].split(',')
         profiles_dict[user_id].interests = [interest.strip() for interest in interests]
-    elif last_question == daily_update_question:
+    elif last_question['text'] == daily_update_question:
         profiles_dict[user_id].daily_updates.append(DailyUpdate(last_two_messages[0]['text']))
+    elif last_question['blocks'][0]['block_id'] in all_polls:
+        poll = all_polls[last_question['blocks'][0]['block_id']]
+        if len(poll.options) == 0:
+            poll.add_vote(last_two_messages[0]['text'], user_id)
+            send_dm_to_user(user_id, poll_confirmation)
+
 
 ############################################### CRON JOBS
 
