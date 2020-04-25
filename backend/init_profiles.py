@@ -1,6 +1,7 @@
-from slackbot import *
 from datetime import datetime
+
 from models import Profile
+from slackbot import *
 
 
 def init_profiles():

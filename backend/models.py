@@ -1,5 +1,6 @@
-from datetime import datetime
 import random
+from datetime import datetime
+
 
 class Anniversary:
     def __init__(self, profile):
@@ -11,18 +12,21 @@ class Anniversary:
             'profile': self.profile.serialize(),
             'years': self.years
         }
+
+
 class Announcement:
     def __init__(self, text, profile, sent_at):
         self.text = text
         self.profile = profile
         self.sent_at = sent_at
-    
+
     def serialize(self):
         return {
             'text': self.text,
             'profile': self.profile.serialize(),
             'sent_at': self.sent_at
         }
+
 
 class DailyUpdate:
     def __init__(self, message):
@@ -34,6 +38,7 @@ class DailyUpdate:
             'message': self.message,
             'sent_at': self.sent_at
         }
+
 
 class Profile:
     def __init__(self, id, birthday, company_email, position, team, start_date, name, slack_internal_name, photo_url, timezone, status, interests, intro):
@@ -51,7 +56,7 @@ class Profile:
         self.interests = interests
         self.intro = intro
         self.daily_updates = []
-    
+
     def serialize(self):
         return {
             'id': self.id,
@@ -69,6 +74,7 @@ class Profile:
             'intro': self.intro,
             'daily_updates': [update.serialize() for update in self.daily_updates]
         }
+
 
 class Thank:
     def __init__(self, sender, recipient, message):

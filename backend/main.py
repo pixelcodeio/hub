@@ -1,23 +1,26 @@
-import os
-import json
-from urllib.parse import urlparse
 import atexit
+import json
+import operator
+import os
+import random
+from functools import reduce
+from urllib.parse import urlparse
+
+from flask import Flask, request
+
 import requests
 from apscheduler.scheduler import Scheduler
-from flask import Flask, request
-from functools import reduce
-import operator
 from init_profiles import init_profiles
+from models import Anniversary, DailyUpdate, Thank
 from slackbot import *
 from slackeventsapi import SlackEventAdapter
-from models import Anniversary, DailyUpdate, Thank
-import random
 
 app = Flask(__name__)
 app.debug = True
 cron = Scheduler(daemon=True)
 cron.start()
-slack_events_adapter = SlackEventAdapter('abfc6945359193db5006ee441bffefdd', "/slack/events", app)
+slack_events_adapter = SlackEventAdapter(
+    'abfc6945359193db5006ee441bffefdd', "/slack/events", app)
 
 daily_update_question = "What will you be working on today?"
 onboarding_questions = [
@@ -61,7 +64,12 @@ def oauth_common(code, redirect_uri, base_url):
     CLIENT_ID = "1085915442018.1079182647094"
     CLIENT_SECRET = "e52cf377e47cf40ee0e70f5f30505cd8"
 
-    response = requests.get(base_url.format(CLIENT_ID, CLIENT_SECRET, code, redirect_uri))
+    response = requests.get(base_url.format(
+        CLIENT_ID,
+        CLIENT_SECRET,
+        code,
+        redirect_uri
+    ))
     response_json = json.loads(response.text)
 
     profiles_dict[response_json["user_id"]] = response_json
@@ -96,10 +104,13 @@ def oauthv2():
 ############################################### OTHER ROUTES
 @app.route('/homepage', methods=['GET'])
 def homepage():
-    new_hires_pool = [profiles_dict[user_id] for user_id in user_list[:len(user_list) // 2]]
-    anniversaries_pool = [profiles_dict[user_id] for user_id in user_list[len(user_list) // 2:]]
-    daily_updates = reduce(lambda x,y: x+y,[profile.daily_updates for profile in list(profiles_dict.values())])
+    half_list_index = len(user_list) // 2
+    new_hires_pool = [profiles_dict[user_id] for user_id in user_list[:half_list_index]]
+    anniversaries_pool = [profiles_dict[user_id] for user_id in user_list[half_list_index:]]
+
+    daily_updates = reduce(lambda x, y: x+y, [profile.daily_updates for profile in list(profiles_dict.values())])
     daily_updates.sort(key=lambda x: x.sent_at, reverse=True)
+
     return make_response({
         'anniversaries': [Anniversary(prof).serialize() for prof in random.sample(anniversaries_pool, len(anniversaries_pool) // 2)],
         'announcements': [ann.serialize() for ann in get_announcements(profiles_dict)],
@@ -108,6 +119,7 @@ def homepage():
         'new_hires': [prof.serialize() for prof in random.sample(new_hires_pool, len(new_hires_pool) // 2)],
         'thanks': [thank.serialize() for thank in thanks],
     })
+
 
 @app.route('/slack/thank', methods=['POST'])
 def thank():
@@ -122,7 +134,10 @@ def thank():
 
     thanks.append(Thank(profiles_dict[sender_id], recipient_profile.id, message))
 
-    send_dm_to_user(recipient_profile.id, "<@{}> just thanked you for {}!".format(profiles_dict[sender_id].id, message))
+    send_dm_to_user(
+        recipient_profile.id,
+        "<@{}> just thanked you for {}!".format(profiles_dict[sender_id].id, message)
+    )
     return make_boolean_response()
 
 # Get user's profile
@@ -176,7 +191,7 @@ def message(payload):
         profiles_dict[user_id].interests = [interest.strip() for interest in interests]
     elif last_question == daily_update_question:
         profiles_dict[user_id].daily_updates.append(DailyUpdate(last_two_messages[0]['text']))
-    
+
 ############################################### CRON JOBS
 
 @cron.interval_schedule(days=1)
