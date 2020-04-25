@@ -18,6 +18,6 @@ export const colors = {
   gray4: "#707173",
   teal: "#F3F9F9",
   purple: "#965FEF",
-  lightYellow: "#F7F5F3",
+  lightYellow: "#FAF6F0",
   ashBlue: "#F3F6F7",
 }

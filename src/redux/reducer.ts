@@ -6,6 +6,7 @@ import {
   Employee,
   FeedPost,
   NewHire,
+  Page,
   User,
 } from './types';
 import { Announcements } from 'views/Home/Components/Announcements';
@@ -20,6 +21,8 @@ export interface AppState {
   anniversaries: Anniversary[]
   selectedFilters: string[]
   feed: FeedPost[]
+  profile: Employee
+  currentPage: Page,
 }
 
 const announcement = {
@@ -32,6 +35,36 @@ const kevin = {
   title: "Software Engineer",
   team: "Growth",
   imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
+  blurb: "Hi 👋 I’m Omar and I joined Figma after I graduated from Cornell University. Previously, I interned 3 times in all of the Facebook offices (MPK, Seattle, NYC). I am a beast in code and I like to shoot soccer balls over the net. In my free time, I like to play League with Kevin Chan.",
+  interests: ["soccer", "spikeball", "reading", "cooking", "hip-hop"],
+  email: "omar@figma.com",
+  office: "NYC",
+  birthday: "February 7",
+  pronouns: "he/him",
+  joinDate: "August 18, 2018",
+  twitter: "@omar",
+  linkedin: "linkedin.com/in/omar",
+  facebook: "facebook.com/omar",
+  instagram: "@omar",
+}
+
+const omar = {
+  name: "Omar Rasheed",
+  title: "Software Engineer",
+  team: "Core Product",
+  imageURL: "https://ca.slack-edge.com/T012HSXD00J-U012HSXKLKC-6427b1cd736c-512",
+  blurb: "Hi 👋 I’m Omar and I joined Figma after I graduated from Cornell University. Previously, I interned 3 times in all of the Facebook offices (MPK, Seattle, NYC). I am a beast in code and I like to shoot soccer balls over the net. In my free time, I like to play League with Kevin Chan.",
+  interests: ["soccer", "spikeball", "reading", "cooking", "hip-hop"],
+  manager: kevin,
+  email: "omar@figma.com",
+  office: "NYC",
+  birthday: "February 7",
+  pronouns: "he/him",
+  joinDate: "August 18, 2018",
+  twitter: "@omar",
+  linkedin: "linkedin.com/in/omar",
+  facebook: "facebook.com/omar",
+  instagram: "@omar",
 }
 
 const tk = {
@@ -39,6 +72,18 @@ const tk = {
   title: "Product Designer",
   team: "Growth",
   imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
+  blurb: "Hi 👋 I’m Omar and I joined Figma after I graduated from Cornell University. Previously, I interned 3 times in all of the Facebook offices (MPK, Seattle, NYC). I am a beast in code and I like to shoot soccer balls over the net. In my free time, I like to play League with Kevin Chan.",
+  interests: ["soccer", "spikeball", "reading", "cooking", "hip-hop"],
+  manager: kevin,
+  email: "omar@figma.com",
+  office: "NYC",
+  birthday: "February 7",
+  pronouns: "he/him",
+  joinDate: "August 18, 2018",
+  twitter: "@omar",
+  linkedin: "linkedin.com/in/omar",
+  facebook: "facebook.com/omar",
+  instagram: "@omar",
 }
 
 const thanks = {
@@ -55,7 +100,9 @@ const dailyUpdate = {
 }
 
 export const initialState: AppState = {
+  currentPage: "Profile",
   companyName: "Figma",
+  profile: omar,
   calendarEvents: Array(5).fill({
     name: "Engineering Standup",
     time: "10:30AM - 11:30AM"
@@ -134,6 +181,8 @@ export default function reducer(state: AppState = initialState, action: AppActio
         ? filters.filter(f => f !== filter)
         : [...filters, filter]
       return { ...state, selectedFilters: filters }
+    case "setCurrentPage":
+      return { ...state, currentPage: action.page }
     default:
       return state
   }

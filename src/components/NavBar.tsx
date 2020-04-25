@@ -4,13 +4,15 @@ import { Box, Button, Grid } from "@material-ui/core"
 import { Link, Spacer, Text } from "components"
 import { styled } from '@material-ui/core/styles';
 import { colors } from "theme/colors"
-import { AppAction, DispatchProps } from "redux/types"
+import { AppAction, DispatchProps, Page } from "redux/types"
 import { AppState } from 'redux/reducer';
 import { login } from "redux/actions"
 
-export interface NavBarProps extends DispatchProps { }
+export interface NavBarProps extends DispatchProps {
+  currentPage: Page
+}
 
-export const NavBarComponent: React.FC<NavBarProps> = ({ dispatch }) => {
+export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch }) => {
   const [selectedSection, setSelectedSection] = useState("Home")
   const sections = [
     { url: "/home", name: "Home" },
@@ -18,8 +20,17 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ dispatch }) => {
     { url: "/resources", name: "Resources" },
     { url: "/calendar", name: "Calendar" },
   ]
+  let backgroundColor
+  switch (currentPage) {
+    case "Profile":
+      backgroundColor = colors.lightYellow
+      break;
+    default:
+      backgroundColor = colors.white100
+      break;
+  }
   return (
-    <ContainerGrid container>
+    <ContainerGrid container style={{ backgroundColor }}>
       <Grid item xs={12}>
         <Box display="flex" alignItems="center" pl={14} style={{ height: "100%" }}>
           {sections.map((section, index) => (
@@ -47,7 +58,9 @@ const ContainerGrid = styled(Grid)({
   height: "48px",
 })
 
-const mapStateToProps = (state: AppState) => state
+const mapStateToProps = (state: AppState) => ({
+  currentPage: state.currentPage
+})
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: any) => dispatch(action),
 });

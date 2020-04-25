@@ -11,6 +11,18 @@ export interface Employee {
   title: string
   team: string
   imageURL: string
+  blurb: string
+  interests: string[]
+  manager?: Employee
+  email: string
+  office: string
+  birthday: string
+  pronouns: string
+  joinDate: string
+  twitter: string
+  linkedin: string
+  facebook: string
+  instagram: string
 }
 
 export interface Anniversary extends Employee {
@@ -50,9 +62,12 @@ export interface FeedPost {
   dailyUpdate?: DailyUpdate
 }
 
+export type Page = "Home" | "Profile"
+
 export type FeedPostType = "Thanks" | "DailyUpdate"
 
 export type AppAction =
   | { type: "type", value: "value" }
   | { type: "login" }
   | { type: "selectFilter", filter: string }
+  | { type: "setCurrentPage", page: Page }
