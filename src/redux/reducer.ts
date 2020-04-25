@@ -187,6 +187,9 @@ export default function reducer(state: AppState = initialState, action: AppActio
   switch (action.type) {
     case "login":
       return state
+    case "fetchProfile":
+      const { data } = action
+      return state
     case "selectFilter":
       const { filter } = action
       const allFilterPrevSelected = selectedFilters.includes("All")

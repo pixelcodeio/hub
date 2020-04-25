@@ -82,5 +82,6 @@ export type FeedPostType = "Thanks" | "DailyUpdate"
 export type AppAction =
   | { type: "type", value: "value" }
   | { type: "login" }
+  | { type: "fetchProfile", data: Object }
   | { type: "selectFilter", filter: string }
   | { type: "setCurrentPage", page: Page }

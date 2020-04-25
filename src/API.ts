@@ -26,7 +26,15 @@ export class API {
     })
   }
 
+  public async fetchProfile(userID: string) {
+    return this.fetchPath(`profile?user_id=${userID}`)
+  }
+
   public async signup() {
+    return this.fetchPath("signup")
+  }
+
+  public async signin() {
     return this.fetchPath("signin")
   }
 
