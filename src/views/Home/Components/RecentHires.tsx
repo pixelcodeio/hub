@@ -58,11 +58,6 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ recentHires }
   )
 }
 
-const Container = muiStyled(Box)({
-  backgroundColor: colors.teal,
-  height: "380px",
-})
-
 const NewHireBox = muiStyled(Box)({
   backgroundColor: colors.white100,
   border: `1px solid ${colors.gray2}`,

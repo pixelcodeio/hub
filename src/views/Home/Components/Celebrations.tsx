@@ -27,7 +27,6 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ce
         const emoji = isBirthday ? "🎂" : "🚀"
         return (
           <Box>
-            <Spacer mt={1} />
             <CelebrationBox px={2} py={1.5}>
               <Text variant="body2">
                 {isBirthday ? "Birthday is today 🎂" : `${celebration.numYears} year anniversary 🚀`}
@@ -46,6 +45,7 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ce
                 <Button border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>{emoji}</Button>
               </Box>
             </CelebrationBox>
+            <Spacer mt={1} />
           </Box>
         )
       })}
