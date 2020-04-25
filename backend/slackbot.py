@@ -24,11 +24,11 @@ def get_user_id_for_name(name, user_list):
 # TODO
 
 
-def send_dm_to_user(user_id):
+def send_dm_to_user(user_id, message):
     try:
         response = client.chat_postMessage(
             channel=user_id,
-            text="Hello from your app! :tada:"
+            text=message
         )
     except SlackApiError as e:
         assert e.response["error"]
@@ -41,4 +41,4 @@ if __name__ == "__main__":
     user_list = get_users()
     omar_id = get_user_id_for_name("Omar", user_list)
     print(omar_id)
-    print(send_dm_to_user(omar_id))
+    print(send_dm_to_user(omar_id, "young hates poke"))
