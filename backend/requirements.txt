@@ -1,4 +1,5 @@
 aiohttp==3.6.2
+APScheduler==2.1.2
 async-timeout==3.0.1
 attrs==19.3.0
 certifi==2020.4.5.1
@@ -12,13 +13,12 @@ Jinja2==2.11.2
 MarkupSafe==1.1.1
 multidict==4.7.5
 pyee==7.0.1
+pytz==2019.3
 requests==2.23.0
 six==1.14.0
 slackclient==2.5.0
 slackeventsapi==2.1.0
+tzlocal==2.0.0
 urllib3==1.25.9
 Werkzeug==1.0.1
 yarl==1.4.2
-apscheduler=2.1.2
-pytz=2019.3
-tzlocal=2.0.0
