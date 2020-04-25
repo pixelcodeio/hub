@@ -47,6 +47,7 @@ def oauth_common(code, redirect_uri, base_url):
     profiles_dict[response_json["user_id"]] = response_json
 
     return {
+        "name": response_json["user"]["name"],
         "user_id": response_json["user_id"],
         "user_image": response_json["user"]["image_1024"],
         "team_image": response_json["team"]["image_230"],
