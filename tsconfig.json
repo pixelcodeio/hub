@@ -20,6 +20,7 @@
     "noEmit": true,
     "jsx": "react",
     "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": false,
   },
   "include": [
     "src"

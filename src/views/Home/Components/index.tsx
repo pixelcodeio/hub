@@ -1,2 +1,7 @@
 export { Announcements } from "./Announcements"
 export { NewHires } from "./NewHires"
+export { RecentlyJoined } from "./RecentlyJoined"
+export { Calendar } from "./Calendar"
+export { Birthdays } from "./Birthdays"
+export { Anniversaries } from "./Anniversaries"
+export { Filters } from "./Filters"
