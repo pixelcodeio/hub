@@ -4,6 +4,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Inter:300,400,500,600,700800,900', 'sans-serif']
+  }
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

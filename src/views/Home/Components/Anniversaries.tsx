@@ -8,6 +8,7 @@ import styled from "styled-components"
 import { GridListContainer, Image, Text, Spacer } from "components"
 import { PageControl } from "assets"
 import { colors } from "theme/colors"
+import { fontWeight } from "styled-system";
 
 export interface AnniversariesComponentProps extends DispatchProps {
   anniversaries: Anniversary[]
@@ -26,7 +27,7 @@ export const AnniversariesComponent: React.FC<AnniversariesComponentProps> = ({ 
       </Box>
       <Spacer mt={3.5} />
       <BirthdayBox py={2.5} display="flex" flexDirection="column" alignItems="center">
-        <Text variant="body2">{`${anniversary.numYears} Years Today`}</Text>
+        <Text variant="body2" style={{fontWeight: 600}}>{`${anniversary.numYears} Years Today`}</Text>
         <Spacer mt={2} />
         <Image length={64} url={anniversary.imageURL} />
         <Spacer mt={2} />

@@ -1,0 +1,4 @@
+runtime: python37
+entrypoint: gunicorn -b :$PORT main:app
+env_variables:
+  SERVER_URL: "https://snappy-flash-275303.ue.r.appspot.com"

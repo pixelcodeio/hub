@@ -31,7 +31,8 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.1.0",
     "styled-system": "^5.1.5",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "start": "react-scripts start",
