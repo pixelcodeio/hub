@@ -1,4 +1,4 @@
-import { AppAction } from './types';
+import { AppAction, Filter } from './types';
 import { API } from "API"
 
 const sharedAPI = API.getInstance()
@@ -9,4 +9,8 @@ export const login = () => {
     console.log("RESPONSE", response)
     dispatch({ type: "login" })
   }
+}
+
+export const selectFilter = (filter: string) => {
+  return { type: "selectFilter", filter }
 }

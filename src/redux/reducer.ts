@@ -1,8 +1,10 @@
 import {
   AppAction,
+  Anniversary,
   Announcement,
   CalendarEvent,
   Employee,
+  Filter,
   NewHire,
   User,
 } from './types';
@@ -15,6 +17,8 @@ export interface AppState {
   newHires: NewHire[]
   calendarEvents: CalendarEvent[]
   birthdays: Employee[]
+  anniversaries: Anniversary[]
+  selectedFilter: Filter
 }
 
 export const initialState: AppState = {
@@ -23,11 +27,19 @@ export const initialState: AppState = {
     name: "Engineering Standup",
     time: "10:30AM - 11:30AM"
   }),
+  selectedFilter: "All",
   birthdays: Array(4).fill({
     name: "Kevin Chan",
     title: "Software Engineer",
     team: "Growth",
     imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
+  }),
+  anniversaries: Array(4).fill({
+    name: "Kevin Chan",
+    title: "Software Engineer",
+    team: "Growth",
+    imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
+    numYears: 5,
   }),
   announcements: Array(5).fill({
     title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
@@ -46,8 +58,11 @@ export const initialState: AppState = {
 export default function reducer(state: AppState = initialState, action: AppAction) {
   switch (action.type) {
     case "login":
-      return initialState
+      return state
+    case "selectFilter":
+      const { filter } = action
+      return { ...state, selectedFilter: filter }
     default:
-      return initialState;
+      return state
   }
 };

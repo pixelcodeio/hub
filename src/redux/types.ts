@@ -13,6 +13,10 @@ export interface Employee {
   imageURL: string
 }
 
+export interface Anniversary extends Employee {
+  numYears: number
+}
+
 export interface NewHire extends Employee {
   blurb: string
 }
@@ -27,6 +31,9 @@ export interface Announcement {
   date: string
 }
 
+export type Filter = "All" | "Announcements" | "Thanks" | "DailyUpdate"
+
 export type AppAction =
   | { type: "type", value: "value" }
   | { type: "login" }
+  | { type: "selectFilter", filter: string }
