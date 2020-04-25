@@ -14,8 +14,8 @@ import { fontWeight } from "styled-system";
 export const FeedPollOption = () => {
   return (
     <Box mt={1} display="flex" alignItems="center">
-      <Box p={1} mr={1} style={{border: `1px solid ${colors.gray2}`, borderRadius: "4px"}}>
-        <Text color={colors.black100} variant="body2">Option 1</Text>
+      <Box p={1} mr={1} style={{backgroundColor: colors.gray1, border: `1px solid ${colors.gray2}`, borderRadius: "4px"}}>
+        <Text color={colors.gray4} variant="body2" style={{fontWeight: "600"}}>Option 1</Text>
       </Box>
       <Text color={colors.black100} variant="body2" style={{fontWeight: "600"}}>48%</Text>
     </Box>
