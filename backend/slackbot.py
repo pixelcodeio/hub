@@ -59,6 +59,40 @@ def send_dm_to_user(user_id, message):
     except SlackApiError as e:
         assert e.response["error"]
 
+def broadcast_poll(poll_id, text, options, user_list):
+    options_elements = []
+    for option in options:
+        options_elements.append({
+            "type": "button",
+            "text": {
+                "type": "plain_text",
+                "text": option,
+                "emoji": False
+            },
+            "value": str(poll_id)
+        })
+    try:
+        for user_id in user_list:
+            response = client.chat_postMessage(
+                blocks=[
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": text
+                        }
+                    },
+                    {
+                        "type": "actions",
+                        "elements": options_elements
+                    }
+                ],
+                channel=user_id
+            )
+            print("hello")
+    except SlackApiError as e:
+        assert e.response["error"]
+
 
 def messages_in_channel(channel_id, count=100):
     return client.conversations_history(channel=channel_id, count=count)['messages']

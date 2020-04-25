@@ -39,6 +39,24 @@ class DailyUpdate:
             'sent_at': self.sent_at
         }
 
+class Poll:
+    def __init__(self, id, sender, text, options):
+        self.id = id
+        self.sender = sender
+        self.text = text
+        self.options = options
+        self.voters = {}
+        for option in options:
+            self.voters[option] = []
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'sender': self.sender.serialize(),
+            'text': self.text,
+            'options': self.options,
+            'votes': self.voters
+        }
 
 class Profile:
     def __init__(self, id, birthday, company_email, position, team, start_date, name, slack_internal_name, photo_url, timezone, status, interests, intro):
