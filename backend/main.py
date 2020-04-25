@@ -119,27 +119,6 @@ def homepage():
         'thanks': [thank.serialize() for thank in thanks],
     })
 
-
-@app.route('/slack/thank', methods=['POST'])
-def thank():
-    sender_id = request.form.get('user_id')
-    message = request.form.get('text')
-    space_bar_index = message.find(' ')
-    recipient_name = message[1:space_bar_index]
-    message = message[space_bar_index + 1:]
-
-    # TODO: Handle case for @hub
-    recipient_profile = next(prof for prof in list(profiles_dict.values()) if prof.slack_internal_name == recipient_name)
-
-    thanks.append(Thank(profiles_dict[sender_id], recipient_profile, message))
-
-    send_dm_to_user(
-        recipient_profile.id,
-        "<@{}> just thanked you for {}!".format(profiles_dict[sender_id].id, message)
-    )
-    return make_boolean_response()
-
-
 @app.route('/poll', methods=['POST'])
 def poll():
     sender = profiles_dict[request.json['user_id']]
@@ -187,6 +166,25 @@ def receive_vote():
         "replace_original": "true"
     })
 
+    return make_boolean_response()
+
+@app.route('/slack/thank', methods=['POST'])
+def thank():
+    sender_id = request.form.get('user_id')
+    message = request.form.get('text')
+    space_bar_index = message.find(' ')
+    recipient_name = message[1:space_bar_index]
+    message = message[space_bar_index + 1:]
+
+    # TODO: Handle case for @hub
+    recipient_profile = next(prof for prof in list(profiles_dict.values()) if prof.slack_internal_name == recipient_name)
+
+    thanks.append(Thank(profiles_dict[sender_id], recipient_profile, message))
+
+    send_dm_to_user(
+        recipient_profile.id,
+        "<@{}> just thanked you for {}!".format(profiles_dict[sender_id].id, message)
+    )
     return make_boolean_response()
 
 # Send new hire message
