@@ -2,7 +2,7 @@ from slack import WebClient
 from slack.errors import SlackApiError
 
 client = WebClient(
-    token="xoxb-1085915442018-1079191858262-I6obUeeRtsIp1Ud5uZjZRxVE")
+    token="xoxb-1085915442018-1079191858262-06rCGTOw6DM8BOoMkcuc8yUB")
 
 
 def get_users():
