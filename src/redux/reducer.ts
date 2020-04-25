@@ -30,6 +30,24 @@ const announcement = {
   date: "Feburary 1, 2020",
 }
 
+const personalSite = {
+  url: "omarrasheed.com",
+  description: "I write essays on my personal site every week. Feel free to check it out :)",
+}
+
+const featuredPosts = [
+  {
+    title: "Summer in Seattle!",
+    body: "Getting dinner with Young Kim and Kevin Chan",
+    imageURL: "https://files.slack.com/files-pri/T012HSXD00J-F012BKJ9JJJ/cd1f8e21-64bc-40ef-bb28-59d5559b328c_1_105_c.jpeg",
+  },
+  {
+    title: "Summer in Seattle!",
+    body: "Getting dinner with Young Kim and Kevin Chan",
+    imageURL: "https://files.slack.com/files-pri/T012HSXD00J-F012H0JTDE1/7eea3a82-2991-42e6-be2c-7141f1e07df8_1_105_c.jpeg",
+  },
+]
+
 const kevin = {
   name: "Kevin Chan",
   title: "Software Engineer",
@@ -46,6 +64,8 @@ const kevin = {
   linkedin: "linkedin.com/in/omar",
   facebook: "facebook.com/omar",
   instagram: "@omar",
+  personalSite,
+  featuredPosts,
 }
 
 const omar = {
@@ -65,6 +85,8 @@ const omar = {
   linkedin: "linkedin.com/in/omar",
   facebook: "facebook.com/omar",
   instagram: "@omar",
+  personalSite,
+  featuredPosts,
 }
 
 const tk = {
@@ -84,6 +106,8 @@ const tk = {
   linkedin: "linkedin.com/in/omar",
   facebook: "facebook.com/omar",
   instagram: "@omar",
+  personalSite,
+  featuredPosts,
 }
 
 const thanks = {

@@ -7,6 +7,7 @@ import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
 import { GridListContainer, Image, Text, Spacer } from "components"
 import { colors } from "theme/colors"
+import { RecentThanksPost } from "./RecentThanksPost";
 
 export interface RecentThanksProps extends DispatchProps {
   companyName: string
@@ -28,6 +29,8 @@ export const RecentThanksComponent: React.FC<RecentThanksProps> = ({ companyName
           <Text variant="body1" color={colors.gray4}>Thank Omar by using /thanks @omar in the Hub Slackbot. Try it →</Text>
       </ThankBotContainer>
       <Spacer mt={1} />
+      <RecentThanksPost />
+      <RecentThanksPost />
     </Box>
   )
 }

@@ -23,6 +23,13 @@ export interface Employee {
   linkedin: string
   facebook: string
   instagram: string
+  personalSite: PersonalSite
+  featuredPosts: FeaturedPost[]
+}
+
+export interface PersonalSite {
+  url: string
+  description: string
 }
 
 export interface Anniversary extends Employee {
@@ -41,6 +48,12 @@ export interface CalendarEvent {
 export interface Announcement {
   title: string
   date: string
+}
+
+export interface FeaturedPost {
+  title: string
+  body: string
+  imageURL: string
 }
 
 export interface Thanks {
