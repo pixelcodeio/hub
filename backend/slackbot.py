@@ -69,35 +69,35 @@ def broadcast_poll(poll_id, text, options, user_list):
                 "text": option,
                 "emoji": False
             },
-            "value": str(poll_id)
         })
+    blocks = [
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "*New Poll:* " + text
+            },
+            "block_id": str(poll_id),
+        }
+    ]
+    if len(options_elements) > 0:
+        blocks.append({
+            "type": "actions",
+            "elements": options_elements
+        })
+
     try:
         for user_id in user_list:
             response = client.chat_postMessage(
-                blocks=[
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": text
-                        }
-                    },
-                    {
-                        "type": "actions",
-                        "elements": options_elements
-                    }
-                ],
+                blocks=blocks,
                 channel=user_id
             )
-            print("hello")
     except SlackApiError as e:
         assert e.response["error"]
 
 
 def messages_in_channel(channel_id, count=100):
     return client.conversations_history(channel=channel_id, count=count)['messages']
-
-# TODO: we need to add support for commands
 
 
 if __name__ == "__main__":

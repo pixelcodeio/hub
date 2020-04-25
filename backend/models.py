@@ -46,8 +46,12 @@ class Poll:
         self.text = text
         self.options = options
         self.voters = {}
-        for option in options:
-            self.voters[option] = []
+    
+    def add_vote(self, option, voter_id):
+        if option in self.voters:
+            self.voters[option].append(voter_id)
+        else:
+            self.voters[option] = [voter_id]
 
     def serialize(self):
         return {
