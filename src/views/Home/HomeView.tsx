@@ -1,14 +1,15 @@
 import React from "react"
 import { Box, Grid } from "@material-ui/core"
 
-import { 
-  Announcements, 
-  Anniversaries, 
-  Birthdays, 
-  Calendar, 
-  FeedPost, 
-  Filters, 
-  RecentlyJoined } from "./Components"
+import {
+  Announcements,
+  Anniversaries,
+  Birthdays,
+  Calendar,
+  FeedPost,
+  Filters,
+  RecentlyJoined
+} from "./Components"
 import { Spacer, Text } from "components"
 import { FeedPostComponent } from "./Components/FeedPost"
 
@@ -30,8 +31,6 @@ export const HomeView: React.FC<any> = props => {
           <Box mx={15}>
             <Filters />
             <Spacer grid mb={3} />
-            <FeedPost />
-            <FeedPost />
           </Box>
         </Grid>
       </Grid>
