@@ -16,7 +16,7 @@ export interface ProfileFeedPostProps extends DispatchProps {
 
 export const ProfileFeedPostComponent: React.FC<ProfileFeedPostProps> = ({}) => {
   return (
-    <Container py={2} px={2} mb={1}>
+    <Container py={1.5} px={2} mb={1}>
       <Text variant="body2" color={colors.gray4} style={{fontWeight: "500" }}>February 1, 2020</Text>
       <Spacer mt={1} />
       <Text variant="h6" style={{ fontWeight: 600 }}>Who is your favorite artist?</Text>
