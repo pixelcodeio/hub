@@ -1,5 +1,5 @@
 export interface DispatchProps {
-  dispatch: (action: AppAction) => any;
+  dispatch: (action: any) => any;
 }
 
 export interface User {
@@ -24,4 +24,4 @@ export interface Announcement {
 
 export type AppAction =
   | { type: "type", value: "value" }
-  | { type: "login", user: User }
+  | { type: "login" }
