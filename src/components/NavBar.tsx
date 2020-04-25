@@ -6,7 +6,7 @@ import { styled } from '@material-ui/core/styles';
 import { colors } from "theme/colors"
 import { AppAction, DispatchProps, Page } from "redux/types"
 import { AppState } from 'redux/reducer';
-import { login } from "redux/actions"
+import { fetchProfile } from "redux/actions"
 
 export interface NavBarProps extends DispatchProps {
   currentPage: Page
@@ -39,7 +39,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch }
           {sections.map((section, index) => (
             <>
               <Link key={index} to={section.url} onClick={() => {
-                dispatch(login())
+                dispatch(fetchProfile("U012HSXKLKC"))
                 setSelectedSection(section.name)
               }
               }>

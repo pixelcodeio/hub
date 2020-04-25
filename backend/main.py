@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 import requests
 
 from flask import Flask, request
+from flask_cors import CORS
 
 import requests
 from apscheduler.scheduler import Scheduler
@@ -18,6 +19,8 @@ from slackeventsapi import SlackEventAdapter
 
 app = Flask(__name__)
 app.debug = True
+cors = CORS(app)
+
 cron = Scheduler(daemon=True)
 cron.start()
 slack_events_adapter = SlackEventAdapter(
