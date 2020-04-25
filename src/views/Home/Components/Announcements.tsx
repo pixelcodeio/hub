@@ -20,7 +20,7 @@ export const AnnouncementsComponent: React.FC<AnnouncementsProps> = ({ announcem
         <Text variant="h4">🔔</Text>
       </Box>
       <Spacer mt={3} />
-      <GridListContainer height={328}>
+      <GridListContainer direction="vertical" height={328}>
         <GridList cellHeight={104} spacing={1} >
           {announcements.map((announcement, index) => (
             <GridListTile key={index} cols={2}>
