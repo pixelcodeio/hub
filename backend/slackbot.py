@@ -1,18 +1,30 @@
 from slack import WebClient
 from slack.errors import SlackApiError
+from datetime import datetime
+from init_profiles import *
+from models import Announcement
 
 client = WebClient(
     token="xoxb-1085915442018-1079191858262-06rCGTOw6DM8BOoMkcuc8yUB")
 
-def get_announcements():
+def get_announcements(profiles_dict):
     def is_announcements_channel(c):
         return 
     response = client.conversations_list()
     channels = response["channels"]
     announcements_channel = next(c for c in channels if c['name'] == 'announcements')
     response = client.conversations_history(channel=announcements_channel['id'])
+    announcements = []
+    for data in response['messages']:
+        if data['user'] not in profiles_dict:
+            continue
+        text = data['text']
+        profile = profiles_dict[data['user']]
+        sent_at = datetime.fromtimestamp(float(data['ts']))
 
-    return [message['text'] for message in response['messages']]
+        announcements.append(Announcement(text, profile, sent_at))
+
+    return announcements
 
 def get_users():
     response = client.users_list()
@@ -51,4 +63,4 @@ def messages_in_channel(channel_id, count=100):
 if __name__ == "__main__":
     user_list = get_users()
     print(get_user_id_for_name("Omar", user_list))
-    get_announcements()
+    get_announcements(init_profiles())

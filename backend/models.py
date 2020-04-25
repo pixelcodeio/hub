@@ -1,5 +1,18 @@
 from datetime import datetime
 
+class Announcement:
+    def __init__(self, text, profile, sent_at):
+        self.text = text
+        self.profile = profile
+        self.sent_at = sent_at
+    
+    def serialize(self):
+        return {
+            'text': self.text,
+            'profile': self.profile.serialize(),
+            'sent_at': self.sent_at
+        }
+
 class Profile:
     def __init__(self, id, birthday, company_email, position, team, start_date, name, photo_url, timezone, status, interests, intro):
         self.id = id

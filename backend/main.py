@@ -85,7 +85,7 @@ def oauthv2():
 # Get announcemenets
 @app.route('/announcements', methods=['GET'])
 def announcements():
-    return make_response(get_announcements())
+    return make_response([ann.serialize() for ann in get_announcements(profiles_dict)])
 
 # Get user's profile
 @app.route('/profile', methods=['GET'])
