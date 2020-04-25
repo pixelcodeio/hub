@@ -18,6 +18,10 @@ import { NavBar } from "components"
 class App extends React.Component {
   store = createStore(reducer, applyMiddleware(thunk))
 
+  componentDidMount() {
+    document.title = "Hub";
+  }
+
   render() {
     return (
       <Provider store={this.store}>
