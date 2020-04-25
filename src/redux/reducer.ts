@@ -7,12 +7,14 @@ import {
 import { Announcements } from 'views/Home/Components/Announcements';
 
 export interface AppState {
+  companyName: string
   user?: User
   announcements: Announcement[]
   newHires: NewHire[]
 }
 
 export const initialState: AppState = {
+  companyName: "Figma",
   announcements: Array(5).fill({
     title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
     date: "Feburary 1, 2020",
