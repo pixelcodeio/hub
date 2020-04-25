@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, Grid } from "@material-ui/core"
 
-import { Announcements, Calendar, NewHires, RecentlyJoined } from "./Components"
+import { Announcements, Birthdays, Calendar, NewHires, RecentlyJoined } from "./Components"
 import { Spacer, Text } from "components"
 
 export const HomeView: React.FC<any> = props => {
@@ -13,6 +13,8 @@ export const HomeView: React.FC<any> = props => {
           <RecentlyJoined />
           <Spacer grid mt={1} />
           <Calendar />
+          <Spacer grid mt={1} />
+          <Birthdays />
         </Grid>
       </Grid>
     </Box>

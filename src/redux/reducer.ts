@@ -2,6 +2,7 @@ import {
   AppAction,
   Announcement,
   CalendarEvent,
+  Employee,
   NewHire,
   User,
 } from './types';
@@ -13,6 +14,7 @@ export interface AppState {
   announcements: Announcement[]
   newHires: NewHire[]
   calendarEvents: CalendarEvent[]
+  birthdays: Employee[]
 }
 
 export const initialState: AppState = {
@@ -20,6 +22,12 @@ export const initialState: AppState = {
   calendarEvents: Array(5).fill({
     name: "Engineering Standup",
     time: "10:30AM - 11:30AM"
+  }),
+  birthdays: Array(4).fill({
+    name: "Kevin Chan",
+    title: "Software Engineer",
+    team: "Growth",
+    imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
   }),
   announcements: Array(5).fill({
     title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
