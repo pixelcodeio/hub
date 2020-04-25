@@ -17,7 +17,7 @@ export const initialState: AppState = {
     title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
     date: "Feburary 1, 2020",
   }),
-  newHires: Array(5).fill({
+  newHires: Array(6).fill({
     name: "Kevin Chan",
     title: "Software Engineer",
     team: "Growth",
