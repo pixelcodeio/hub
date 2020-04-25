@@ -24,7 +24,8 @@ def get_user_id_for_name(name, user_list):
 # TODO
 
 
-def send_dm_to_user(user_id, message):
+def send_dm_to_user(user_name, message, user_list):
+    user_id = get_user_id_for_name(user_name, user_list)
     try:
         response = client.chat_postMessage(
             channel=user_id,
@@ -39,6 +40,5 @@ def send_dm_to_user(user_id, message):
 
 if __name__ == "__main__":
     user_list = get_users()
-    omar_id = get_user_id_for_name("Omar", user_list)
-    print(omar_id)
-    print(send_dm_to_user(omar_id, "young hates poke"))
+    print(get_user_id_for_name("Omar", user_list))
+    print(send_dm_to_user("Omar", "young hates poke", user_list))

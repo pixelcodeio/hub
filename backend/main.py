@@ -1,11 +1,14 @@
 from flask import Flask, request
 
 import requests
+from slackbot import send_dm_to_user, get_users
 
 from slackbot import *
 
 app = Flask(__name__)
 app.debug = True
+
+user_list = []
 
 ############################################### HELLO WORLD
 
@@ -43,9 +46,14 @@ def get_users():
 # Send slack message to a specific user?
 @app.route('/slack/message', methods=['POST'])
 def send_message():
+    user_name = request.json['name']
+    message = request.json['message']
+
+    send_dm_to_user(user_name, message, user_list)
     return 'yo'
 
 ############################################### ENTRYPOINT
 
 if __name__ == "__main__":
+    user_list = get_users()
     app.run(debug=True)
