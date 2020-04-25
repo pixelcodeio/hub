@@ -34,6 +34,7 @@ def init_profiles():
                 "body": "Getting dinner with Young Kim and Kevin Chan",
                 "imageURL": "https://files.slack.com/files-pri/T012HSXD00J-F012BKJ9JJJ/cd1f8e21-64bc-40ef-bb28-59d5559b328c_1_105_c.jpeg",
             },
+            "Kevin's grandmas basement",
             user['name']
         )
         profiles_dict[user['id']] = profile
