@@ -4,7 +4,7 @@ import { Text } from "components"
 
 export const Home: React.FC<any> = props => {
   return (
-    <Text variant="h3">
+    <Text variant="h2">
       Hello
     </Text>
   )
