@@ -1,5 +1,9 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { connect } from 'react-redux';
 import { Box, Grid } from "@material-ui/core"
+import { setCurrentPage } from 'redux/actions';
+import { AppAction, DispatchProps, Page } from "redux/types"
+import { AppState } from 'redux/reducer';
 
 import {
   Announcements,
@@ -8,15 +12,19 @@ import {
   Calendar,
   FeedPost,
   Filters,
-  ProfileFeedPost,
   RecentlyJoined,
-  RecentThanks,
-  RecentThanksPost,
 } from "./Components"
 import { Spacer, Text } from "components"
 import { FeedPostComponent } from "./Components/FeedPost"
 
-export const HomeView: React.FC<any> = props => {
+export interface HomeViewComponentProps extends DispatchProps { }
+
+export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch }) => {
+
+  useEffect(() => {
+    dispatch(setCurrentPage("Home"))
+  }, [])
+
   return (
     <Box px={5}>
       <Grid container>
@@ -33,15 +41,21 @@ export const HomeView: React.FC<any> = props => {
         <Grid item xs={9} >
           <Box mx={15}>
             <Spacer grid mb={3} />
-            <RecentThanks />
-            <RecentThanksPost />
-            <RecentThanksPost />
-            <ProfileFeedPost />
-            <ProfileFeedPost />
-            <ProfileFeedPost />
           </Box>
         </Grid>
       </Grid>
     </Box>
   )
 }
+
+const mapStateToProps = (state: AppState) => ({
+  currentPage: state.currentPage
+})
+const mapDispatchToProps = (dispatch: any) => ({
+  dispatch: (action: AppAction) => dispatch(action),
+});
+
+export const HomeView = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeViewComponent);
