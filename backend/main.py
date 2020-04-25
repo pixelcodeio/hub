@@ -92,7 +92,7 @@ def oauth():
     redirect_uri = os.environ["SERVER_URL"] + "/oauth"
     base_url = "https://slack.com/api/oauth.access?client_id={}&client_secret={}&code={}&redirect_uri={}"
 
-    return oauth_common(code, redirect_uri, base_url)
+    return make_response(oauth_common(code, redirect_uri, base_url))
 
 
 @app.route('/oauthv2', methods=['GET'])
@@ -102,7 +102,7 @@ def oauthv2():
 
     base_url = "https://slack.com/api/oauth.v2.access?client_id={}&client_secret={}&code={}&redirect_uri={}"
 
-    return oauth_common(code, redirect_uri, base_url)
+    return make_response(oauth_common(code, redirect_uri, base_url))
 
 ############################################### OTHER ROUTES
 @app.route('/homepage', methods=['GET'])
