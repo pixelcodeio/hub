@@ -4,6 +4,15 @@ from slack.errors import SlackApiError
 client = WebClient(
     token="xoxb-1085915442018-1079191858262-06rCGTOw6DM8BOoMkcuc8yUB")
 
+def get_announcements():
+    def is_announcements_channel(c):
+        return 
+    response = client.conversations_list()
+    channels = response["channels"]
+    announcements_channel = next(c for c in channels if c['name'] == 'announcements')
+    response = client.conversations_history(channel=announcements_channel['id'])
+
+    return [message['text'] for message in response['messages']]
 
 def get_users():
     response = client.users_list()
@@ -24,8 +33,7 @@ def get_user_id_for_name(name, user_list):
 # TODO
 
 
-def send_dm_to_user(user_name, message, user_list):
-    user_id = get_user_id_for_name(user_name, user_list)
+def send_dm_to_user(user_id, message, user_list):
     try:
         response = client.chat_postMessage(
             channel=user_id,
@@ -41,4 +49,4 @@ def send_dm_to_user(user_name, message, user_list):
 if __name__ == "__main__":
     user_list = get_users()
     print(get_user_id_for_name("Omar", user_list))
-    print(send_dm_to_user("Omar", "young hates poke", user_list))
+    get_announcements()

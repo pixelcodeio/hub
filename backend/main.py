@@ -16,6 +16,9 @@ slack_events_adapter = SlackEventAdapter(
 user_list = get_users()
 profiles_dict = {}
 
+def make_response(r):
+    return {'success': True, 'data': r}
+
 ############################################### HELLO WORLD
 
 @app.route('/', methods=['GET'])
@@ -75,6 +78,11 @@ def oauthv2():
 
 ############################################### OTHER ROUTES
 
+# Get announcemenets
+@app.route('/announcements', methods=['GET'])
+def announcements():
+    return make_response(get_announcements())
+
 # Get user's profile
 @app.route('/profile', methods=['GET'])
 def profile():
@@ -88,19 +96,19 @@ def get_users():
 # Send slack message to a specific user?
 @app.route('/slack/message', methods=['POST'])
 def send_message():
-    user_name = request.json['name']
-    message = request.json['message']
-
-    slackbot.send_dm_to_user(user_name, message, user_list)
     return 'yo'
 
-
-@slack_events_adapter.on("reaction_added")
-def update_emoji(payload):
-    """Update the onboarding welcome message after receiving a "reaction_added"
-    event from Slack. Update timestamp for welcome message as well.
-    """
+# Send new hire message
+# Using reaction_added j cuz its easy to trigger
+@slack_events_adapter.on('reaction_added')
+def reaction_added(payload):
     event = payload.get("event", {})
+
+    channel_id = event.get("channel")
+    user_id = event.get("user")
+    text = event.get("text")
+
+    send_dm_to_user(user_id, "Welcome!", user_list)
     print(event)
 
 
