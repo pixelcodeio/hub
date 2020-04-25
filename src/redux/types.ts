@@ -1,5 +1,5 @@
 export interface DispatchProps {
-  dispatch: (action: AppAction) => any;
+  dispatch: (action: any) => any;
 }
 
 export interface User {
@@ -13,8 +13,17 @@ export interface Employee {
   imageURL: string
 }
 
+export interface Anniversary extends Employee {
+  numYears: number
+}
+
 export interface NewHire extends Employee {
   blurb: string
+}
+
+export interface CalendarEvent {
+  name: string
+  time: string
 }
 
 export interface Announcement {
@@ -24,4 +33,5 @@ export interface Announcement {
 
 export type AppAction =
   | { type: "type", value: "value" }
-  | { type: "login", user: User }
+  | { type: "login" }
+  | { type: "selectFilter", filter: string }

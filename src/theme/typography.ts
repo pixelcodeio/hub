@@ -61,7 +61,7 @@ export default {
   },
   body2: {
     fontWeight: 400,
-    fontSize: "14px",
+    fontSize: "12px",
     lineHeight: "22px",
   },
   button: {

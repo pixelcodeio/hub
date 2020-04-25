@@ -1,7 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import reducer from './redux/reducer';
+import thunk from 'redux-thunk';
+
 import { HomeView, TeamsView, ResourcesView, CalendarView } from "views"
 import { theme } from "theme/theme"
 import { ThemeProvider as SCThemeProvider } from "styled-components"
@@ -14,7 +16,7 @@ import {
 import { NavBar } from "components"
 
 class App extends React.Component {
-  store = createStore(reducer)
+  store = createStore(reducer, applyMiddleware(thunk))
 
   render() {
     return (

@@ -20,20 +20,18 @@ export const AnnouncementsComponent: React.FC<AnnouncementsProps> = ({ announcem
         <Text variant="h4">🔔</Text>
       </Box>
       <Spacer mt={3} />
-      <GridListContainer direction="vertical" height={328}>
-        <GridList cellHeight={104} spacing={1} >
-          {announcements.map((announcement, index) => (
-            <GridListTile key={index} cols={2}>
-              <AnnouncementBox px={2} py={2}>
-                <Text variant="overline" color={colors.gray4}>{announcement.date}</Text>
-                <Spacer mt={1} />
-                <Text variant="h6">
-                  {announcement.title}
-                </Text>
-              </AnnouncementBox>
-            </GridListTile>
-          ))}
-        </GridList>
+      <GridListContainer direction="vertical" height={328} cellHeight={104} spacing={1}>
+        {announcements.map((announcement, index) => (
+          <GridListTile key={index} cols={2}>
+            <AnnouncementBox px={2} py={2}>
+              <Text variant="overline" color={colors.gray4}>{announcement.date}</Text>
+              <Spacer mt={1} />
+              <Text variant="h6">
+                {announcement.title}
+              </Text>
+            </AnnouncementBox>
+          </GridListTile>
+        ))}
       </GridListContainer>
     </Container>
   )
