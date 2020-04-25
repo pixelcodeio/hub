@@ -32,7 +32,6 @@ export const FeedPollComponent: React.FC<FeedPollProps> = ({}) => {
       <Spacer mt={1} />
       <Text variant="h6" style={{ fontWeight: 600 }}>Poll: What have you been doing?</Text>
       <Spacer mt={0.75} />
-      <Text variant="body2" style={{ fontWeight: 400 }}>Kanye West is the reincarceration of God.</Text>
 
       <FeedPollOption />
       <FeedPollOption />
