@@ -115,6 +115,7 @@ def homepage():
         'anniversaries': [Anniversary(prof).serialize() for prof in random.sample(anniversaries_pool, len(anniversaries_pool) // 2)],
         'birthdays': [Birthday(prof).serialize() for prof in random.sample(list(profiles_dict.values()), 4)],
         'new_hires': [NewHire(prof).serialize() for prof in random.sample(new_hires_pool, len(new_hires_pool) // 2)],
+        'polls': [poll.serialize() for poll in list(all_polls.values())]
     })
 
 @app.route('/poll', methods=['POST'])
