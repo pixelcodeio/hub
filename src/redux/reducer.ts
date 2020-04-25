@@ -1,6 +1,7 @@
 import {
   AppAction,
   Announcement,
+  CalendarEvent,
   NewHire,
   User,
 } from './types';
@@ -11,10 +12,15 @@ export interface AppState {
   user?: User
   announcements: Announcement[]
   newHires: NewHire[]
+  calendarEvents: CalendarEvent[]
 }
 
 export const initialState: AppState = {
   companyName: "Figma",
+  calendarEvents: Array(5).fill({
+    name: "Engineering Standup",
+    time: "10:30AM - 11:30AM"
+  }),
   announcements: Array(5).fill({
     title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
     date: "Feburary 1, 2020",

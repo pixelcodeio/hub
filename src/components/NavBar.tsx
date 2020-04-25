@@ -29,7 +29,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ dispatch }) => {
                 setSelectedSection(section.name)
               }
               }>
-                <Text color={section.name === selectedSection ? colors.black100 : colors.gray3} variant="h6">
+                <Text color={section.name === selectedSection ? colors.black100 : colors.gray4} variant="h6">
                   {section.name}
                 </Text>
               </Link>

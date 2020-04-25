@@ -55,13 +55,13 @@ export default {
     lineHeight: "21px",
   },
   body1: {
-    fontWeight: 400,
+    fontWeight: 600,
     fontSize: "14px",
     lineHeight: "18px",
   },
   body2: {
     fontWeight: 400,
-    fontSize: "14px",
+    fontSize: "12px",
     lineHeight: "22px",
   },
   button: {

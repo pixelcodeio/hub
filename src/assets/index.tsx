@@ -1,0 +1,1 @@
+export { GoogleCalendarIcon } from "./GoogleCalendarIcon"

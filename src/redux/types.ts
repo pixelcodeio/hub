@@ -17,6 +17,11 @@ export interface NewHire extends Employee {
   blurb: string
 }
 
+export interface CalendarEvent {
+  name: string
+  time: string
+}
+
 export interface Announcement {
   title: string
   date: string
