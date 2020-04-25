@@ -31,6 +31,27 @@ export interface Announcement {
   date: string
 }
 
+export interface Thanks {
+  from: Employee
+  to: Employee
+  message: string
+  date: string
+}
+
+export interface DailyUpdate {
+  employee: Employee
+  message: string
+  date: string
+}
+
+export interface FeedPost {
+  type: FeedPostType
+  thanks?: Thanks
+  dailyUpdate?: DailyUpdate
+}
+
+export type FeedPostType = "Thanks" | "DailyUpdate"
+
 export type AppAction =
   | { type: "type", value: "value" }
   | { type: "login" }

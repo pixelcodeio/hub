@@ -4,6 +4,7 @@ import {
   Announcement,
   CalendarEvent,
   Employee,
+  FeedPost,
   NewHire,
   User,
 } from './types';
@@ -18,6 +19,39 @@ export interface AppState {
   birthdays: Employee[]
   anniversaries: Anniversary[]
   selectedFilters: string[]
+  feed: FeedPost[]
+}
+
+const announcement = {
+  title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
+  date: "Feburary 1, 2020",
+}
+
+const kevin = {
+  name: "Kevin Chan",
+  title: "Software Engineer",
+  team: "Growth",
+  imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
+}
+
+const tk = {
+  name: "TK Kong",
+  title: "Product Designer",
+  team: "Growth",
+  imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
+}
+
+const thanks = {
+  from: tk,
+  to: kevin,
+  message: "Thank you sir.",
+  date: "February 1, 2020"
+}
+
+const dailyUpdate = {
+  employee: tk,
+  message: "Today, I am working on squashing some bugs and tomorrow probably too. Going to be busy with some other things probably.",
+  date: "February 1, 2020"
 }
 
 export const initialState: AppState = {
@@ -40,10 +74,7 @@ export const initialState: AppState = {
     imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
     numYears: 5,
   }),
-  announcements: Array(5).fill({
-    title: "All of our offices will be shutting down and moving to remote effective 2/1/20",
-    date: "Feburary 1, 2020",
-  }),
+  announcements: Array(5).fill(announcement),
   newHires: Array(6).fill({
     name: "Kevin Chan",
     title: "Software Engineer",
@@ -51,7 +82,33 @@ export const initialState: AppState = {
     imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
     blurb: "Hi! My name is Kevin and I am very excited to join as a Software Engineer on the Growth team. Before Hub, I was a Software Engineer at Facebook. Feel free to grab time on my calendar and can’t wait to chat with y’all!",
   }),
-  user: undefined
+  user: undefined,
+  feed: [
+    {
+      type: "Thanks",
+      thanks,
+    },
+    {
+      type: "DailyUpdate",
+      dailyUpdate,
+    },
+    {
+      type: "Thanks",
+      thanks,
+    },
+    {
+      type: "DailyUpdate",
+      dailyUpdate,
+    },
+    {
+      type: "Thanks",
+      thanks,
+    },
+    {
+      type: "DailyUpdate",
+      dailyUpdate,
+    },
+  ]
 };
 
 export default function reducer(state: AppState = initialState, action: AppAction): AppState {
