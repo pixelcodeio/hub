@@ -1,4 +1,4 @@
-import { AppAction, Filter } from './types';
+import { AppAction } from './types';
 import { API } from "API"
 
 const sharedAPI = API.getInstance()

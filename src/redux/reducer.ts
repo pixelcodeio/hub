@@ -4,7 +4,6 @@ import {
   Announcement,
   CalendarEvent,
   Employee,
-  Filter,
   NewHire,
   User,
 } from './types';
@@ -18,7 +17,7 @@ export interface AppState {
   calendarEvents: CalendarEvent[]
   birthdays: Employee[]
   anniversaries: Anniversary[]
-  selectedFilter: Filter
+  selectedFilters: string[]
 }
 
 export const initialState: AppState = {
@@ -27,7 +26,7 @@ export const initialState: AppState = {
     name: "Engineering Standup",
     time: "10:30AM - 11:30AM"
   }),
-  selectedFilter: "All",
+  selectedFilters: ["All"],
   birthdays: Array(4).fill({
     name: "Kevin Chan",
     title: "Software Engineer",
@@ -55,13 +54,17 @@ export const initialState: AppState = {
   user: undefined
 };
 
-export default function reducer(state: AppState = initialState, action: AppAction) {
+export default function reducer(state: AppState = initialState, action: AppAction): AppState {
+  const { selectedFilters } = state
   switch (action.type) {
     case "login":
       return state
     case "selectFilter":
       const { filter } = action
-      return { ...state, selectedFilter: filter }
+      const filters = selectedFilters.includes(filter)
+        ? selectedFilters.filter(f => f !== filter)
+        : [...selectedFilters, filter]
+      return { ...state, selectedFilters: filters }
     default:
       return state
   }

@@ -64,6 +64,7 @@ const WaveButton = styled.button`
   border-radius: 4px;
   width: 40px;
   height: 40px;
+  outline: none;
 `
 
 const BlurbBox = muiStyled(Box)({

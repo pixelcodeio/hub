@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
 import { selectFilter } from 'redux/actions';
-import { AppAction, DispatchProps, Filter, Employee } from "redux/types"
+import { AppAction, DispatchProps, Employee } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
@@ -11,10 +11,10 @@ import { PageControl } from "assets"
 import { colors } from "theme/colors"
 
 export interface FiltersComponentProps extends DispatchProps {
-  selectedFilter: Filter
+  selectedFilters: string[]
 }
 
-export const FiltersComponent: React.FC<FiltersComponentProps> = ({ dispatch, selectedFilter }) => {
+export const FiltersComponent: React.FC<FiltersComponentProps> = ({ dispatch, selectedFilters }) => {
   const filters = {
     "All": "All",
     "Announcement": "Announcement 🔔",
@@ -27,7 +27,7 @@ export const FiltersComponent: React.FC<FiltersComponentProps> = ({ dispatch, se
   return (
     <Container px={3} py={3} display="flex" alignItems="center" justifyContent="center">
       {Object.entries(filters).map(([key, value]) => {
-        const isSelected = key === selectedFilter
+        const isSelected = selectedFilters.includes(key)
         return (
           <FilterButton
             onClick={() => onSelectFilter(key)}
@@ -53,10 +53,11 @@ const FilterButton = styled.button`
   border-radius: 8px;
   padding: 12px 12px;
   margin-right: 8px;
+  outline: none;
 `
 
 const mapStateToProps = (state: AppState) => ({
-  selectedFilter: state.selectedFilter
+  selectedFilters: state.selectedFilters
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

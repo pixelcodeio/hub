@@ -31,8 +31,6 @@ export interface Announcement {
   date: string
 }
 
-export type Filter = "All" | "Announcements" | "Thanks" | "DailyUpdate"
-
 export type AppAction =
   | { type: "type", value: "value" }
   | { type: "login" }
