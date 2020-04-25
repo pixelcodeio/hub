@@ -19,9 +19,9 @@ export const HomeView: React.FC<any> = props => {
           <Anniversaries />
         </Grid>
         <Grid item xs={9} >
-          <Box mx={15}>
-            <Filters />
-          </Box>
+          <Filters />
+          {/* <Box mx={15}>
+          </Box> */}
         </Grid>
       </Grid>
     </Box>

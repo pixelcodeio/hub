@@ -45,8 +45,14 @@ export const FiltersComponent: React.FC<FiltersComponentProps> = ({ dispatch, se
 
 const Container = muiStyled(Box)({
   backgroundColor: colors.white100,
+  width: "500px",
   borderRadius: "8px",
   boxShadow: "0px 8px 16px rgba(161, 163, 166, 0.08), 0px 4px 24px rgba(161, 163, 166, 0.08)",
+  margin: "0 auto",
+  top: "88px",
+  position: "fixed",
+  left: "70%",
+  transform: "translateX(-70%)",
 })
 
 const FilterButton = styled.button`
