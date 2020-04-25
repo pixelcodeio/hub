@@ -3,6 +3,8 @@ import React, { ReactNode } from "react"
 import { Typography } from "@material-ui/core"
 import { Variant as TypographyVariant } from "@material-ui/core/styles/createTypography"
 
+import { colors } from "theme/colors"
+
 export interface TextProps {
   children: ReactNode
   color?: string
@@ -13,7 +15,7 @@ export interface TextProps {
 
 export const Text: React.FunctionComponent<TextProps> = ({
   children,
-  color = "#000000",
+  color = colors.black100,
   opacity = 1,
   variant,
   style = {},
