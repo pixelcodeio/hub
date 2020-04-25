@@ -36,7 +36,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ recentHires }
                   <Box display="flex" flexDirection="column" >
                     <Box display="flex" alignItems="center" justifyContent="space-between" >
                       <Box>
-                        <Text variant="h6" underline>{newHire.name}</Text>
+                        <Text variant="h6" >{newHire.name}</Text>
                         <Text variant="body2">{`${newHire.title} • ${newHire.team}`}</Text>
                       </Box>
                     </Box>
