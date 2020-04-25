@@ -2,6 +2,8 @@ import React from "react"
 import styled from "styled-components"
 
 export interface ButtonProps {
+  backgroundColor?: string
+  border?: string
   borderRadius?: number,
   padding?: number,
   style?: any,
@@ -10,6 +12,8 @@ export interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({
+  backgroundColor,
+  border,
   borderRadius = 0,
   padding = 0,
   style,
@@ -20,6 +24,8 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       onClick={onClick}
       style={{
+        backgroundColor,
+        border,
         borderRadius,
         paddingTop: padding,
         paddingBottom: padding,

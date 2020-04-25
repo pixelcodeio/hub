@@ -30,14 +30,12 @@ export const FiltersComponent: React.FC<FiltersComponentProps> = ({ dispatch, se
         const isSelected = selectedFilters.includes(key)
         return (
           <Button
+            backgroundColor={isSelected ? colors.black100 : colors.white100}
+            border={isSelected ? undefined : "1px solid #EEEEEE"}
             borderRadius={8}
             padding={12}
             onClick={() => onSelectFilter(key)}
-            style={{
-              backgroundColor: isSelected ? colors.black100 : colors.white100,
-              border: isSelected ? undefined : "1px solid #EEEEEE",
-              marginRight: "8px"
-            }}>
+            style={{ marginRight: "8px" }}>
             <Text variant="body1" color={isSelected ? colors.white100 : colors.black100}>{value}</Text>
           </Button>
         )
