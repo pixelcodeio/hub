@@ -37,10 +37,6 @@ export interface PersonalSite {
   description: string
 }
 
-export interface Anniversary extends Employee {
-  numYears: number
-}
-
 export interface CalendarEvent {
   name: string
   time: string
@@ -76,6 +72,48 @@ export interface FeedPost {
   dailyUpdate?: DailyUpdate
 }
 
+export interface Anniversary {
+  imageURL: string
+  name: string
+  team: string
+  title: string
+  userId: string
+  years: number
+}
+
+export interface Birthday {
+  imageURL: string
+  name: string
+  team: string
+  title: string
+  userId: string
+}
+
+export interface RecentHire {
+  blurb: string
+  imageURL: string
+  name: string
+  team: string
+  title: string
+  userId: string
+}
+
+export interface Poll {
+  id: string
+  options: string[]
+  text: string
+  votes: any // {option: [user ids]}
+  sender: Employee
+}
+
+export interface Homepage {
+  anniversaries: Anniversary[]
+  birthdays: Birthday[]
+  newHires: RecentHire[]
+  polls: Poll[]
+  similarInterests: Employee[]
+}
+
 export type Page = "Home" | "Profile"
 
 export type FeedPostType = "Thanks" | "DailyUpdate"
@@ -87,3 +125,4 @@ export type AppAction =
   | { type: "selectFilter", filter: string }
   | { type: "setCurrentPage", page: Page }
   | { type: "fetchAllProfiles", allEmployees: Employee[] }
+  | { type: "fetchHomepage", homepage: Homepage }

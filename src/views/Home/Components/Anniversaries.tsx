@@ -27,7 +27,7 @@ export const AnniversariesComponent: React.FC<AnniversariesComponentProps> = ({ 
       </Box>
       <Spacer mt={3.5} />
       <BirthdayBox py={2.5} display="flex" flexDirection="column" alignItems="center">
-        <Text variant="body2" style={{fontWeight: 600}}>{`${anniversary.numYears} Years Today`}</Text>
+        <Text variant="body2" style={{ fontWeight: 600 }}>{`${anniversary.years} Years Today`}</Text>
         <Spacer mt={2} />
         <Image length={64} url={anniversary.imageURL} />
         <Spacer mt={2} />

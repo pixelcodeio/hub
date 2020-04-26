@@ -17,6 +17,14 @@ export const login = () => {
   }
 }
 
+export const fetchHomepage = (userID: string) => {
+  return async (dispatch: any) => {
+    const response: any = await sharedAPI.fetchHomepage(userID)
+    console.log("HOME:", response)
+    dispatch({ type: "fetchHomepage", homepage: response.data })
+  }
+}
+
 export const fetchAllProfiles = () => {
   return async (dispatch: any) => {
     const response: any = await sharedAPI.fetchAllProfiles()

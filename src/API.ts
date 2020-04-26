@@ -26,6 +26,10 @@ export class API {
     })
   }
 
+  public async fetchHomepage(userID: string) {
+    return this.fetchPath(`homepage?user_id=${userID}`)
+  }
+
   public async fetchProfile(userID: string) {
     return this.fetchPath(`profile?user_id=${userID}`)
   }

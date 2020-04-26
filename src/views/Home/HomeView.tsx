@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import { connect } from 'react-redux';
 import { Box, Grid } from "@material-ui/core"
-import { fetchProfile, fetchAllProfiles, setCurrentPage } from 'redux/actions';
-import { AppAction, DispatchProps, Employee } from "redux/types"
+import { fetchHomepage, fetchProfile, fetchAllProfiles, setCurrentPage } from 'redux/actions';
+import { AppAction, DispatchProps, Employee, Homepage } from "redux/types"
 import { AppState } from 'redux/reducer';
 
 import {
@@ -16,6 +16,7 @@ import {
   RecentHires,
   Celebrations,
   FeedPoll,
+  FeedPolls,
   SimilarInterests,
 } from "./Components"
 import { Spacer, Text } from "components"
@@ -24,10 +25,11 @@ import { colors } from "theme/colors"
 
 export interface HomeViewComponentProps extends DispatchProps {
   allEmployees: Employee[]
+  homepage?: Homepage
   user?: Employee
 }
 
-export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch, allEmployees, user }) => {
+export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch, allEmployees, user, homepage }) => {
   useEffect(() => {
     dispatch(setCurrentPage("Home"))
     if (!user) {
@@ -36,12 +38,14 @@ export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch, 
     if (allEmployees.length === 0) {
       dispatch(fetchAllProfiles())
     }
+    if (!homepage) {
+      dispatch(fetchHomepage("U012HSXKLKC"))
+    }
   }, [])
 
-  if (!user || allEmployees.length === 0) {
+  if (!user || allEmployees.length === 0 || !homepage) {
     return null
   }
-  console.log("USER:", user)
 
   return (
     <Box>
@@ -62,9 +66,7 @@ export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch, 
             <Celebrations />
           </Grid>
           <Grid item xs={6}>
-            <FeedPoll />
-            <FeedPoll />
-            <FeedPoll />
+            <FeedPolls />
           </Grid>
           <Grid item xs={3}>
             <SimilarInterests />
@@ -77,6 +79,7 @@ export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch, 
 
 const mapStateToProps = (state: AppState) => ({
   allEmployees: state.allEmployees,
+  homepage: state.homepage,
   user: state.user,
 })
 const mapDispatchToProps = (dispatch: any) => ({

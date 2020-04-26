@@ -51,7 +51,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
         <Box display="flex" alignItems="center" px={5} justifyContent="space-between" style={{ height: "100%" }}>
           <Box display="flex" alignItems="center">
             {sections.map((section, index) => (
-              <>
+              < React.Fragment key={index} >
                 <Link key={index} to={section.url} onClick={() => {
                   dispatch(fetchProfile("U012HSXKLKC"))
                   setSelectedSection(section.name)
@@ -62,7 +62,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
                   </Text>
                 </Link>
                 <Spacer ml={3} />
-              </>
+              </ React.Fragment>
             ))}
           </Box>
           <Box>

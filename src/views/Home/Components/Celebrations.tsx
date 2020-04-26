@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
-import { AppAction, DispatchProps, Celebration } from "redux/types"
+import { AppAction, DispatchProps, Celebration, Homepage } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
@@ -10,10 +10,15 @@ import { PageControl } from "assets"
 import { colors } from "theme/colors"
 
 export interface CelebrationsComponentProps extends DispatchProps {
-  celebrations: Celebration[]
+  homepage?: Homepage
 }
 
-export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ celebrations }) => {
+export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ homepage }) => {
+  const birthdays = homepage?.birthdays
+  const anniversaries = homepage?.anniversaries
+  if (!birthdays || !anniversaries) {
+    return null
+  }
   return (
     <Container display="flex" flexDirection="column" >
       <Box display="flex" alignItems="center" >
@@ -22,27 +27,50 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ce
         <Text variant="h6">🎉</Text>
       </Box>
       <Spacer mt={3} />
-      {celebrations.map((celebration, index) => {
-        const isBirthday = celebration.type === "Birthday"
-        const emoji = isBirthday ? "🎂" : "🚀"
+      {birthdays.map((birthday, index) => {
         return (
           <Box key={index}>
             <CelebrationBox px={2} py={1.5}>
               <Text variant="body2">
-                {isBirthday ? "Birthday is today 🎂" : `${celebration.numYears} year anniversary 🚀`}
+                {"Birthday is today 🎂"}
               </Text>
               <Spacer mt={1} />
               <Box display="flex" alignItems="center" justifyContent="space-between">
                 <Box display="flex" alignItems="center">
-                  <Image length={48} url={celebration.employee.imageURL} />
+                  <Image length={48} url={birthday.imageURL} />
                   <Spacer ml={1} />
                   <Box flex="display">
-                    <Text variant="body1">{celebration.employee.name}</Text>
+                    <Text variant="body1">{birthday.name}</Text>
                     <Spacer mt={0.25} />
-                    <Text variant="body2">{`${celebration.employee.title} • ${celebration.employee.team}`}</Text>
+                    <Text variant="body2">{`${birthday.title} • ${birthday.team}`}</Text>
                   </Box>
                 </Box>
-                <Button border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>{emoji}</Button>
+                <Button border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>{"🎂"}</Button>
+              </Box>
+            </CelebrationBox>
+            <Spacer mt={1} />
+          </Box>
+        )
+      })}
+      {anniversaries.map((anniversary, index) => {
+        return (
+          <Box key={index}>
+            <CelebrationBox px={2} py={1.5}>
+              <Text variant="body2">
+                {`${anniversary.years} year anniversary 🚀`}
+              </Text>
+              <Spacer mt={1} />
+              <Box display="flex" alignItems="center" justifyContent="space-between">
+                <Box display="flex" alignItems="center">
+                  <Image length={48} url={anniversary.imageURL} />
+                  <Spacer ml={1} />
+                  <Box flex="display">
+                    <Text variant="body1">{anniversary.name}</Text>
+                    <Spacer mt={0.25} />
+                    <Text variant="body2">{`${anniversary.title} • ${anniversary.team}`}</Text>
+                  </Box>
+                </Box>
+                <Button border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>{"🚀"}</Button>
               </Box>
             </CelebrationBox>
             <Spacer mt={1} />
@@ -64,7 +92,7 @@ const CelebrationBox = muiStyled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  celebrations: state.celebrations
+  homepage: state.homepage
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

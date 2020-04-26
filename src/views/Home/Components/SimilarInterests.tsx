@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
-import { AppAction, DispatchProps, Employee } from "redux/types"
+import { AppAction, DispatchProps, Employee, Homepage } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
@@ -10,10 +10,14 @@ import { PageControl } from "assets"
 import { colors } from "theme/colors"
 
 export interface SimilarInterestsComponentProps extends DispatchProps {
-  similarInterests: Employee[]
+  homepage?: Homepage
 }
 
-export const SimilarInterestsComponent: React.FC<SimilarInterestsComponentProps> = ({ similarInterests }) => {
+export const SimilarInterestsComponent: React.FC<SimilarInterestsComponentProps> = ({ homepage }) => {
+  const similarInterests = homepage?.similarInterests
+  if (!similarInterests) {
+    return null
+  }
   return (
     <Container display="flex" flexDirection="column" >
       <Box display="flex" alignItems="center" >
@@ -58,7 +62,7 @@ const CelebrationBox = muiStyled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  similarInterests: state.similarInterests,
+  homepage: state.homepage,
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

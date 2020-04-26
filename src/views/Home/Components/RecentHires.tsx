@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
-import { AppAction, DispatchProps, Employee } from "redux/types"
+import { AppAction, DispatchProps, Employee, Homepage } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
@@ -9,10 +9,16 @@ import { GridListContainer, Image, Text, Spacer, Button } from "components"
 import { colors } from "theme/colors"
 
 export interface RecentHiresProps extends DispatchProps {
-  recentHires: Employee[]
+  homepage?: Homepage
 }
 
-export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ recentHires }) => {
+export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) => {
+  let recentHires = homepage?.newHires
+  if (!recentHires || recentHires.length === 0) {
+    return null
+  }
+
+  recentHires = Array(5).fill(recentHires[0])
   return (
     <Box pt={7}>
       <Box display="flex" alignItems="center">
@@ -65,7 +71,7 @@ const NewHireBox = muiStyled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  recentHires: state.recentHires
+  homepage: state.homepage
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

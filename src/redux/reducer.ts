@@ -6,6 +6,7 @@ import {
   Celebration,
   Employee,
   FeedPost,
+  Homepage,
   Page,
 } from './types';
 import { Announcements } from 'views/Home/Components/Announcements';
@@ -14,6 +15,7 @@ export interface AppState {
   companyName: string
   user?: Employee
   allEmployees: Employee[]
+  homepage?: Homepage
   announcements: Announcement[]
   recentHires: Employee[]
   calendarEvents: CalendarEvent[]
@@ -176,6 +178,7 @@ export const initialState: AppState = {
   announcements: Array(5).fill(announcement),
   recentHires: Array(6).fill(young),
   user: undefined,
+  homepage: undefined,
   allEmployees: [],
   feed: [
     {
@@ -235,6 +238,9 @@ export default function reducer(state: AppState = initialState, action: AppActio
     case "fetchAllProfiles":
       const { allEmployees } = action
       return { ...state, allEmployees }
+    case "fetchHomepage":
+      const { homepage } = action
+      return { ...state, homepage }
     case "selectFilter":
       const { filter } = action
       const allFilterPrevSelected = selectedFilters.includes("All")
