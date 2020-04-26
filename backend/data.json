@@ -4,11 +4,7 @@
     "team": "Growth",
     "department": "Engineering",
     "blurb": "Hi Team! Really excited to start work at IDK on the Growth team. Previously, I interned at Google, Qualtrics, and Amazon. I am a rising Senior at Cornell University. In my free time, I like to rock climb :) Can't wait to work together!",
-    "interests": [
-      "outdoors",
-      "cooking",
-      "reading"
-    ],
+    "interests": ["outdoors", "cooking", "reading"],
     "manager": "U012Q2G9BK6",
     "email": "yana@idkapp.co",
     "birthday": "December 7",
@@ -36,11 +32,7 @@
     "team": "Marketing",
     "department": "Marketing",
     "blurb": "Hello! My name is Cat and I am stoked to join as a Marketing Intern. I love eating avocados and cooking! I am a rising junior at Cornell University and excited to learn from all of you.",
-    "interests": [
-      "avocados",
-      "cooking",
-      "reading"
-    ],
+    "interests": ["avocados", "cooking", "reading"],
     "manager": "U012J3PKSJX",
     "email": "cat@idkapp.co",
     "birthday": "November 18",
@@ -62,11 +54,7 @@
     "team": "Core Product",
     "department": "Engineering",
     "blurb": "Hey everyone, my name is Connor and I am a rising junior at Cornell. I previously interned at startups and love the startup scene. In my free time, I like to play Fortnite and also run outdoors. I would love to chat with everyone when the chance comes.",
-    "interests": [
-      "gaming",
-      "outdoors",
-      "running"
-    ],
+    "interests": ["gaming", "outdoors", "running"],
     "manager": "U012Q2G9BK6",
     "email": "connor@idkapp.co",
     "birthday": "March 15",
@@ -88,12 +76,7 @@
     "team": "Executive",
     "department": "Engineering",
     "blurb": "Hey everyone, I’m a developer co-founder @ IDK! I enjoy reading, listening to music, and recording covers of songs. Looking forward to working with everyone!",
-    "interests": [
-      "gaming",
-      "reading",
-      "running",
-      "music"
-    ],
+    "interests": ["gaming", "reading", "running", "music"],
     "manager": null,
     "email": "young@idkapp.co",
     "birthday": "November 18",
@@ -121,11 +104,7 @@
     "team": "Executive",
     "department": "Design",
     "blurb": "Hi Team, I'm a design co-founder here at IDK! I'm blessed to be able to work with you all. In my free time, I like to watch Money Heist and Ozark on Netflix. I also like to make smoothies and work out (at home now). If you have any feedback, feel free to message me on Slack any time!",
-    "interests": [
-      "gaming",
-      "music",
-      "running"
-    ],
+    "interests": ["gaming", "music", "running"],
     "manager": null,
     "email": "tk@idkapp.co",
     "birthday": "January 7",
@@ -147,12 +126,7 @@
     "team": "Core Product",
     "department": "Product",
     "blurb": "Ayo, hope everyone is doing well during this time! I'm excited to join IDK as a Product Intern. Previously, I was the Product Lead for Cornell AppDev where I managed and shipped products for thousands of users at Cornell. Hopefully we will see each other in the office very soon!!",
-    "interests": [
-      "gaming",
-      "outdoors",
-      "running",
-      "cooking"
-    ],
+    "interests": ["gaming", "outdoors", "running", "cooking"],
     "manager": "U012J3PCXFV",
     "email": "conner@idkapp.co",
     "birthday": "May 15",
@@ -174,11 +148,7 @@
     "team": "Core Product",
     "department": "Engineering",
     "blurb": "",
-    "interests": [
-      "gaming",
-      "reading",
-      "cooking"
-    ],
+    "interests": ["gaming", "reading", "cooking"],
     "manager": "U012J3PCXFV",
     "email": "megan@idkapp.co",
     "birthday": "April 26",
@@ -200,11 +170,7 @@
     "team": "Executive",
     "department": "Engineering",
     "blurb": "Hi everyone! I'm one of the three developer co-founders here @ IDK! I hope to be able to talk with each and every one of you very soon. On my free time, I enjoy running and binging Netflix // TikTok for hours on end. Hyped for the future.",
-    "interests": [
-      "gaming",
-      "running",
-      "music"
-    ],
+    "interests": ["gaming", "running", "music"],
     "manager": null,
     "email": "kevin@idkapp.co",
     "birthday": "September 11",
@@ -232,11 +198,7 @@
     "team": "Executive",
     "department": "Engineering",
     "blurb": "Whats up everyone! I’m the youngest of the co-founders here @ IDK and am currently finishing up my degree at Cornell University. I’m originally from Portland but plan to move out to NYC as soon as I can. So stoked to see everyone in person soon and build.",
-    "interests": [
-      "gaming",
-      "running",
-      "music"
-    ],
+    "interests": ["gaming", "running", "music"],
     "manager": null,
     "email": "omar@idkapp.co",
     "birthday": "February 7",
@@ -264,11 +226,7 @@
     "team": "Growth",
     "department": "Engineering",
     "blurb": "",
-    "interests": [
-      "reading",
-      "cooking",
-      "music"
-    ],
+    "interests": ["reading", "cooking", "music"],
     "manager": "U012J3PCXFV",
     "email": "yuna@idkapp.co",
     "birthday": "May 15",
@@ -284,5 +242,49 @@
     },
     "featured_posts": [],
     "office": "NYC Building 1"
-  }
+  },
+  "thanks": [
+    {
+      "sender": "U012BSA4PQW",
+      "to": "U012Q2G9BK6",
+      "message": "Answering questions so quickly!",
+      "date": ""
+    },
+    {
+      "sender": "U012J3PCXFV",
+      "to": "U012Q2G9BK6",
+      "message": "Always keeping a light mood",
+      "date": ""
+    },
+    {
+      "sender": "U012J3PKSJX",
+      "to": "U012Q2G9BK6",
+      "message": "Making the hard decisions",
+      "date": ""
+    },
+    {
+      "sender": "U012X7GBWNM",
+      "to": "U012Q2G9BK6",
+      "message": "Making the hard decisions",
+      "date": ""
+    },
+    {
+      "sender": "U012Q2G9BK6",
+      "to": "U012HSXKLKC",
+      "message": "Helping me onboard onto my new team so quickly!",
+      "date": ""
+    },
+    {
+      "sender": "U012J3PKSJX",
+      "to": "U012HSXKLKC",
+      "message": "Being a great co-founder",
+      "date": ""
+    },
+    {
+      "sender": "U012J3PCXFV",
+      "to": "U012HSXKLKC",
+      "message": "All your help as a mentor and leader",
+      "date": ""
+    }
+  ]
 }

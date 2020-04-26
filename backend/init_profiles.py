@@ -1,8 +1,9 @@
-from datetime import datetime
 import json
+from datetime import datetime
 
-from models import Profile
 import slackbot
+from models import Profile, Thank
+
 
 def init_profiles():
     profiles_dict = {}
@@ -41,3 +42,17 @@ def init_profiles():
             )
             profiles_dict[user['id']] = profile
     return profiles_dict
+
+
+def init_thanks(profiles_dict):
+    thanks = []
+    with open('data.json', 'r') as f:
+        thanks_list = json.load(f)['thanks']
+    for thank in thanks_list:
+        thanks.append(Thank(
+            profiles_dict[thank['sender']],
+            profiles_dict[thank['to']],
+            thank['message']
+        ))
+
+    return thanks
