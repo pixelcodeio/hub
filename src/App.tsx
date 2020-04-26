@@ -35,13 +35,10 @@ class App extends React.Component {
             <Router>
               <NavBar />
               <Switch>
-                <Route path="/signin">
-                  <SignInView />
-                </Route>
                 <Route path="/signup">
                   <SignUpView />
                 </Route>
-                <Route path="/(home|)">
+                <Route path="/home">
                   <HomeView />
                 </Route>
                 <Route path="/profile/:profileID">
@@ -61,6 +58,9 @@ class App extends React.Component {
                 </Route>
                 <Route path="/Calendar">
                   <CalendarView />
+                </Route>
+                <Route path="/">
+                  <SignInView />
                 </Route>
               </Switch>
             </Router>
