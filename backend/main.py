@@ -179,7 +179,11 @@ def profile():
 # Get list of all users?
 @app.route('/profiles', methods=['GET'])
 def get_users():
-    return make_response([profile.serialize(profiles_dict) for profile in profiles_dict.values()])
+    ret = []
+    for profile in profiles_dict.values():
+        received_thanks = [thank for thank in thanks if thank.to.id == profile.id]
+        ret.append(profile.serialize(profiles_dict, received_thanks))
+    return make_response(ret)
 
 # Send slack message to a specific user?
 @app.route('/slack/message', methods=['POST'])
