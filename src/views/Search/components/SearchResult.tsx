@@ -1,9 +1,9 @@
-import { Box } from "@material-ui/core"
-import { Spacer, Text } from "components"
-import React from "react"
+import { Box } from "@material-ui/core";
+import { Spacer, Text } from "components";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { Employee } from "redux/types"
-import { colors } from "theme/colors"
+import { Employee } from "redux/types";
+import { colors } from "theme/colors";
 
 export interface SearchResultProps {
   employee: Employee
@@ -31,7 +31,7 @@ export const SearchResult: React.FC<SearchResultProps> = ({ employee }) => {
         <Spacer ml={1} />
         <Text variant="body2" color={colors.gray4}>Dept</Text>
         <Spacer ml={0.5} />
-        <Text variant="body1" color={colors.purple} style={{ fontWeight: 400 }}>Engineering</Text>
+        <Text variant="body1" color={colors.purple} style={{ fontWeight: 400 }}>{employee.department}</Text>
       </Box>
     </Box>
   )

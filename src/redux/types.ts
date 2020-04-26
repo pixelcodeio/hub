@@ -6,6 +6,7 @@ export interface Employee {
   birthday: string
   blurb: string
   dailyQuestions: DailyQuestion[]
+  department: string
   email: string
   facebook: string
   featuredPosts: FeaturedPost[]

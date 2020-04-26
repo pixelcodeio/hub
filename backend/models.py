@@ -109,6 +109,7 @@ class Profile:
         name,
         title,
         team,
+        department,
         image_url,
         blurb,
         interests,
@@ -134,6 +135,7 @@ class Profile:
         self.name = name
         self.title = title
         self.team = team
+        self.department = department
         self.image_url = image_url
         self.blurb = blurb
         self.interests = interests
@@ -160,6 +162,7 @@ class Profile:
             'name': self.name,
             'title': self.title,
             'team': self.team,
+            'department': self.department,
             'imageURL': self.image_url,
             'blurb': self.blurb,
             'interests': self.interests,

@@ -1,15 +1,15 @@
 import {
-  AppAction,
   Anniversary,
-  Announcement,
+  Announcement, AppAction,
+
+
   CalendarEvent,
   Celebration,
   Employee,
   FeedPost,
   Homepage,
-  Page,
+  Page
 } from './types';
-import { Announcements } from 'views/Home/Components/Announcements';
 
 export interface AppState {
   companyName: string
@@ -60,6 +60,7 @@ const kevin = {
   name: "Kevin Chan",
   title: "Software Engineer",
   team: "Growth",
+  department: "Engineering",
   teamId: "0",
   imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
   blurb: "Hi 👋 I’m Omar and I joined Figma after I graduated from Cornell University. Previously, I interned 3 times in all of the Facebook offices (MPK, Seattle, NYC). I am a beast in code and I like to shoot soccer balls over the net. In my free time, I like to play League with Kevin Chan.",
@@ -85,6 +86,7 @@ const omar = {
   name: "Omar Rasheed",
   title: "Software Engineer",
   team: "Core Product",
+  department: "Engineering",
   teamId: "0",
   imageURL: "https://ca.slack-edge.com/T012HSXD00J-U012HSXKLKC-6427b1cd736c-512",
   blurb: "Hi 👋 I’m Omar and I joined Figma after I graduated from Cornell University. Previously, I interned 3 times in all of the Facebook offices (MPK, Seattle, NYC). I am a beast in code and I like to shoot soccer balls over the net. In my free time, I like to play League with Kevin Chan.",
@@ -111,6 +113,7 @@ const young = {
   name: "Young Kim",
   title: "Software Engineer",
   team: "Growth",
+  department: "Engineering",
   teamId: "0",
   imageURL: "https://ca.slack-edge.com/T012HSXD00J-U012J3PCXFV-fad37ca9eb3d-512",
   blurb: "Hi 👋 I’m Young and I joined Figma after I graduated from Cornell University. Previously, I interned 3 times in all of the Facebook offices (MPK, Seattle, NYC). I am a beast in code and I like to shoot soccer balls over the net. In my free time, I like to play League with Kevin Chan.",
@@ -137,6 +140,7 @@ const tk = {
   name: "TK Kong",
   title: "Product Designer",
   team: "Growth",
+  department: "Engineering",
   teamId: "0",
   imageURL: "https://avatars3.githubusercontent.com/u/26048121?s=460&u=44d4282c153eb74566058f37df899e8e161c2044&v=4",
   blurb: "Hi 👋 I’m Omar and I joined Figma after I graduated from Cornell University. Previously, I interned 3 times in all of the Facebook offices (MPK, Seattle, NYC). I am a beast in code and I like to shoot soccer balls over the net. In my free time, I like to play League with Kevin Chan.",
