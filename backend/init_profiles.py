@@ -36,6 +36,7 @@ def init_profiles():
             },
             "Kevin's grandmas basement",
             get_team_icon(),
+            get_team_id(),
             user['name'],
         )
         profiles_dict[user['id']] = profile
