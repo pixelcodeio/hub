@@ -39,7 +39,7 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
   return (
     <Grid container spacing={5}>
       <Grid item xs={3}>
-        <Image url={profile.imageURL} borderRadius={8} style={{ width: "100%", height: "auto", maxWidth: "375px" }} />
+        <Image url={profile.imageURL} borderRadius={8} style={{ width: "100%", height: "auto", maxWidth: "375px", boxShadow: "0px 8px 16px rgba(161, 163, 166, 0.12), 0px 4px 24px rgba(161, 163, 166, 0.12)" }} />
       </Grid>
       <Grid item xs={4}>
         <Box display="flex" flexDirection="column" >

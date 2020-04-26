@@ -75,7 +75,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
             <Spacer ml={2} />
 
             <Link to={currentPage !== "Profile" ? `profile/${user.id}` : user.id}>
-              <Image url={user.imageURL} length={32} />
+              <Image url={user.imageURL} length={40} />
             </Link>
           </Box>
         </Box>
@@ -86,7 +86,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
 
 const ContainerGrid = styled(Grid)({
   positon: "fixed",
-  height: "48px",
+  height: "64px",
 })
 
 const mapStateToProps = (state: AppState) => ({
