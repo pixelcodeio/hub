@@ -22,7 +22,6 @@ export const ProfileDailyQuestionsComponent: React.FC<ProfileDailyQuestionsCompo
   if (!profile) {
     return null
   }
-  console.log("P", profile)
   return (
     <>
       {

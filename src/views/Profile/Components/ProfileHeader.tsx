@@ -11,13 +11,14 @@ import { colors } from "theme/colors"
 
 export interface ProfileHeaderComponentProps extends DispatchProps {
   allEmployees: Employee[]
+  user?: Employee
 }
 
-export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ allEmployees }) => {
+export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ allEmployees, user }) => {
   const history = useHistory()
   const { profileID } = useParams()
   const profile = allEmployees.find(employee => employee.id === profileID)
-  if (!profile) {
+  if (!profile || !user) {
     return null
   }
 
@@ -36,6 +37,8 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
     ["Facebook", profile.facebook],
     ["Instagram", profile.instagram],
   ]
+
+  const isViewingOwnProfile = profile.id === user.id
 
   return (
     <Grid container spacing={5}>
@@ -82,12 +85,18 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
           </Box>
           <Spacer mt={6} />
           <Box display="flex">
-            <Link href={`slack://user?team=${profile.teamId}&id=${profile.id}`}>
-              <Button backgroundColor={colors.purple} borderRadius={4} border={"none"} padding={12}>
-                <Text color={colors.white100} variant="body1">{`Message ${profile.name.split(" ")[0]}`}</Text>
-              </Button>
-            </Link>
-            <Spacer ml={1} />
+            {!isViewingOwnProfile &&
+              (
+                <>
+                  <Link href={`slack://user?team=${profile.teamId}&id=${profile.id}`}>
+                    <Button backgroundColor={colors.purple} borderRadius={4} border={"none"} padding={12}>
+                      <Text color={colors.white100} variant="body1">{`Message ${profile.name.split(" ")[0]}`}</Text>
+                    </Button>
+                  </Link>
+                  <Spacer ml={1} />
+                </>
+              )
+            }
             <Button backgroundColor={colors.white100} borderRadius={4} padding={12} border={`1px solid ${colors.purple}`}>
               <Text color={colors.purple} variant="body1">{"View Calendar"}</Text>
             </Button>
@@ -132,6 +141,7 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
 
 const mapStateToProps = (state: AppState) => ({
   allEmployees: state.allEmployees,
+  user: state.user
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),
