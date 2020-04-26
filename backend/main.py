@@ -200,7 +200,18 @@ def thank():
         recipient_profile.id,
         "<@{}> just thanked you for {}!".format(profiles_dict[sender_id].id, message)
     )
-    return make_boolean_response()
+    
+    return {
+        "blocks": [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Love the positivity! Checkout https://thehub.com to see who's thanked you!"
+                }
+            }
+        ]
+    }
 
 # Send new hire message
 # Using reaction_added j cuz its easy to trigger
