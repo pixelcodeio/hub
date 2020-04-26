@@ -21,7 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
 }) => {
   return (
-    <button
+    <HoverButton
       onClick={onClick}
       style={{
         backgroundColor,
@@ -33,9 +33,15 @@ export const Button: React.FC<ButtonProps> = ({
         paddingRight: padding,
         outline: "none",
         ...style
-      }}>{children}</button>
+      }}>{children}</HoverButton>
   )
 }
+
+const HoverButton = styled.button`
+  cursor: pointer;
+  :hover {
+    box-shadow: 0px 8px 16px rgba(161, 163, 166, 0.16), 0px 4px 24px rgba(161, 163, 166, 0.24);    }
+`
 
 const FilterButton = styled.button`
   border-radius: 8px;
