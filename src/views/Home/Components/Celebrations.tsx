@@ -26,7 +26,7 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ce
         const isBirthday = celebration.type === "Birthday"
         const emoji = isBirthday ? "🎂" : "🚀"
         return (
-          <Box>
+          <Box key={index}>
             <CelebrationBox px={2} py={1.5}>
               <Text variant="body2">
                 {isBirthday ? "Birthday is today 🎂" : `${celebration.numYears} year anniversary 🚀`}

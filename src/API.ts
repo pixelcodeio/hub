@@ -30,6 +30,10 @@ export class API {
     return this.fetchPath(`profile?user_id=${userID}`)
   }
 
+  public async fetchAllProfiles() {
+    return this.fetchPath("profiles")
+  }
+
   public async signup() {
     return this.fetchPath("signup")
   }

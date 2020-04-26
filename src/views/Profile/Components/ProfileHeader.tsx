@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
+import { useParams } from "react-router-dom"
 import { AppAction, Employee, DispatchProps } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
@@ -9,10 +10,16 @@ import { Button, Image, Text, Spacer } from "components"
 import { colors } from "theme/colors"
 
 export interface ProfileHeaderComponentProps extends DispatchProps {
-  profile: Employee
+  allEmployees: Employee[]
 }
 
-export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ profile }) => {
+export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ allEmployees }) => {
+  const { profileID } = useParams()
+  const profile = allEmployees.find(employee => employee.id === profileID)
+  if (!profile) {
+    return null
+  }
+
   const firstColumnFields = [
     ["Manager", profile?.manager?.name],
     ["Email", profile.email],
@@ -91,7 +98,7 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
 }
 
 const mapStateToProps = (state: AppState) => ({
-  profile: state.profile
+  allEmployees: state.allEmployees,
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

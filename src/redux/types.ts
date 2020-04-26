@@ -2,29 +2,26 @@ export interface DispatchProps {
   dispatch: (action: any) => any;
 }
 
-export interface User {
-  name: string
-}
-
 export interface Employee {
-  name: string
-  title: string
-  team: string
-  imageURL: string
-  blurb: string
-  interests: string[]
-  manager?: Employee
-  email: string
-  office: string
   birthday: string
-  pronouns: string
-  joinDate: string
-  twitter: string
-  linkedin: string
+  blurb: string
+  email: string
   facebook: string
-  instagram: string
-  personalSite: PersonalSite
   featuredPosts: FeaturedPost[]
+  id: string
+  imageURL: string
+  instagram: string
+  interests: string[]
+  joinDate: string
+  linkedin: string
+  manager?: Employee
+  name: string
+  office: string
+  personalSite: PersonalSite
+  pronouns: string
+  team: string
+  title: string
+  twitter: string
 }
 
 export interface Celebration {
@@ -55,9 +52,9 @@ export interface Announcement {
 }
 
 export interface FeaturedPost {
-  title: string
   body: string
   imageURL: string
+  title: string
 }
 
 export interface Thanks {
@@ -86,6 +83,7 @@ export type FeedPostType = "Thanks" | "DailyUpdate"
 export type AppAction =
   | { type: "type", value: "value" }
   | { type: "login" }
-  | { type: "fetchProfile", data: Object }
+  | { type: "fetchProfile", user: Employee }
   | { type: "selectFilter", filter: string }
   | { type: "setCurrentPage", page: Page }
+  | { type: "fetchAllProfiles", allEmployees: Employee[] }

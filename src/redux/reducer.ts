@@ -7,13 +7,13 @@ import {
   Employee,
   FeedPost,
   Page,
-  User,
 } from './types';
 import { Announcements } from 'views/Home/Components/Announcements';
 
 export interface AppState {
   companyName: string
-  user?: User
+  user?: Employee
+  allEmployees: Employee[]
   announcements: Announcement[]
   recentHires: Employee[]
   calendarEvents: CalendarEvent[]
@@ -51,6 +51,7 @@ const featuredPosts = [
 ]
 
 const kevin = {
+  id: "1",
   name: "Kevin Chan",
   title: "Software Engineer",
   team: "Growth",
@@ -71,6 +72,7 @@ const kevin = {
 }
 
 const omar = {
+  id: "1",
   name: "Omar Rasheed",
   title: "Software Engineer",
   team: "Core Product",
@@ -92,6 +94,7 @@ const omar = {
 }
 
 const young = {
+  id: "1",
   name: "Young Kim",
   title: "Software Engineer",
   team: "Growth",
@@ -113,6 +116,7 @@ const young = {
 }
 
 const tk = {
+  id: "1",
   name: "TK Kong",
   title: "Product Designer",
   team: "Growth",
@@ -172,6 +176,7 @@ export const initialState: AppState = {
   announcements: Array(5).fill(announcement),
   recentHires: Array(6).fill(young),
   user: undefined,
+  allEmployees: [],
   feed: [
     {
       type: "Thanks",
@@ -225,8 +230,11 @@ export default function reducer(state: AppState = initialState, action: AppActio
     case "login":
       return state
     case "fetchProfile":
-      const { data } = action
-      return state
+      const { user } = action
+      return { ...state, user }
+    case "fetchAllProfiles":
+      const { allEmployees } = action
+      return { ...state, allEmployees }
     case "selectFilter":
       const { filter } = action
       const allFilterPrevSelected = selectedFilters.includes("All")
