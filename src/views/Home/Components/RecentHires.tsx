@@ -13,18 +13,18 @@ export interface RecentHiresProps extends DispatchProps {
   homepage?: Homepage
 }
 
-function pop (e, text) {
+function pop(e, text) {
   e.stopPropagation();
   console.log(e.clientX, e.clientY, e.pageX, e.pageY);
-  for (let i=0; i < 20; i++) {
+  for (let i = 0; i < 20; i++) {
     createParticle(e.pageX, e.pageY, text);
   }
 }
 
-function createParticle (x, y, text) {
+function createParticle(x, y, text) {
   const particle = document.createElement('particle');
   document.getElementById("root")?.appendChild(particle);
-  
+
   // Calculate a random size from 5px to 25px
   const size = Math.floor(Math.random() * 20 + 5);
   particle.innerHTML = text;
@@ -34,7 +34,7 @@ function createParticle (x, y, text) {
   particle.style.height = `${size}px`;
   particle.style.position = 'absolute'
   particle.style.zIndex = "10000"
-  
+
   // Generate a random x & y destination within a distance of 75px from the mouse
   const destinationX = (Math.random() - 0.5) * 2 * 25;
   const destinationY = (Math.random() - 0.5) * 2 * 25;
@@ -59,7 +59,7 @@ function createParticle (x, y, text) {
     // Delay every particle with a random value of 200ms
     delay: Math.random() * 200
   });
-  
+
   // When the animation is complete, remove the element from the DOM
   animation.onfinish = () => {
     particle.remove();
@@ -138,7 +138,7 @@ const NewHireBox = muiStyled(HoverBox)({
   backgroundColor: colors.white100,
   border: `1px solid ${colors.gray2}`,
   borderRadius: "8px",
-  height: "250px",
+  height: "200px",
 })
 
 const mapStateToProps = (state: AppState) => ({

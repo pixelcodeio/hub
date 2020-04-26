@@ -49,7 +49,7 @@ export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch, 
 
   return (
     <Box>
-      <Box style={{ backgroundColor: colors.lightTeal, height: "450px" }}>
+      <Box style={{ backgroundColor: colors.lightTeal, height: "400px" }}>
         <Box px={5}>
           <Grid container >
             <Grid item xs={12}>
