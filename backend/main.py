@@ -5,9 +5,13 @@ import random
 from functools import reduce
 from urllib.parse import urlparse
 
-import requests
 from flask import Flask, request
+
+import requests	
+import slackbot	
+from daily_questions import daily_questions	
 from flask_cors import CORS
+from init_profiles import init_profiles	
 from slackeventsapi import SlackEventAdapter
 
 import slackbot
