@@ -1,8 +1,9 @@
 import React, { useEffect } from "react"
 import { connect } from 'react-redux';
+import { useParams } from "react-router-dom"
 import { AppState } from 'redux/reducer';
-import { setCurrentPage } from 'redux/actions';
-import { AppAction, DispatchProps, Page } from "redux/types"
+import { setCurrentPage, fetchAllProfiles, fetchProfile } from 'redux/actions';
+import { AppAction, DispatchProps, Employee, Page } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { FeedBellIcon } from "assets"
 import { styled as muiStyled } from '@material-ui/core/styles'
@@ -15,12 +16,29 @@ import { ProfileHeader, Featured, ProfileFeedPost, RecentThanks, } from "./Compo
 
 export interface ProfileViewComponentProps extends DispatchProps {
   currentPage: Page
+  allEmployees: Employee[]
 }
 
-export const ProfileViewComponent: React.FC<ProfileViewComponentProps> = ({ currentPage, dispatch }) => {
+export const ProfileViewComponent: React.FC<ProfileViewComponentProps> = ({ currentPage, dispatch, allEmployees }) => {
+  const { profileID } = useParams()
+  console.log("PROFILE ID:", profileID)
   useEffect(() => {
     dispatch(setCurrentPage("Profile"))
+    if (allEmployees.length === 0) {
+      dispatch(fetchAllProfiles())
+    }
   }, [])
+
+  if (allEmployees.length === 0) {
+    return null
+  }
+
+  const filteredProfiles = allEmployees.filter(employee => employee.id === profileID)
+
+  if (filteredProfiles.length === 0) {
+    return null
+  }
+
 
   return (
     <Box>
@@ -55,7 +73,8 @@ export const ProfileViewComponent: React.FC<ProfileViewComponentProps> = ({ curr
 }
 
 const mapStateToProps = (state: AppState) => ({
-  currentPage: state.currentPage
+  currentPage: state.currentPage,
+  allEmployees: state.allEmployees,
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

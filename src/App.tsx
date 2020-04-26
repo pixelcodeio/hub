@@ -35,7 +35,7 @@ class App extends React.Component {
                 <Route path="/(home|)">
                   <HomeView />
                 </Route>
-                <Route path="/profile">
+                <Route path="/profile/:profileID">
                   <ProfileView />
                 </Route>
                 <Route path="/teams">

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import { connect } from 'react-redux';
 import { Box, Grid } from "@material-ui/core"
-import { setCurrentPage } from 'redux/actions';
-import { AppAction, DispatchProps, Page } from "redux/types"
+import { fetchProfile, fetchAllProfiles, setCurrentPage } from 'redux/actions';
+import { AppAction, DispatchProps, Employee } from "redux/types"
 import { AppState } from 'redux/reducer';
 
 import {
@@ -21,13 +21,26 @@ import { Spacer, Text } from "components"
 import { FeedPostComponent } from "./Components/FeedPost"
 import { colors } from "theme/colors"
 
-export interface HomeViewComponentProps extends DispatchProps { }
+export interface HomeViewComponentProps extends DispatchProps {
+  allEmployees: Employee[]
+  user?: Employee
+}
 
-export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch }) => {
-
+export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch, allEmployees, user }) => {
   useEffect(() => {
     dispatch(setCurrentPage("Home"))
+    if (!user) {
+      dispatch(fetchProfile("U012HSXKLKC"))
+    }
+    if (allEmployees.length === 0) {
+      dispatch(fetchAllProfiles())
+    }
   }, [])
+
+  if (!user || allEmployees.length === 0) {
+    return null
+  }
+  console.log("USER:", user)
 
   return (
     <Box>
@@ -57,7 +70,8 @@ export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch }
 }
 
 const mapStateToProps = (state: AppState) => ({
-  currentPage: state.currentPage
+  allEmployees: state.allEmployees,
+  user: state.user,
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

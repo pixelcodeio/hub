@@ -6,7 +6,6 @@ const sharedAPI = API.getInstance()
 export const signup = () => {
   return async (dispatch: any) => {
     const response = await sharedAPI.signup()
-    console.log("RESPONSE", response)
     dispatch({ type: "signup" })
   }
 }
@@ -14,17 +13,23 @@ export const signup = () => {
 export const login = () => {
   return async (dispatch: any) => {
     const response = await sharedAPI.signin()
-    console.log("RESPONSE", response)
     dispatch({ type: "login" })
+  }
+}
+
+export const fetchAllProfiles = () => {
+  return async (dispatch: any) => {
+    const response: any = await sharedAPI.fetchAllProfiles()
+    console.log("ALL PROFILES", response)
+    dispatch({ type: "fetchAllProfiles", allEmployees: response.data })
   }
 }
 
 export const fetchProfile = (userID: string) => {
   return async (dispatch: any) => {
-    console.log("HERE???")
-    const response = await sharedAPI.fetchProfile(userID)
-    console.log("RESPONSE", response)
-    dispatch({ type: "fetchProfile", data: response })
+    const response: any = await sharedAPI.fetchProfile(userID)
+    console.log("USER", response.data)
+    dispatch({ type: "fetchProfile", user: response.data })
   }
 }
 
