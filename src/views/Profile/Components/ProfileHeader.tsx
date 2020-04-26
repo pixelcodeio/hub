@@ -54,14 +54,32 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
             <Spacer ml={0.5} />
             <Text variant="body1" style={{ fontWeight: 400 }}>{" on "}</Text>
             <Spacer ml={0.5} />
-            <Text variant="body1" underline style={{ fontWeight: 400 }}>{`${profile.team}`}</Text>
+            <Text variant="body1" underline style={{ fontWeight: 400 }} onClick={() => {
+              window.scrollTo(0, 0)
+              history.push(`/search/${profile.team}`)
+            }}>{`${profile.team}`}</Text>
             <Spacer ml={0.5} />
             <Text variant="body1" style={{ fontWeight: 400 }}>{" team."}</Text>
           </Box>
           <Spacer mt={1.5} />
           <Text variant="body1" style={{ fontWeight: 400 }}>{profile.blurb}</Text>
           <Spacer mt={1.5} />
-          <Text variant="body1" color={colors.gray4}>{profile.interests.join(", ")}</Text>
+          <Box display="flex" alignItems="center">
+            {profile.interests.map((interest, index) => {
+              const isLast = index === profile.interests.length - 1
+              return (
+                <>
+                  <Text variant="body1" color={colors.gray4} key={index} onClick={() => {
+                    window.scrollTo(0, 0)
+                    history.push(`/search/${interest}`)
+                  }}>
+                    {`${interest}${isLast ? "" : ", "}`}
+                  </Text>
+                  <Spacer ml={0.5} />
+                </>
+              )
+            })}
+          </Box>
           <Spacer mt={6} />
           <Box display="flex">
             <Link href={`slack://user?team=${profile.teamId}&id=${profile.id}`}>

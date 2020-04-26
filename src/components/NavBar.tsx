@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Box, Button, Grid } from "@material-ui/core"
 import { SearchIcon } from "assets"
 import { Link, Spacer, Image, Text } from "components"
@@ -15,6 +16,7 @@ export interface NavBarProps extends DispatchProps {
 }
 
 export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, user }) => {
+  const history = useHistory()
   const [selectedSection, setSelectedSection] = useState("Home")
   const sections = [
     { url: "/home", name: "Home" },
@@ -74,9 +76,10 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
             }
             <Spacer ml={2} />
 
-            <Link to={currentPage !== "Profile" ? `profile/${user.id}` : user.id}>
-              <Image url={user.imageURL} length={40} />
-            </Link>
+            <Image url={user.imageURL} length={40} onClick={() => {
+              window.scrollTo(0, 0)
+              history.push(`/profile/${user.id}`)
+            }} />
           </Box>
         </Box>
       </Grid>

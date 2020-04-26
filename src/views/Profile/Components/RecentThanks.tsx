@@ -36,7 +36,7 @@ export const RecentThanksComponent: React.FC<RecentThanksProps> = ({ allEmployee
       <ThankBotContainer py={1.5} px={2}>
         <Link href={`slack://app?team=${profile.teamId}&id=A012B5CK12S`}>
           <Text variant="body1" color={colors.gray4}>
-            {`Thank ${firstName} by using /thanks @${profile.slackInternalName} with Hub Slackbot. Try it →`}
+            {`Thank ${firstName} by using /thanks @${profile.name} with Hub Slackbot. Try it →`}
           </Text>
         </Link>
       </ThankBotContainer>

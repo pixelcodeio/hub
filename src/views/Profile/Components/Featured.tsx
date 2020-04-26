@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux';
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { AppState } from 'redux/reducer';
 import { AppAction, Employee, DispatchProps } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
@@ -14,6 +14,7 @@ export interface FeaturedComponentProps extends DispatchProps {
 }
 
 export const FeaturedComponent: React.FC<FeaturedComponentProps> = ({ allEmployees }) => {
+  const history = useHistory()
   const { profileID } = useParams()
   const profile = allEmployees.find(employee => employee.id === profileID)
   if (!profile) {

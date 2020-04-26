@@ -7,13 +7,14 @@ export interface ImageProps {
   url: string
   borderRadius?: number
   style?: any
+  onClick?: () => void
 }
 
-export const Image: React.FC<ImageProps> = ({ length, url, borderRadius, style, width = 0, height = 0 }) => {
+export const Image: React.FC<ImageProps> = ({ length, url, borderRadius, style, onClick, width = 0, height = 0 }) => {
   const radius = borderRadius || (length || 0) / 2
   const finalWidth = length || width
   const finalHeight = length || height
   return (
-    <img src={url} height={finalHeight} width={finalWidth} style={{ borderRadius: radius, ...style }} />
+    <img src={url} height={finalHeight} width={finalWidth} style={{ borderRadius: radius, ...style }} onClick={onClick} />
   )
 }
