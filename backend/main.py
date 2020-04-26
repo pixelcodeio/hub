@@ -129,9 +129,18 @@ def homepage():
     similar_interests = [profile for profile in list(
         profiles_dict.values()) if similar_in_interest(profile, req_user_profile)]
 
+    anniversaries = []
+    birthdays = []
+
+    for prof in list(profiles_dict.values()):
+        if "April 26" in prof.birthday:
+            birthdays.append(Birthday(prof).serialize())
+        if "April 26" in prof.join_date:
+            anniversaries.append(Anniversary(prof).serialize())
+
     return make_response({
-        'anniversaries': [Anniversary(prof).serialize() for prof in list(profiles_dict.values())],
-        'birthdays': [Birthday(prof).serialize() for prof in list(profiles_dict.values())],
+        'anniversaries': anniversaries,
+        'birthdays': birthdays,
         'newHires': [NewHire(prof).serialize() for prof in list(profiles_dict.values())],
         'polls': [poll.serialize(profiles_dict) for poll in list(all_polls.values())],
         'similarInterests': [prof.serialize(profiles_dict) for prof in similar_interests]
