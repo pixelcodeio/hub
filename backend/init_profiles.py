@@ -13,6 +13,7 @@ def init_profiles():
             user['real_name'],
             'CEO',
             'IDK',
+            'Engineering'
             user['profile']['image_512'],
             "Hey fam im a nerd",
             ['nothing', 'league'],
