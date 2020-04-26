@@ -92,7 +92,7 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
             {teams.map((team, index) => (
               <Box key={index}>
                 <Box display="flex" alignItems="center" justifyContent="space-between" onClick={() => onToggleTeamFilter(index)}>
-                  <Text variant="body2" color={colors.gray4}>{`${team} (${teamCounts[team]})`}</Text>
+                  <Text variant="body1" color={colors.gray4}>{`${team} (${teamCounts[team]})`}</Text>
                   <Checkbox disableRipple size="small" checked={teamFilters.includes(team)} onClick={onToggleTeamFilter} />
                 </Box>
                 <Spacer mt={1} />
@@ -106,7 +106,7 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
             {departments.map((dept, index) => (
               <Box key={index}>
                 <Box display="flex" alignItems="center" justifyContent="space-between" onClick={() => onToggleDeptFilter(index)}>
-                  <Text variant="body2" color={colors.gray4}>{`${dept} (${departmentCounts[dept]})`}</Text>
+                  <Text variant="body1" color={colors.gray4}>{`${dept} (${departmentCounts[dept]})`}</Text>
                   <Checkbox disableRipple size="small" checked={departmentFilters.includes(dept)} onClick={onToggleDeptFilter} />
                 </Box>
                 <Spacer mt={1} />
