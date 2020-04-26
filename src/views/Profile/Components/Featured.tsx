@@ -30,7 +30,11 @@ export const FeaturedComponent: React.FC<FeaturedComponentProps> = ({ allEmploye
       </Box>
       <Spacer mt={3} />
       <FeaturedPostBox px={2} py={1.5}>
-        <Text variant="body1" underline>{`${profile.personalSite.url} →`}</Text>
+        <Text variant="body1" underline style={{ cursor: "pointer" }}>
+          <a href={`https://${profile.personalSite.url}`} target="_blank" style={{ color: "inherit" }}>
+            {`${profile.personalSite.url} →`}
+          </a>
+        </Text>
         <Spacer mt={1} />
         <Text variant="body1" style={{ fontWeight: 400 }}>{profile.personalSite.description}</Text>
       </FeaturedPostBox>
