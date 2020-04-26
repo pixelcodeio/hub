@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
+import { useHistory } from "react-router-dom";
 import { AppAction, DispatchProps, Employee, Homepage } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
@@ -13,12 +14,13 @@ export interface RecentHiresProps extends DispatchProps {
 }
 
 export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) => {
+  const history = useHistory()
   let recentHires = homepage?.newHires
   if (!recentHires || recentHires.length === 0) {
     return null
   }
 
-  recentHires = Array(5).fill(recentHires[0])
+  // recentHires = Array(5).fill(recentHires[0])
   return (
     <Box pt={7}>
       <Box display="flex" alignItems="center">
@@ -34,7 +36,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) =
       <GridListContainer direction="horizontal" height={249} cellHeight={249} spacing={16} cols={3} >
         {recentHires.map((newHire, index) => (
           <GridListTile key={index} cols={1}>
-            <NewHireBox px={2} py={2} display="flex" flexDirection="column">
+            <NewHireBox px={2} py={2} display="flex" flexDirection="column" onClick={() => history.push(`/profile/${newHire.userId}`)}>
               <Box display="flex" alignItems="center" justifyContent="space-between">
                 <Box display="flex" alignItems="center" >
                   <Image length={64} url={newHire.imageURL} />
@@ -48,7 +50,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) =
                     </Box>
                   </Box>
                 </Box>
-                <Button style={{fontSize: "16px"}} border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>👋</Button>
+                <Button style={{ fontSize: "16px" }} border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>👋</Button>
               </Box>
               <Spacer mt={2} />
               <Box py={2}>

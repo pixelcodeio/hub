@@ -28,7 +28,7 @@ export const fetchHomepage = (userID: string) => {
 export const fetchAllProfiles = () => {
   return async (dispatch: any) => {
     const response: any = await sharedAPI.fetchAllProfiles()
-    console.log("ALL PROFILES", response)
+    // console.log("ALL PROFILES", response)
     dispatch({ type: "fetchAllProfiles", allEmployees: response.data })
   }
 }
@@ -36,7 +36,7 @@ export const fetchAllProfiles = () => {
 export const fetchProfile = (userID: string) => {
   return async (dispatch: any) => {
     const response: any = await sharedAPI.fetchProfile(userID)
-    console.log("USER", response.data)
+    // console.log("USER", response.data)
     dispatch({ type: "fetchProfile", user: response.data })
   }
 }

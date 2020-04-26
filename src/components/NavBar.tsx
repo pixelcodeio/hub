@@ -67,14 +67,14 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
             ))}
           </Box>
           <Box display="flex" alignItems="center" justifyContent="space-between">
-            { currentPage !== "Search" &&
+            {currentPage !== "Search" &&
               <Link to={"/search"}>
                 <SearchIcon />
               </Link>
             }
             <Spacer ml={2} />
 
-            <Link to={currentPage !== "Profile" ? `profile/${user.id}` : "#"}>
+            <Link to={currentPage !== "Profile" ? `profile/${user.id}` : user.id}>
               <Image url={user.imageURL} length={32} />
             </Link>
           </Box>
