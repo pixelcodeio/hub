@@ -24,6 +24,7 @@ export interface Employee {
   receivedThanks: Thanks[]
   slackInternalName: string
   team: string
+  teamIconUrl: string
   teamId: string
   title: string
   twitter: string

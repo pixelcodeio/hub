@@ -29,8 +29,8 @@ const StyledBox = styled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  companyName: state.companyName,
-  recentHires: state.recentHires,
+  companyName: "",
+  recentHires: [],
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

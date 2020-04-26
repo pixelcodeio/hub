@@ -41,7 +41,7 @@ const Container = muiStyled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  feed: state.feed
+  feed: []
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

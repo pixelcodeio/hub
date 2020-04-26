@@ -46,7 +46,7 @@ const Container = muiStyled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  calendarEvents: state.calendarEvents
+  calendarEvents: []
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),
