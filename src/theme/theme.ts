@@ -5,6 +5,13 @@ import typography from "./typography"
 
 const baseTheme = {
   typography,
+  overrides: {
+    MuiGridListTile: {
+      tile: {
+        overflow: "visible"
+      }
+    }
+  }
 } as ThemeOptions
 
 export const theme = createMuiTheme(baseTheme)
