@@ -76,7 +76,9 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
           <Box display="flex" alignItems="center" justifyContent="space-between">
             {currentPage !== "Search" &&
               <Link to={"/search"}>
-                <SearchIcon />
+                <Box height={40}>
+                  <SearchIcon />
+                </Box>
               </Link>
             }
             <Spacer ml={2} />
