@@ -20,7 +20,6 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) =
     return null
   }
 
-  // recentHires = Array(5).fill(recentHires[0])
   return (
     <Box pt={7}>
       <Box display="flex" alignItems="center">
@@ -35,7 +34,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) =
       <Spacer mt={3} />
       <GridListContainer direction="horizontal" height={249} cellHeight={249} spacing={16} cols={3} >
         {recentHires.map((newHire, index) => (
-          <GridListTile key={index} cols={1} style={{overflow: "visible"}}>
+          <GridListTile key={index} cols={1} style={{ overflow: "visible" }}>
             <NewHireBox px={2} py={2} display="flex" flexDirection="column" onClick={() => {
               window.scrollTo(0, 0)
               history.push(`/profile/${newHire.userId}`)

@@ -36,7 +36,6 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
   ]
 
   return (
-    // <Box display="flex" alignItems="center" justifyContent="space-around">
     <Grid container spacing={5}>
       <Grid item xs={3}>
         <Image url={profile.imageURL} borderRadius={8} style={{ width: "100%", height: "auto", maxWidth: "375px" }} />
