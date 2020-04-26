@@ -20,6 +20,8 @@ export interface Employee {
   office: string
   personalSite: PersonalSite
   pronouns: string
+  receivedThanks: Thanks[]
+  slackInternalName: string
   team: string
   teamId: string
   title: string
