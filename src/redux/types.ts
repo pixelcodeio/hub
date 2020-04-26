@@ -126,7 +126,7 @@ export interface Homepage {
   similarInterests: Employee[]
 }
 
-export type Page = "Home" | "Profile" | "Search" | "SignIn"
+export type Page = "Home" | "Profile" | "Search" | "SignIn" | "ComingSoon"
 
 export type FeedPostType = "Thanks" | "DailyUpdate"
 

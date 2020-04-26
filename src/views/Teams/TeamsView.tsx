@@ -1,11 +1,51 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { Box, Grid } from "@material-ui/core";
+import { connect } from 'react-redux';
+import { setCurrentPage } from 'redux/actions';
+import { AppState } from 'redux/reducer';
+import { AppAction, DispatchProps } from "redux/types";
 
-import { Text } from "components"
+import { Spacer, Text } from "components"
 
-export const TeamsView: React.FC<any> = props => {
+export interface TeamsComponentProps extends DispatchProps { }
+
+export const TeamsComponent: React.FC<TeamsComponentProps> = ({ dispatch }) => {
+  useEffect(() => {
+    dispatch(setCurrentPage("ComingSoon"))
+  }, [])
+
   return (
-    <Text variant="h2">
-      Teams
-    </Text>
+    <Box>
+      <Box style={{ height: "400px" }}>
+        <Box px={5}>
+          <Grid container >
+            <Grid item xs={12}>
+              <Box pt={5}>
+                <Box display="flex" alignItems="center">
+                  <Text variant="h6">Coming Soon</Text>
+                  <Spacer ml={1} />
+                  <Text variant="h6">👀</Text>
+                  <Spacer ml={2} />
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Box>
   )
 }
+
+const mapStateToProps = (state: AppState) => ({
+  allEmployees: state.allEmployees,
+  homepage: state.homepage,
+  user: state.user,
+})
+const mapDispatchToProps = (dispatch: any) => ({
+  dispatch: (action: AppAction) => dispatch(action),
+});
+
+export const TeamsView = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TeamsComponent);

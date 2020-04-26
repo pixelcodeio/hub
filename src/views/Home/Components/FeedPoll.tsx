@@ -21,7 +21,7 @@ export const FeedPollOption: React.FC<FeedPollOptionProps> = ({ option }) => {
       <Box p={1} mr={1} style={{ backgroundColor: colors.gray1, border: `1px solid ${colors.gray2}`, borderRadius: "4px" }}>
         <Text color={colors.gray4} variant="body2" style={{ fontWeight: "600" }}>{option}</Text>
       </Box>
-      <Text color={colors.black100} variant="body2" style={{ fontWeight: "600" }}>48%</Text>
+      <Text color={colors.black100} variant="body2" style={{ fontWeight: "600" }}>33%</Text>
     </Box>
   )
 }
