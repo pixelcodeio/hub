@@ -13,7 +13,12 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { NavBar } from "components"
+import { NavBar, ScrollToTop } from "components"
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/interface-name-prefix
+  interface Window { }
+}
 
 class App extends React.Component {
   store = createStore(reducer, applyMiddleware(thunk))

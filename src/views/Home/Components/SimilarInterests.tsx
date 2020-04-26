@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { AppState } from 'redux/reducer';
 import { AppAction, DispatchProps, Employee, Homepage } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
@@ -14,6 +15,7 @@ export interface SimilarInterestsComponentProps extends DispatchProps {
 }
 
 export const SimilarInterestsComponent: React.FC<SimilarInterestsComponentProps> = ({ homepage }) => {
+  const history = useHistory()
   const similarInterests = homepage?.similarInterests
   if (!similarInterests) {
     return null
@@ -28,8 +30,11 @@ export const SimilarInterestsComponent: React.FC<SimilarInterestsComponentProps>
       <Spacer mt={3} />
       {similarInterests.map((interest, index) => (
         <Box key={index}>
-          <CelebrationBox px={2} py={1.5}>
-            <Text variant="body2" style={{fontWeight: 600}} color={colors.gray4}>
+          <InterestBox px={2} py={1.5} onClick={() => {
+            window.scrollTo(0, 0)
+            history.push(`/profile/${interest.id}`)
+          }}>
+            <Text variant="body2" style={{ fontWeight: 600 }} color={colors.gray4}>
               {interest.interests.join(", ")}
             </Text>
             <Spacer mt={1} />
@@ -37,12 +42,12 @@ export const SimilarInterestsComponent: React.FC<SimilarInterestsComponentProps>
               <Image length={48} url={interest.imageURL} />
               <Spacer ml={1} />
               <Box flex="display">
-                <Text variant="body1" style={{fontWeight: 600}}>{interest.name}</Text>
+                <Text variant="body1" style={{ fontWeight: 600 }}>{interest.name}</Text>
                 <Spacer mt={0.25} />
                 <Text variant="body2">{`${interest.title} • ${interest.team}`}</Text>
               </Box>
             </Box>
-          </CelebrationBox>
+          </InterestBox>
           <Spacer mt={1} />
         </Box>
       )
@@ -55,7 +60,7 @@ const Container = muiStyled(Box)({
   borderRadius: "8px",
 })
 
-const CelebrationBox = muiStyled(Box)({
+const InterestBox = muiStyled(Box)({
   backgroundColor: colors.white100,
   borderRadius: "8px",
   border: `1px solid ${colors.gray2}`
