@@ -119,7 +119,7 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ho
               window.scrollTo(0, 0)
               history.push(`/profile/${anniversary.userId}`)
             }}>
-              <Text variant="body2">
+              <Text variant="body2" color={colors.gray4}>
                 {`${anniversary.years} year anniversary 🚀`}
               </Text>
               <Spacer mt={1} />
