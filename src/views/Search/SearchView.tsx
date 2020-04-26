@@ -1,13 +1,14 @@
-import React, { useEffect } from "react"
-import { connect } from 'react-redux';
-import { Box, Grid, Input } from "@material-ui/core"
-import { styled as muiStyled } from '@material-ui/core/styles'
-import { fetchProfile, fetchAllProfiles, setCurrentPage } from 'redux/actions';
-import { AppAction, DispatchProps, Employee } from "redux/types"
-import { AppState } from 'redux/reducer';
-import { colors } from "theme/colors"
+import { Box, Grid, Input } from "@material-ui/core";
+import { styled as muiStyled } from '@material-ui/core/styles';
 import { SearchBarIcon } from "assets";
-import { GridListContainer, Image, Text, Spacer } from "components"
+import { Spacer } from "components";
+import React, { useEffect } from "react";
+import { connect } from 'react-redux';
+import { setCurrentPage } from 'redux/actions';
+import { AppState } from 'redux/reducer';
+import { AppAction, DispatchProps, Employee } from "redux/types";
+import { colors } from "theme/colors";
+import { SearchResultComponent } from "./components/SearchResult";
 
 export interface SearchViewComponentProps extends DispatchProps {
   allEmployees: Employee[]
@@ -27,10 +28,18 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
           <Container py={2} px={4} display="flex" alignItems="center">
             <SearchBarIcon />
             <Spacer ml={1.5} />
-            <Input autoFocus={true} disableUnderline={true} style={{color: colors.black100, fontSize: "14px", fontWeight: 400}} />
+            <Input autoFocus={true} disableUnderline={true} style={{ color: colors.black100, fontSize: "14px", fontWeight: 400 }} />
           </Container>
+          <Spacer mt={8} />
+          {allEmployees.map((employee, index) => (
+            <Box>
+              <SearchResultComponent employee={employee} key={index} />
+              <Spacer mt={5} />
+            </Box>
+          ))}
         </Grid>
       </Grid>
+
     </Box>
   )
 }

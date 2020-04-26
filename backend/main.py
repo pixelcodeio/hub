@@ -205,7 +205,7 @@ def thank():
 
 # Send new hire message
 # Using reaction_added j cuz its easy to trigger
-@slack_events_adapter.on('reaction_added')
+@slack_events_adapter.on('team_join')
 def reaction_added(payload):
     event = payload.get("event", {})
     user_id = event.get("user")
