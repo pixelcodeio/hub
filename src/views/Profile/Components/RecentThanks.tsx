@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
 import { useParams } from "react-router-dom"
 import { AppAction, Employee, DispatchProps } from "redux/types"
-import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
+import { Box, Link, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
 import { GridListContainer, Image, Text, Spacer } from "components"
@@ -34,9 +34,11 @@ export const RecentThanksComponent: React.FC<RecentThanksProps> = ({ allEmployee
       </Box>
       <Spacer mt={2} />
       <ThankBotContainer py={1.5} px={2}>
-        <Text variant="body1" color={colors.gray4}>
-          {`Thank ${firstName} by using /thanks @${profile.slackInternalName} with Hub Slackbot. Try it →`}
-        </Text>
+        <Link href={`slack://app?team=${profile.teamId}&id=A012B5CK12S`}>
+          <Text variant="body1" color={colors.gray4}>
+            {`Thank ${firstName} by using /thanks @${profile.slackInternalName} with Hub Slackbot. Try it →`}
+          </Text>
+        </Link>
       </ThankBotContainer>
       <Spacer mt={1} />
       {profile.receivedThanks.map((thanks, index) => (
