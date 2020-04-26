@@ -47,14 +47,14 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
           <Text variant="h4">{profile.name}</Text>
           <Spacer mt={1.5} />
           <Box display="flex">
-            <Text variant="body1" underline style={{ fontWeight: 400 }} onClick={() => {
+            <Text variant="body1" underline style={{ fontWeight: 400, cursor: "pointer" }} onClick={() => {
               window.scrollTo(0, 0)
               history.push(`/search/${profile.title}`)
             }}>{`${profile.title}`}</Text>
             <Spacer ml={0.5} />
             <Text variant="body1" style={{ fontWeight: 400 }}>{" on "}</Text>
             <Spacer ml={0.5} />
-            <Text variant="body1" underline style={{ fontWeight: 400 }} onClick={() => {
+            <Text variant="body1" underline style={{ fontWeight: 400, cursor: "pointer" }} onClick={() => {
               window.scrollTo(0, 0)
               history.push(`/search/${profile.team}`)
             }}>{`${profile.team}`}</Text>
@@ -69,7 +69,7 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
               const isLast = index === profile.interests.length - 1
               return (
                 <>
-                  <Text variant="body1" color={colors.gray4} key={index} onClick={() => {
+                  <Text variant="body1" color={colors.gray4} key={index} style={{ cursor: "pointer" }} onClick={() => {
                     window.scrollTo(0, 0)
                     history.push(`/search/${interest}`)
                   }}>
@@ -96,19 +96,22 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
       </Grid>
       <Grid item xs={2}>
         <Box display="flex" flexDirection="column">
-          {firstColumnFields.map((field, index) => (
-            <Box key={index}>
-              <Text variant="overline" color={colors.gray4}>{field[0]}</Text>
-              <Spacer mt={0.25} />
-              <Text variant="body1" underline={field[0] === "Manager"} onClick={() => {
-                if (field[0] === "Manager" && profile.manager?.id) {
-                  window.scrollTo(0, 0)
-                  history.push(`/profile/${profile.manager?.id}`)
-                }
-              }}>{field[1]}</Text>
-              <Spacer mt={1.5} />
-            </Box>
-          ))}
+          {firstColumnFields.map((field, index) => {
+            const isManagerField = field[0] === "Manager"
+            return (
+              <Box key={index}>
+                <Text variant="overline" color={colors.gray4}>{field[0]}</Text>
+                <Spacer mt={0.25} />
+                <Text variant="body1" underline={isManagerField} style={{ cursor: isManagerField ? "pointer" : undefined }} onClick={() => {
+                  if (isManagerField && profile.manager?.id) {
+                    window.scrollTo(0, 0)
+                    history.push(`/profile/${profile.manager?.id}`)
+                  }
+                }}>{field[1]}</Text>
+                <Spacer mt={1.5} />
+              </Box>
+            )
+          })}
         </Box>
       </Grid>
       <Grid item xs={2}>
