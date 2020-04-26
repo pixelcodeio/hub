@@ -21,7 +21,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) =
   }
 
   return (
-    <Box pt={7}>
+    <Box pt={5}>
       <Box display="flex" alignItems="center">
         <Text variant="h6">{"Recent Hires"}</Text>
         <Spacer ml={1} />
@@ -32,7 +32,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) =
         </Button>
       </Box>
       <Spacer mt={3} />
-      <GridListContainer direction="horizontal" height={249} cellHeight={249} spacing={16} cols={3} >
+      <GridListContainer direction="horizontal" height={316} cellHeight={250} spacing={16} cols={3} >
         {recentHires.map((newHire, index) => (
           <GridListTile key={index} cols={1} style={{ overflow: "visible" }}>
             <NewHireBox px={2} py={2} display="flex" flexDirection="column" onClick={() => {
@@ -72,6 +72,7 @@ const NewHireBox = muiStyled(HoverBox)({
   backgroundColor: colors.white100,
   border: `1px solid ${colors.gray2}`,
   borderRadius: "8px",
+  height: "250px",
 })
 
 const mapStateToProps = (state: AppState) => ({
