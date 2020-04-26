@@ -107,9 +107,11 @@ export interface RecentHire {
 export interface Poll {
   id: string
   options: string[]
+  percentages: number[]
   text: string
   votes: any // {option: [user ids]}
-  sender: Employee
+  date: string
+  // sender: Employee
 }
 
 export interface DailyQuestion {

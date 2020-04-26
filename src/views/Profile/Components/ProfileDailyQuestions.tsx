@@ -22,10 +22,53 @@ export const ProfileDailyQuestionsComponent: React.FC<ProfileDailyQuestionsCompo
   if (!profile) {
     return null
   }
+
+  const kevinDailyQuestions = [
+    {
+      question: "What is your favorite TV show?",
+      answer: "I started watching Ozark on Netflix recently and am obsessed.",
+      date: "April 25, 2020",
+    },
+    {
+      question: "Who is your favorite artist?",
+      answer: "Charlie Puth. His Voicenotes album is amazing.",
+      date: "April 22, 2020",
+    },
+    {
+      question: "What have you learned during quarantine?",
+      answer: "Cooking is actually kind of fun!",
+      date: "April 20, 2020",
+    },
+  ]
+  const omarDailyQuestions = [
+    {
+      question: "What is your favorite TV show?",
+      answer: "I only watch Money Heist in Spanish.",
+      date: "April 25, 2020",
+    },
+    {
+      question: "Who is your favorite artist?",
+      answer: "Kanye West is the reincarnation of God.",
+      date: "April 22, 2020",
+    },
+    {
+      question: "What have you learned during quarantine?",
+      answer: "Quarantine cannot stop me from getting boba everyday.",
+      date: "April 20, 2020",
+    },
+
+  ]
+  let dailyQuestions: any[] = []
+  if (profile.id === "U012Q2G9BK6") {
+    dailyQuestions = kevinDailyQuestions
+  } else if (profile.id === "U012HSXKLKC") {
+    dailyQuestions = omarDailyQuestions
+  }
+
   return (
     <>
       {
-        profile.dailyQuestions.map((dailyQuestion, index) => (
+        dailyQuestions.map((dailyQuestion, index) => (
           <>
             <Container py={1.5} px={2} mb={1} key={index}>
               <Text variant="body2" color={colors.gray4} style={{ fontWeight: "500" }}>{dailyQuestion.date}</Text>
