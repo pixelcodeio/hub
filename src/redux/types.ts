@@ -20,6 +20,7 @@ export interface Employee {
   personalSite: PersonalSite
   pronouns: string
   team: string
+  teamId: string
   title: string
   twitter: string
 }
