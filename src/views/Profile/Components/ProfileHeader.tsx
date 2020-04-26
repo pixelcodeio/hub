@@ -59,7 +59,7 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
           <Text variant="body1" color={colors.gray4}>{profile.interests.join(", ")}</Text>
           <Spacer mt={6} />
           <Box display="flex">
-            <Button backgroundColor={colors.purple} borderRadius={4} padding={12}>
+            <Button backgroundColor={colors.purple} borderRadius={4} border={"none"} padding={12}>
               <Text color={colors.white100} variant="body1">{`Message ${profile.name.split(" ")[0]}`}</Text>
             </Button>
             <Spacer ml={1} />
