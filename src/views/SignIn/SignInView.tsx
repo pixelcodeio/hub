@@ -28,12 +28,13 @@ export const SignInComponent: React.FC<SignInComponentProps> = ({ dispatch }) =>
         <Text variant="h3" style={{ fontWeight: 800 }}>Rekindle team culture</Text>
         <Spacer mt={3} />
         <Text variant="h6" style={{ fontWeight: 400, lineHeight: "180%" }}>
-          Hub is the place for people to learn about colleagues and cultivate connections.
+          Hub is the place for people to learn about their colleagues and cultivate connections.
         </Text>
         <Spacer mt={7} />
         <Button
           backgroundColor={colors.purple}
           borderRadius={8}
+          border="none"
           style={{ padding: "16px 32px", width: "240px", height: "64px" }}
           onClick={() => {
             window.scrollTo(0, 0)
