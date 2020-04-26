@@ -15,7 +15,7 @@ def convert(d):
 class Anniversary:
     def __init__(self, profile):
         self.profile = profile
-        self.years = random.randint(1, 5)
+        self.years = 2
 
     def serialize(self):
         return convert({
@@ -86,7 +86,7 @@ class Poll:
         self.text = text
         self.options = options
         self.voters = {}
-    
+
     def add_vote(self, option, voter_id):
         if option in self.voters:
             self.voters[option].append(voter_id)
