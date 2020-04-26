@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react"
 
-import { Typography } from "@material-ui/core"
+import { Link, Typography } from "@material-ui/core"
 import { Variant as TypographyVariant } from "@material-ui/core/styles/createTypography"
 
 import { colors } from "theme/colors"
@@ -12,6 +12,7 @@ export interface TextProps {
   style?: any
   variant?: TypographyVariant
   underline?: boolean,
+  onClick?: () => void
 }
 
 export const Text: React.FunctionComponent<TextProps> = ({
@@ -20,6 +21,7 @@ export const Text: React.FunctionComponent<TextProps> = ({
   opacity = 1,
   variant,
   underline,
+  onClick,
   style = {},
   ...rest
 }) => {
@@ -31,7 +33,9 @@ export const Text: React.FunctionComponent<TextProps> = ({
   }
   return (
     <Typography {...rest} variant={variant} style={finalStyle}>
-      {children}
+      <Link style={{ textDecoration: "none", ...finalStyle }} onClick={onClick}>
+        {children}
+      </Link>
     </Typography>
   )
 }

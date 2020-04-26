@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { AppAction, Employee, DispatchProps } from "redux/types"
 import { Box, Grid, Link, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
@@ -14,6 +14,7 @@ export interface ProfileHeaderComponentProps extends DispatchProps {
 }
 
 export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ allEmployees }) => {
+  const history = useHistory()
   const { profileID } = useParams()
   const profile = allEmployees.find(employee => employee.id === profileID)
   if (!profile) {
@@ -46,7 +47,10 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
           <Text variant="h4">{profile.name}</Text>
           <Spacer mt={1.5} />
           <Box display="flex">
-            <Text variant="body1" underline style={{ fontWeight: 400 }}>{`${profile.title}`}</Text>
+            <Text variant="body1" underline style={{ fontWeight: 400 }} onClick={() => {
+              window.scrollTo(0, 0)
+              history.push(`/search/${profile.title}`)
+            }}>{`${profile.title}`}</Text>
             <Spacer ml={0.5} />
             <Text variant="body1" style={{ fontWeight: 400 }}>{" on "}</Text>
             <Spacer ml={0.5} />

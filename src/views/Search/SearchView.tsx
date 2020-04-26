@@ -4,11 +4,12 @@ import { SearchBarIcon } from "assets";
 import { Spacer, Text } from "components";
 import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux';
+import { useParams, useHistory } from "react-router-dom"
 import { fetchAllProfiles, setCurrentPage } from 'redux/actions';
 import { AppState } from 'redux/reducer';
 import { AppAction, DispatchProps, Employee } from "redux/types";
 import { colors } from "theme/colors";
-import { SearchResultComponent } from "./components/SearchResult";
+import { SearchResult } from "./components";
 
 export interface SearchViewComponentProps extends DispatchProps {
   allEmployees: Employee[]
@@ -16,7 +17,8 @@ export interface SearchViewComponentProps extends DispatchProps {
 }
 
 export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispatch, allEmployees, user }) => {
-  const [query, setQuery] = useState("")
+  const { query: searchQuery } = useParams()
+  const [query, setQuery] = useState(searchQuery || "")
   const [departmentFilters, setDepartmentFilters] = useState<string[]>([])
   const [teamFilters, setTeamFilters] = useState<string[]>([])
   useEffect(() => {
@@ -32,8 +34,9 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
 
   const searchFilteredEmployees = query
     ? allEmployees.filter(employee =>
-      employee.name.toLowerCase().includes(query) ||
-      employee.team.toLowerCase().includes(query)
+      employee.name.toLowerCase().includes(query.toLowerCase()) ||
+      employee.team.toLowerCase().includes(query.toLowerCase()) ||
+      employee.title.toLowerCase().includes(query.toLowerCase())
     )
     : allEmployees
 
@@ -92,7 +95,7 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
             {teams.map((team, index) => (
               <Box key={index}>
                 <Box display="flex" alignItems="center" justifyContent="space-between" onClick={() => onToggleTeamFilter(index)}>
-                  <Text variant="body2" color={colors.gray4}>{`${team} (${teamCounts[team]})`}</Text>
+                  <Text variant="body1" color={colors.gray4}>{`${team} (${teamCounts[team]})`}</Text>
                   <Checkbox disableRipple size="small" checked={teamFilters.includes(team)} onClick={onToggleTeamFilter} />
                 </Box>
                 <Spacer mt={1} />
@@ -106,7 +109,7 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
             {departments.map((dept, index) => (
               <Box key={index}>
                 <Box display="flex" alignItems="center" justifyContent="space-between" onClick={() => onToggleDeptFilter(index)}>
-                  <Text variant="body2" color={colors.gray4}>{`${dept} (${departmentCounts[dept]})`}</Text>
+                  <Text variant="body1" color={colors.gray4}>{`${dept} (${departmentCounts[dept]})`}</Text>
                   <Checkbox disableRipple size="small" checked={departmentFilters.includes(dept)} onClick={onToggleDeptFilter} />
                 </Box>
                 <Spacer mt={1} />
@@ -122,13 +125,14 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
             <Input
               autoFocus
               disableUnderline
+              value={query}
               onChange={onInputChange}
               style={{ color: colors.black100, fontSize: "14px", fontWeight: 400, width: "100%" }} />
           </Container>
           <Spacer mt={8} />
           {filteredEmployees.map((employee, index) => (
             <Box>
-              <SearchResultComponent employee={employee} key={index} />
+              <SearchResult employee={employee} key={index} />
               <Spacer mt={5} />
             </Box>
           ))}

@@ -9,7 +9,7 @@ export interface SearchResultProps {
   employee: Employee
 }
 
-export const SearchResultComponent: React.FC<SearchResultProps> = ({ employee }) => {
+export const SearchResult: React.FC<SearchResultProps> = ({ employee }) => {
   const history = useHistory()
   return (
     <Box>
@@ -19,17 +19,19 @@ export const SearchResultComponent: React.FC<SearchResultProps> = ({ employee })
         <Text variant="body1">{employee.email}</Text>
       </Box>
       <Spacer mt={1} />
+      <Text variant="body1" style={{ fontWeight: 400 }}>{employee.title}</Text>
+      <Spacer mt={1} />
       <Box display="flex" alignItems="center" onClick={() => {
         window.scrollTo(0, 0)
         history.push(`/profile/${employee.id}`)
       }}>
         <Text variant="body2" color={colors.gray4}>Team</Text>
         <Spacer ml={0.5} />
-        <Text variant="body1" color={colors.purple}>{employee.team}</Text>
+        <Text variant="body1" color={colors.purple} style={{ fontWeight: 400 }}>{employee.team}</Text>
         <Spacer ml={1} />
         <Text variant="body2" color={colors.gray4}>Dept</Text>
         <Spacer ml={0.5} />
-        <Text variant="body1" color={colors.purple}>{employee.department}</Text>
+        <Text variant="body1" color={colors.purple} style={{ fontWeight: 400 }}>{employee.department}</Text>
       </Box>
     </Box>
   )
