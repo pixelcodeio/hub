@@ -5,15 +5,15 @@ import random
 from functools import reduce
 from urllib.parse import urlparse
 
-from flask import Flask, request
-
 import requests
+from flask import Flask, request
+from flask_cors import CORS
+from slackeventsapi import SlackEventAdapter
+
 import slackbot
 from daily_questions import daily_questions
-from flask_cors import CORS
-from init_profiles import init_profiles
+from init_profiles import init_profiles, init_thanks
 from models import Anniversary, Birthday, DailyQuestion, NewHire, Poll, Thank
-from slackeventsapi import SlackEventAdapter
 
 app = Flask(__name__)
 app.debug = True
@@ -33,11 +33,10 @@ onboarding_questions = [
 ]
 daily_q_confirmation = "Thanks for your response! Checkout https://thehub.com to see other responses!"
 poll_confirmation = "Thanks for voting! Checkout https://thehub.com to see the results!"
-thanks = []
 all_polls = {}
 profiles_dict = init_profiles()
+thanks = init_thanks(profiles_dict)
 user_list = list(profiles_dict.keys())
-print(len(profiles_dict))
 
 # HELPERS
 
