@@ -31,7 +31,7 @@ export const FeedPollComponent: React.FC<FeedPollProps> = ({}) => {
       <Text variant="body2" color={colors.gray4} style={{fontWeight: "500" }}>February 1, 2020</Text>
       <Spacer mt={1} />
       <Text variant="h6" style={{ fontWeight: 600 }}>Poll: What have you been doing?</Text>
-      <Spacer mt={0.75} />
+      <Spacer mt={2.0} />
 
       <FeedPollOption />
       <FeedPollOption />

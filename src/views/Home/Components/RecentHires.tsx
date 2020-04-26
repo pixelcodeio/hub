@@ -37,12 +37,12 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ recentHires }
                     <Box display="flex" alignItems="center" justifyContent="space-between" >
                       <Box>
                         <Text variant="h6" >{newHire.name}</Text>
-                        <Text variant="body2">{`${newHire.title} • ${newHire.team}`}</Text>
+                        <Text variant="body1">{`${newHire.title} • ${newHire.team}`}</Text>
                       </Box>
                     </Box>
                   </Box>
                 </Box>
-                <Button border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>👋</Button>
+                <Button style={{fontSize: "16px"}} border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>👋</Button>
               </Box>
               <Spacer mt={2} />
               <Box py={2}>

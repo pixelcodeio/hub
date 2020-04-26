@@ -28,7 +28,7 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ce
         return (
           <Box key={index}>
             <CelebrationBox px={2} py={1.5}>
-              <Text variant="body2">
+              <Text variant="body2" color={colors.gray4}>
                 {isBirthday ? "Birthday is today 🎂" : `${celebration.numYears} year anniversary 🚀`}
               </Text>
               <Spacer mt={1} />
@@ -37,12 +37,12 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ce
                   <Image length={48} url={celebration.employee.imageURL} />
                   <Spacer ml={1} />
                   <Box flex="display">
-                    <Text variant="body1">{celebration.employee.name}</Text>
+                    <Text variant="body1" style={{fontWeight: 600}}>{celebration.employee.name}</Text>
                     <Spacer mt={0.25} />
                     <Text variant="body2">{`${celebration.employee.title} • ${celebration.employee.team}`}</Text>
                   </Box>
                 </Box>
-                <Button border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>{emoji}</Button>
+                <Button style={{fontSize: "16px"}} border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>{emoji}</Button>
               </Box>
             </CelebrationBox>
             <Spacer mt={1} />
