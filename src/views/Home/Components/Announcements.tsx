@@ -47,7 +47,7 @@ const AnnouncementBox = styled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  announcements: state.announcements
+  announcements: []
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

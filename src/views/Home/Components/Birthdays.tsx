@@ -50,7 +50,7 @@ const BirthdayBox = muiStyled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  birthdays: state.birthdays
+  birthdays: []
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

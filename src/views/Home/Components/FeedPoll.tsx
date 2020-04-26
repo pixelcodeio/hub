@@ -52,7 +52,7 @@ const Container = muiStyled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  anniversaries: state.anniversaries
+  anniversaries: []
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

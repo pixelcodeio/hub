@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Box, Button, Grid } from "@material-ui/core"
 import { SearchIcon } from "assets"
 import { Link, Spacer, Image, Text } from "components"
@@ -15,6 +16,7 @@ export interface NavBarProps extends DispatchProps {
 }
 
 export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, user }) => {
+  const history = useHistory()
   const [selectedSection, setSelectedSection] = useState("Home")
   const sections = [
     { url: "/home", name: "Home" },
@@ -45,14 +47,18 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
       backgroundColor = colors.white100
       break;
   }
-  console.log("USER", user)
+
   return (
     <ContainerGrid container style={{ backgroundColor }}>
       <Grid item xs={12}>
         <Box display="flex" alignItems="center" px={5} justifyContent="space-between" style={{ height: "100%" }}>
           <Box display="flex" alignItems="center">
+            <Box display="flex" alignItems="center" style={{ boxShadow: "0px 8px 16px rgba(161, 163, 166, 0.08), 0px 4px 24px rgba(161, 163, 166, 0.08)" }}>
+              <Image url={user.teamIconUrl} length={32} borderRadius={2} />
+            </Box>
+            <Spacer ml={5} />
             {sections.map((section, index) => (
-              < React.Fragment key={index} >
+              <React.Fragment key={index}>
                 <Link key={index} to={section.url} onClick={() => {
                   dispatch(fetchProfile("U012HSXKLKC"))
                   setSelectedSection(section.name)
@@ -74,9 +80,10 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
             }
             <Spacer ml={2} />
 
-            <Link to={currentPage !== "Profile" ? `profile/${user.id}` : user.id}>
-              <Image url={user.imageURL} length={40} />
-            </Link>
+            <Image url={user.imageURL} length={40} onClick={() => {
+              window.scrollTo(0, 0)
+              history.push(`/profile/${user.id}`)
+            }} />
           </Box>
         </Box>
       </Grid>

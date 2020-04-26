@@ -29,14 +29,15 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
   }, [])
 
   const onInputChange = (event: any) => {
-    setQuery(event.target.value.toLowerCase())
+    setQuery(event.target.value)
   }
 
   const searchFilteredEmployees = query
     ? allEmployees.filter(employee =>
       employee.name.toLowerCase().includes(query.toLowerCase()) ||
       employee.team.toLowerCase().includes(query.toLowerCase()) ||
-      employee.title.toLowerCase().includes(query.toLowerCase())
+      employee.title.toLowerCase().includes(query.toLowerCase()) ||
+      employee.interests.map(i => i.toLowerCase()).includes(query.toLowerCase())
     )
     : allEmployees
 
