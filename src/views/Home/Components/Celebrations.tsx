@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
+import { useHistory } from "react-router-dom";
 import { AppAction, DispatchProps, Celebration, Homepage } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
@@ -14,6 +15,7 @@ export interface CelebrationsComponentProps extends DispatchProps {
 }
 
 export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ homepage }) => {
+  const history = useHistory()
   const birthdays = homepage?.birthdays
   const anniversaries = homepage?.anniversaries
   if (!birthdays || !anniversaries) {
@@ -30,7 +32,7 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ho
       {birthdays.map((birthday, index) => {
         return (
           <Box key={index}>
-            <CelebrationBox px={2} py={1.5}>
+            <CelebrationBox px={2} py={1.5} onClick={() => history.push(`/profile/${birthday.userId}`)}>
               <Text variant="body2" color={colors.gray4}>
                 {"Birthday is today 🎂"}
               </Text>
@@ -55,7 +57,10 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ho
       {anniversaries.map((anniversary, index) => {
         return (
           <Box key={index}>
-            <CelebrationBox px={2} py={1.5}>
+            <CelebrationBox px={2} py={1.5} onClick={() => {
+              window.scrollTo(0, 0)
+              history.push(`/profile/${anniversary.userId}`)
+            }}>
               <Text variant="body2">
                 {`${anniversary.years} year anniversary 🚀`}
               </Text>

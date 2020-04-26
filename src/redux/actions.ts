@@ -28,7 +28,7 @@ export const fetchHomepage = (userID: string) => {
 export const fetchAllProfiles = () => {
   return async (dispatch: any) => {
     const response: any = await sharedAPI.fetchAllProfiles()
-    // console.log("ALL PROFILES", response)
+    console.log("ALL PROFILES", response)
     dispatch({ type: "fetchAllProfiles", allEmployees: response.data })
   }
 }
