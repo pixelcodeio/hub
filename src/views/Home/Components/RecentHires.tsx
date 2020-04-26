@@ -75,7 +75,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) =
       if (gridContainer && gridContainer.scrollLeft !== gridContainerWidth) {
         gridContainer.scrollTo(gridContainer.scrollLeft + 1, 0);
       }
-    }, 35);
+    }, 45);
   }, []);
 
   const history = useHistory()
