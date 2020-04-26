@@ -24,17 +24,17 @@ export const FeedPollsComponent: React.FC<FeedPollsComponentProps> = ({ homepage
   const polls = [
     {
       id: "1",
-      options: ["Binging Netflix", "Learning how to cook", "Sleeping in"],
+      options: ["Jackbox", "Online Cards", "Scribbl"],
       percentages: [48, 32, 20],
-      text: "What have you been doing?",
+      text: "Which game should we play for our upcoming virtual game night?",
       date: "April 22, 2020",
       votes: {},
     },
     {
       id: "2",
-      options: ["Chipotle", "Taste of Thai", "Wings Over"],
+      options: ["Chipotle Delivery", "Home Cooking", "Pizza"],
       percentages: [15, 61, 24],
-      text: "What food should I order for dinner?",
+      text: "What food have you enjoyed the most at home?",
       date: "April 20, 2020",
       votes: {},
     },
