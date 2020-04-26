@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
 import { useHistory } from "react-router-dom";
@@ -67,6 +67,17 @@ function createParticle (x, y, text) {
 }
 
 export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) => {
+  useEffect(() => {
+    const gridContainer = document.getElementById("gridContainer")
+    const gridContainerWidth = gridContainer?.scrollWidth
+
+    setInterval(() => {
+      if (gridContainer && gridContainer.scrollLeft !== gridContainerWidth) {
+        gridContainer.scrollTo(gridContainer.scrollLeft + 1, 0);
+      }
+    }, 35);
+  }, []);
+
   const history = useHistory()
   let recentHires = homepage?.newHires
   if (!recentHires || recentHires.length === 0) {
@@ -85,7 +96,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) =
         </Button>
       </Box>
       <Spacer mt={3} />
-      <GridListContainer direction="horizontal" height={316} cellHeight={250} spacing={16} cols={3} >
+      <GridListContainer id="gridContainer" direction="horizontal" height={316} cellHeight={250} spacing={16} cols={3} >
         {recentHires.map((newHire, index) => (
           <GridListTile key={index} cols={1} style={{ overflow: "visible" }}>
             <NewHireBox px={2} py={2} display="flex" flexDirection="column" onClick={() => {
