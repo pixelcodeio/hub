@@ -1,0 +1,36 @@
+{
+  "U012BSA4PQW": {
+    "title": "CEO",
+    "team": "IDK",
+    "department": "Eng",
+    "imageURL": "https://....",
+    "blurb": "Hi blah blah blah",
+    "interests": [
+      "nothiing",
+      "league"
+    ],
+    "manager": "U012BSA4PQW",
+    "email": "oyr2@cornell.edu",
+    "birthday": "February 7",
+    "pronouns": "he/him",
+    "join_date": "February 7, 2020",
+    "twitter": "@omar",
+    "linkedin": "linkedin.com/in/omar",
+    "facebook": "facebook.com/omar",
+    "instagram": "@omar",
+    "personal_site": {
+      "url": "omarrasheed.com",
+      "description": "I write essays"
+    },
+    "featured_posts": [
+      {
+        "title": "Summer in Seattle!",
+        "body": "Getting dinner with Young Kim and Kevin Chan",
+        "imageURL": "https://files.slack.com/files-pri/T012HSXD00J-F012BKJ9JJJ/cd1f8e21-64bc-40ef-bb28-59d5559b328c_1_105_c.jpeg"
+      }
+    ],
+    "office": "Menlo Park",
+    "team_icon_url": "https://....",
+    "team_id": "A012B5CK12S"
+  }
+}
