@@ -20,7 +20,7 @@ from slackeventsapi import SlackEventAdapter
 app = Flask(__name__)
 app.debug = True
 cors = CORS(app)
-cron = Scheduler(daemon=True)
+cron = Scheduler()
 cron.start()
 
 slack_events_adapter = SlackEventAdapter(
@@ -226,19 +226,20 @@ def message(payload):
     if user_id not in profiles_dict:
         return make_boolean_response()
 
-    last_two_messages = messages_in_channel(channel_id, 2)
-    last_question = last_two_messages[1]
+    last_messages = messages_in_channel(channel_id, 2)
+    last_bot_question = next(msg for msg in last_messages if 'bot_id' in msg)['text']
+    answer = event['text']
 
-    if last_question['text'] == onboarding_questions[0]:
-        profiles_dict[user_id].blurb = last_two_messages[0]['text']
+    if last_bot_question == onboarding_questions[0]:
+        profiles_dict[user_id].blurb = answer
         send_dm_to_user(user_id, onboarding_questions[1])
-    elif last_question['text'] == onboarding_questions[1]:
-        interests = last_two_messages[0]['text'].split(',')
+    elif last_bot_question == onboarding_questions[1]:
+        interests = answer.split(',')
         profiles_dict[user_id].interests = [interest.strip() for interest in interests]
-    elif last_question['text'] == daily_questions[-1]:
-        profiles_dict[user_id].daily_questions.append(DailyQuestion(daily_questions[-1], last_question['text']))
+    elif last_bot_question == daily_questions[-1]:
+        profiles_dict[user_id].daily_questions.append(DailyQuestion(daily_questions[-1], answer))
         send_dm_to_user(user_id, daily_q_confirmation)
-    elif last_question['blocks'][0]['block_id'] in all_polls:
+    elif last_bot_question['blocks'][0]['block_id'] in all_polls:
         poll = all_polls[last_question['blocks'][0]['block_id']]
         if len(poll.options) == 0:
             poll.add_vote(last_two_messages[0]['text'], user_id)
@@ -246,9 +247,10 @@ def message(payload):
 
 @cron.interval_schedule(minutes=5)
 def job_function():
-    for user_id in user_list:
-        send_dm_to_user(user_id, daily_questions[0])
-    daily_questions.append(daily_questions.pop(0))
+    with app.app_context():
+        for user_id in user_list:
+            send_dm_to_user(user_id, daily_questions[0])
+        daily_questions.append(daily_questions.pop(0))
 
 # Shutdown your cron thread if the web process is stopped
 atexit.register(lambda: cron.shutdown(wait=False))
