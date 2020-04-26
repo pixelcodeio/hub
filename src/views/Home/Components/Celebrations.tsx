@@ -6,7 +6,7 @@ import { AppAction, DispatchProps, Celebration, Homepage } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
-import { Button, Image, Text, Spacer } from "components"
+import { Button, Image, Text, Spacer, HoverBox } from "components"
 import { PageControl } from "assets"
 import { colors } from "theme/colors"
 
@@ -90,7 +90,7 @@ const Container = muiStyled(Box)({
   borderRadius: "8px",
 })
 
-const CelebrationBox = muiStyled(Box)({
+const CelebrationBox = muiStyled(HoverBox)({
   backgroundColor: colors.white100,
   borderRadius: "8px",
   border: `1px solid ${colors.gray2}`
