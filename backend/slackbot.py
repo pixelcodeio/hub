@@ -1,12 +1,12 @@
 from datetime import datetime
+import os
 
 from init_profiles import *
 from models import Announcement
 from slack import WebClient
 from slack.errors import SlackApiError
 
-client = WebClient(
-    token="xoxb-1085915442018-1079191858262-06rCGTOw6DM8BOoMkcuc8yUB")
+client = WebClient(token=os.environ["CLIENT_TOKEN"])
 
 
 def get_announcements(profiles_dict):
@@ -32,10 +32,6 @@ def get_users():
     response = client.users_list()
     users = response["members"]
 
-    # return all non-bot users
-    # for u in users:
-    #     print(u)
-    #     print(u['profile']["real_name"])
     return [u for u in users if (not u["is_bot"] and u['profile']["real_name"] != "Slackbot")]
 
 
@@ -106,6 +102,5 @@ def get_team_icon():
     return client.team_info()['team']['icon']['image_230']
 
 if __name__ == "__main__":
-    # user_list = get_users()
     print(get_team_icon())
     

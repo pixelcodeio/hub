@@ -70,8 +70,8 @@ def signin():
     return generate_oauth_url(redirect_uri)
 
 def oauth_common(code, redirect_uri, base_url):
-    CLIENT_ID = "1085915442018.1079182647094"
-    CLIENT_SECRET = "e52cf377e47cf40ee0e70f5f30505cd8"
+    CLIENT_ID = os.environ["CLIENT_ID"]
+    CLIENT_SECRET = os.environ["CLIENT_SECRET"]
 
     response = requests.get(base_url.format(
         CLIENT_ID,
@@ -205,8 +205,15 @@ def thank():
 # Send new hire message
 # Using reaction_added j cuz its easy to trigger
 @slack_events_adapter.on('team_join')
+def team_join(payload):
+    event = payload.get("event", {})
+    user_id = event.get("user")
+
+    send_dm_to_user(user_id, "Welcome!")
+    send_dm_to_user(user_id, onboarding_questions[0])
+
+@slack_events_adapter.on('reaction_added')
 def reaction_added(payload):
-    print("HELLO WE HIT")
     event = payload.get("event", {})
     user_id = event.get("user")
 
@@ -222,9 +229,6 @@ def message(payload):
     channel_id = event.get("channel")
     user_id = event.get("user")
 
-    if user_id not in profiles_dict:
-        return make_boolean_response()
-
     last_messages = messages_in_channel(channel_id, 2)
     last_bot_question = next(msg for msg in last_messages if 'bot_id' in msg)
     answer = event['text']
@@ -236,7 +240,7 @@ def message(payload):
         interests = answer.split(',')
         profiles_dict[user_id].interests = [interest.strip() for interest in interests]
     elif last_bot_question['text'] in daily_questions:
-        profiles_dict[user_id].daily_questions.append(DailyQuestion(daily_questions[-1], answer))
+        profiles_dict[user_id].daily_questions.append(DailyQuestion(last_bot_question['text'], answer))
         send_dm_to_user(user_id, daily_q_confirmation)
     elif last_bot_question['blocks'][0]['block_id'] in all_polls:
         poll = all_polls[last_bot_question['blocks'][0]['block_id']]
