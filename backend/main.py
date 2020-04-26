@@ -1,3 +1,4 @@
+import atexit
 import json
 import operator
 import os
@@ -10,18 +11,26 @@ from flask import Flask, request
 from flask_cors import CORS
 
 import requests
+from apscheduler.scheduler import Scheduler
 from init_profiles import init_profiles
-from models import Anniversary, Birthday, NewHire, Poll, Thank
+from models import Anniversary, Birthday, DailyQuestion, NewHire, Poll, Thank
 from slackbot import *
 from slackeventsapi import SlackEventAdapter
 
 app = Flask(__name__)
 app.debug = True
 cors = CORS(app)
+cron = Scheduler(daemon=True)
+cron.start()
 
 slack_events_adapter = SlackEventAdapter(
     'abfc6945359193db5006ee441bffefdd', "/slack/events", app)
 
+daily_questions = [
+    'What is your favorite TV Show?',
+    'Who is your favorite music artist?',
+    'What have you learned during quarantine?',
+]
 onboarding_questions = [
     "Give us an intro about yourself.",
     "What are some of your hobbies? (comma-separated)"
@@ -119,11 +128,11 @@ def homepage():
     similar_interests = [profile for profile in list(profiles_dict.values()) if similar_in_interest(profile, req_user_profile)]
 
     return make_response({
-        'anniversaries': [Anniversary(prof).serialize() for prof in random.sample(anniversaries_pool, len(anniversaries_pool) // 2)],
-        'birthdays': [Birthday(prof).serialize() for prof in random.sample(list(profiles_dict.values()), 4)],
-        'new_hires': [NewHire(prof).serialize() for prof in random.sample(new_hires_pool, len(new_hires_pool) // 2)],
+        'anniversaries': [Anniversary(prof).serialize() for prof in list(profiles_dict.values())],
+        'birthdays': [Birthday(prof).serialize() for prof in list(profiles_dict.values())],
+        'newHires': [NewHire(prof).serialize() for prof in list(profiles_dict.values())],
         'polls': [poll.serialize() for poll in list(all_polls.values())],
-        'similar_interests': [prof.serialize() for prof in similar_interests]
+        'similarInterests': [prof.serialize() for prof in similar_interests]
     })
 
 @app.route('/poll', methods=['POST'])
@@ -207,11 +216,14 @@ def reaction_added(payload):
 @slack_events_adapter.on('message')
 def message(payload):
     event = payload.get("event", {})
+    if 'bot_id' in event:
+        return make_boolean_response()
+
     channel_id = event.get("channel")
     user_id = event.get("user")
 
     if user_id not in profiles_dict:
-        return
+        return make_boolean_response()
 
     last_two_messages = messages_in_channel(channel_id, 2)
     last_question = last_two_messages[1]
@@ -222,12 +234,22 @@ def message(payload):
     elif last_question['text'] == onboarding_questions[1]:
         interests = last_two_messages[0]['text'].split(',')
         profiles_dict[user_id].interests = [interest.strip() for interest in interests]
+    elif last_question['text'] == daily_questions[-1]:
+        profiles_dict[user_id].daily_questions.append(DailyQuestion(daily_questions[-1], last_question['text']))
     elif last_question['blocks'][0]['block_id'] in all_polls:
         poll = all_polls[last_question['blocks'][0]['block_id']]
         if len(poll.options) == 0:
             poll.add_vote(last_two_messages[0]['text'], user_id)
             send_dm_to_user(user_id, poll_confirmation)
 
+@cron.interval_schedule(days=1)
+def job_function():
+    for user_id in user_list:
+        send_dm_to_user(user_id, daily_questions[0])
+    daily_questions.append(daily_questions.pop(0))
+
+# Shutdown your cron thread if the web process is stopped
+atexit.register(lambda: cron.shutdown(wait=False))
 
 if __name__ == "__main__":
     app.run(debug=True)

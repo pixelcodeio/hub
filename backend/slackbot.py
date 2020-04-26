@@ -96,6 +96,9 @@ def broadcast_poll(poll_id, text, options, user_list):
 def messages_in_channel(channel_id, count=100):
     return client.conversations_history(channel=channel_id, count=count)['messages']
 
+def get_team_id():
+    return client.team_info()['team']['id']
+
 def get_team_icon():
     return client.team_info()['team']['icon']['image_230']
 

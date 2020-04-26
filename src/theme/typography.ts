@@ -1,3 +1,5 @@
+import { NONAME } from "dns";
+
 export default {
   fontFamily: [
     "Inter",
@@ -57,12 +59,12 @@ export default {
   body1: {
     fontWeight: 600,
     fontSize: "14px",
-    lineHeight: "18px",
+    lineHeight: "22px",
   },
   body2: {
     fontWeight: 400,
     fontSize: "12px",
-    lineHeight: "22px",
+    lineHeight: "17px",
   },
   button: {
     fontWeight: 700,
@@ -78,6 +80,7 @@ export default {
     fontSize: "12px",
     fontWeight: 500,
     lineHeight: "16px",
+    textTransform: "none",
   },
   // overline2: {
   //   fontSize: "10px",

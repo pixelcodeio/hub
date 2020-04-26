@@ -29,7 +29,7 @@ export const SimilarInterestsComponent: React.FC<SimilarInterestsComponentProps>
       {similarInterests.map((interest, index) => (
         <Box key={index}>
           <CelebrationBox px={2} py={1.5}>
-            <Text variant="body2" color={colors.gray4}>
+            <Text variant="body2" style={{fontWeight: 600}} color={colors.gray4}>
               {interest.interests.join(", ")}
             </Text>
             <Spacer mt={1} />
@@ -37,7 +37,7 @@ export const SimilarInterestsComponent: React.FC<SimilarInterestsComponentProps>
               <Image length={48} url={interest.imageURL} />
               <Spacer ml={1} />
               <Box flex="display">
-                <Text variant="body1">{interest.name}</Text>
+                <Text variant="body1" style={{fontWeight: 600}}>{interest.name}</Text>
                 <Spacer mt={0.25} />
                 <Text variant="body2">{`${interest.title} • ${interest.team}`}</Text>
               </Box>

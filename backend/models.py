@@ -19,6 +19,7 @@ class Anniversary:
 
     def serialize(self):
         return convert({
+            'user_id': self.profile.id,
             'name': self.profile.name,
             'title': self.profile.title,
             'team': self.profile.team,
@@ -44,10 +45,24 @@ class Birthday:
 
     def serialize(self):
         return convert({
+            'user_id': self.profile.id,
             'name': self.profile.name,
             'title': self.profile.title,
             'team': self.profile.team,
             'imageURL': self.profile.image_url
+        })
+
+class DailyQuestion:
+    def __init__(self, question, answer):
+        self.question = question
+        self.answer = answer
+        self.date = datetime.now()
+
+    def serialize(self):
+        return convert({
+            'question': self.question,
+            'answer': self.answer,
+            'date': self.date.strftime("%B %-d, %Y")
         })
 
 class NewHire:
@@ -56,6 +71,7 @@ class NewHire:
 
     def serialize(self):
         return convert({
+            'user_id': self.profile.id,
             'name': self.profile.name,
             'title': self.profile.title,
             'team': self.profile.team,
@@ -109,6 +125,7 @@ class Profile:
         featured_posts,
         office,
         team_icon_url,
+        team_id,
         slack_internal_name
     ):
         self.id = id
@@ -133,6 +150,8 @@ class Profile:
         self.featured_posts = featured_posts
         self.office = office
         self.team_icon_url = team_icon_url
+        self.team_id = team_id
+        self.daily_questions = []
 
         # Private fields
         self.slack_internal_name = slack_internal_name
@@ -159,6 +178,8 @@ class Profile:
             'featured_posts': self.featured_posts,
             'office': self.office,
             'team_icon_url': self.team_icon_url,
+            'team_id': self.team_id,
+            'daily_questions': [q.serialize() for q in self.daily_questions],
             'received_thanks': [thank.serialize() for thank in thanks]
         })
 
