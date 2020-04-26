@@ -13,15 +13,16 @@ import { fontWeight } from "styled-system";
 
 export interface FeedPollOptionProps {
   option: string
+  percentage: number
 }
 
-export const FeedPollOption: React.FC<FeedPollOptionProps> = ({ option }) => {
+export const FeedPollOption: React.FC<FeedPollOptionProps> = ({ option, percentage }) => {
   return (
     <Box mt={1} display="flex" alignItems="center">
       <Box p={1} mr={1} style={{ backgroundColor: colors.gray1, border: `1px solid ${colors.gray2}`, borderRadius: "4px" }}>
         <Text color={colors.gray4} variant="body2" style={{ fontWeight: "600" }}>{option}</Text>
       </Box>
-      <Text color={colors.black100} variant="body2" style={{ fontWeight: "600" }}>33%</Text>
+      <Text color={colors.black100} variant="body2" style={{ fontWeight: "600" }}>{`${percentage}%`}</Text>
     </Box>
   )
 }
@@ -33,12 +34,12 @@ export interface FeedPollProps extends DispatchProps {
 export const FeedPollComponent: React.FC<FeedPollProps> = ({ poll }) => {
   return (
     <Container py={1.5} px={2} mb={1}>
-      <Text variant="body2" color={colors.gray4} style={{ fontWeight: "500" }}>February 1, 2020</Text>
+      <Text variant="body2" color={colors.gray4} style={{ fontWeight: "500" }}>{poll.date}</Text>
       <Spacer mt={1} />
       <Text variant="h6" style={{ fontWeight: 600 }}>{`Poll: ${poll.text}`}</Text>
       <Spacer mt={0.75} />
       {poll.options.map((option, index) => (
-        <FeedPollOption option={option} key={index} />
+        <FeedPollOption option={option} key={index} percentage={poll.percentages[index]} />
       ))}
     </Container>
   )
