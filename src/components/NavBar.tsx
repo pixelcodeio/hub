@@ -74,7 +74,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
             }
             <Spacer ml={2} />
 
-            <Link to={`profile/${user.id}`}>
+            <Link to={currentPage !== "Profile" ? `profile/${user.id}` : "#"}>
               <Image url={user.imageURL} length={32} />
             </Link>
           </Box>
