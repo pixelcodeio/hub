@@ -120,7 +120,6 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ homepage }) =
                   <Button style={{ fontSize: "16px" }} border={`1px solid ${colors.gray2}`} borderRadius={4} padding={10}>👋</Button>
                 </div>
               </Box>
-              <Spacer mt={2} />
               <Box py={2}>
                 <Text variant="body1" style={{ fontWeight: 400 }}>
                   {newHire.blurb}
