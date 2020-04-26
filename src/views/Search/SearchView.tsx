@@ -105,7 +105,7 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
           </FilterContainer>
           <Spacer mt={1} />
           <FilterContainer p={2} display="flex" flexDirection="column">
-            <Text variant="body1">Teams</Text>
+            <Text variant="body1">Departments</Text>
             <Spacer mt={1.5} />
             {departments.map((dept, index) => (
               <Box key={index}>
@@ -128,7 +128,7 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
               disableUnderline
               value={query}
               onChange={onInputChange}
-              style={{ color: colors.black100, fontSize: "14px", fontWeight: 400, width: "100%" }} />
+              style={{ color: colors.black100, fontSize: "16px", fontWeight: 400, width: "100%" }} />
           </Container>
           <Spacer mt={8} />
           {filteredEmployees.map((employee, index) => (
