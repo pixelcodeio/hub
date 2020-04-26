@@ -35,6 +35,7 @@ onboarding_questions = [
     "Give us an intro about yourself.",
     "What are some of your hobbies? (comma-separated)"
 ]
+daily_q_confirmation = "Thanks for your response! Checkout https://thehub.com to see other responses!
 poll_confirmation = "Thanks for voting! Checkout https://thehub.com to see the results!"
 thanks = []
 all_polls = {}
@@ -236,13 +237,14 @@ def message(payload):
         profiles_dict[user_id].interests = [interest.strip() for interest in interests]
     elif last_question['text'] == daily_questions[-1]:
         profiles_dict[user_id].daily_questions.append(DailyQuestion(daily_questions[-1], last_question['text']))
+        send_dm_to_user(user_id, daily_q_confirmation)
     elif last_question['blocks'][0]['block_id'] in all_polls:
         poll = all_polls[last_question['blocks'][0]['block_id']]
         if len(poll.options) == 0:
             poll.add_vote(last_two_messages[0]['text'], user_id)
             send_dm_to_user(user_id, poll_confirmation)
 
-@cron.interval_schedule(days=1)
+@cron.interval_schedule(minutes=5)
 def job_function():
     for user_id in user_list:
         send_dm_to_user(user_id, daily_questions[0])
