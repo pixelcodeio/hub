@@ -19,6 +19,7 @@ class Anniversary:
 
     def serialize(self):
         return convert({
+            'user_id': self.profile.id,
             'name': self.profile.name,
             'title': self.profile.title,
             'team': self.profile.team,
@@ -44,6 +45,7 @@ class Birthday:
 
     def serialize(self):
         return convert({
+            'user_id': self.profile.id,
             'name': self.profile.name,
             'title': self.profile.title,
             'team': self.profile.team,
@@ -56,6 +58,7 @@ class NewHire:
 
     def serialize(self):
         return convert({
+            'user_id': self.profile.id,
             'name': self.profile.name,
             'title': self.profile.title,
             'team': self.profile.team,
