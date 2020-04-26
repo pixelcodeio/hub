@@ -1,4 +1,3 @@
-import atexit
 import json
 import operator
 import os
@@ -11,7 +10,6 @@ from flask import Flask, request
 from flask_cors import CORS
 
 import requests
-from apscheduler.scheduler import Scheduler
 from init_profiles import init_profiles
 from models import Anniversary, Birthday, DailyQuestion, NewHire, Poll, Thank
 from slackbot import *
@@ -20,8 +18,6 @@ from slackeventsapi import SlackEventAdapter
 app = Flask(__name__)
 app.debug = True
 cors = CORS(app)
-cron = Scheduler(daemon=True)
-cron.start()
 
 slack_events_adapter = SlackEventAdapter(
     'abfc6945359193db5006ee441bffefdd', "/slack/events", app)
@@ -244,16 +240,6 @@ def message(payload):
         if len(poll.options) == 0:
             poll.add_vote(last_two_messages[0]['text'], user_id)
             send_dm_to_user(user_id, poll_confirmation)
-
-@cron.interval_schedule(minutes=1)
-def job_function():
-    with app.app_context():
-        for user_id in user_list:
-            send_dm_to_user(user_id, daily_questions[0])
-        daily_questions.append(daily_questions.pop(0))
-
-# Shutdown your cron thread if the web process is stopped
-atexit.register(lambda: cron.shutdown(wait=False))
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)
