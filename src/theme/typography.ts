@@ -55,7 +55,7 @@ export default {
     lineHeight: "21px",
   },
   body1: {
-    fontWeight: 400,
+    fontWeight: 600,
     fontSize: "14px",
     lineHeight: "22px",
   },
