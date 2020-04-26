@@ -14,10 +14,8 @@ def get_announcements(profiles_dict):
         return
     response = client.conversations_list()
     channels = response["channels"]
-    announcements_channel = next(
-        c for c in channels if c['name'] == 'announcements')
-    response = client.conversations_history(
-        channel=announcements_channel['id'])
+    announcements_channel = next(c for c in channels if c['name'] == 'announcements')
+    response = client.conversations_history(channel=announcements_channel['id'])
     announcements = []
     for data in response['messages']:
         if data['user'] not in profiles_dict:
@@ -98,8 +96,10 @@ def broadcast_poll(poll_id, text, options, user_list):
 def messages_in_channel(channel_id, count=100):
     return client.conversations_history(channel=channel_id, count=count)['messages']
 
+def get_team_icon():
+    return client.team_info()['team']['icon']['image_230']
 
 if __name__ == "__main__":
-    user_list = get_users()
-    print(get_user_id_for_name("Omar", user_list))
-    get_announcements(init_profiles())
+    # user_list = get_users()
+    print(get_team_icon())
+    

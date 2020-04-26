@@ -107,16 +107,23 @@ def oauthv2():
 ############################################### OTHER ROUTES
 @app.route('/homepage', methods=['GET'])
 def homepage():
+    user_id = request.args.get('user_id')
+    req_user_profile = profiles_dict[user_id]
+
     half_list_index = len(user_list) // 2
     new_hires_pool = [profiles_dict[user_id] for user_id in user_list[:half_list_index]]
     anniversaries_pool = [profiles_dict[user_id] for user_id in user_list[half_list_index:]]
 
+    def similar_in_interest(p1, p2):
+        return p1 != p2 and len(set(p1.interests).intersection(p2.interests)) > 0
+    similar_interests = [profile for profile in list(profiles_dict.values()) if similar_in_interest(profile, req_user_profile)]
+
     return make_response({
         'anniversaries': [Anniversary(prof).serialize() for prof in random.sample(anniversaries_pool, len(anniversaries_pool) // 2)],
-        'announcements': [ann.serialize() for ann in get_announcements(profiles_dict)],
         'birthdays': [Birthday(prof).serialize() for prof in random.sample(list(profiles_dict.values()), 4)],
         'new_hires': [NewHire(prof).serialize() for prof in random.sample(new_hires_pool, len(new_hires_pool) // 2)],
-        'thanks': [thank.serialize() for thank in thanks],
+        'polls': [poll.serialize() for poll in list(all_polls.values())],
+        'similar_interests': [prof.serialize() for prof in similar_interests]
     })
 
 @app.route('/poll', methods=['POST'])
@@ -138,7 +145,8 @@ def polls():
 @app.route('/profile', methods=['GET'])
 def profile():
     profile_id = request.args.get('user_id')
-    return make_response(profiles_dict[profile_id].serialize() if profile_id in profiles_dict else None)
+    received_thanks = [thank for thank in thanks if thank.to.id == profile_id]
+    return make_response(profiles_dict[profile_id].serialize(received_thanks) if profile_id in profiles_dict else None)
 
 # Get list of all users?
 @app.route('/profiles', methods=['GET'])
@@ -176,7 +184,6 @@ def thank():
     recipient_name = message[1:space_bar_index]
     message = message[space_bar_index + 1:]
 
-    # TODO: Handle case for @hub
     recipient_profile = next(prof for prof in list(profiles_dict.values()) if prof.slack_internal_name == recipient_name)
 
     thanks.append(Thank(profiles_dict[sender_id], recipient_profile, message))
