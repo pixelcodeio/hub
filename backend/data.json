@@ -1,58 +1,313 @@
 {
   // Yana Sang
   "U012BSA4PQW": {
-    "title": "CEO",
-    "team": "IDK",
-    "department": "Eng",
-    "blurb": "Hi blah blah blah",
+    "title": "Software Engineering Intern",
+    "team": "Growth",
+    "department": "Engineering",
+    "blurb": "Hi Team! Really excited to start work at IDK on the Growth team. Previously, I interned at Google, Qualtrics, and Amazon. I am a rising Senior at Cornell University. In my free time, I like to rock climb :) Can't wait to work together!",
     "interests": [
-      "nothiing",
-      "league"
+      "outdoors",
+      "cooking",
+      "reading"
     ],
-    "manager": "U012BSA4PQW",
-    "email": "oyr2@cornell.edu",
-    "birthday": "February 7",
-    "pronouns": "he/him",
-    "join_date": "February 7, 2020",
-    "twitter": "@omar",
-    "linkedin": "linkedin.com/in/omar",
-    "facebook": "facebook.com/omar",
-    "instagram": "@omar",
+    "manager": "U012Q2G9BK6",
+    "email": "yana@idkapp.co",
+    "birthday": "December 7",
+    "pronouns": "she/her",
+    "join_date": "April 26, 2020",
+    "twitter": "@yana",
+    "linkedin": "linkedin.com/in/yana",
+    "facebook": "facebook.com/yanasang",
+    "instagram": "@yanasang",
     "personal_site": {
-      "url": "omarrasheed.com",
-      "description": "I write essays"
+      "url": "yanasang.com",
+      "description": "fun things!"
     },
     "featured_posts": [
       {
         "title": "Summer in Seattle!",
-        "body": "Getting dinner with Young Kim and Kevin Chan",
+        "body": "Getting dinner with Omar, Young, and Kevin",
         "imageURL": "https://files.slack.com/files-pri/T012HSXD00J-F012BKJ9JJJ/cd1f8e21-64bc-40ef-bb28-59d5559b328c_1_105_c.jpeg"
       }
     ],
-    "office": "Menlo Park"
+    "office": "NYC Building 1"
   },
+
   // Cat Zhang
-  "U012BSECYEA": {},
+  "U012BSECYEA": {
+    "title": "Marketing Intern",
+    "team": "Marketing",
+    "department": "Marketing",
+    "blurb": "Hello! My name is Cat and I am stoked to join as a Marketing Intern. I love eating avocados and cooking! I am a rising junior at Cornell University and excited to learn from all of you.",
+    "interests": [
+      "avocados",
+      "cooking",
+      "reading"
+    ],
+    "manager": "U012J3PKSJX",
+    "email": "cat@idkapp.co",
+    "birthday": "November 18",
+    "pronouns": "she/her",
+    "join_date": "April 26, 2020",
+    "twitter": "@catzhang",
+    "linkedin": "linkedin.com/in/catzhang",
+    "facebook": "facebook.com/catcat",
+    "instagram": "@catzhang",
+    "personal_site": {
+      "url": "youtube.com/cattttttzhang",
+      "description": "watch my cooking videos on youtube!"
+    },
+    "featured_posts": [
+    ],
+    "office": "NYC Building 2"
+  },
+
   // Connor Reinhold
-  "U012BSETG0N": {},
-  // Omar fake email
-  "U012BSJHNKG": {},
-  // Omar another fake email
-  "U012HSXKLKC": {},
+  "U012BSETG0N": {
+    "title": "Software Engineering Intern",
+    "team": "Core Product",
+    "department": "Engineering",
+    "blurb": "Hey everyone, my name is Connor and I am a rising junior at Cornell. I previously interned at startups and love the startup scene. In my free time, I like to play Fortnite and also run outdoors. I would love to chat with everyone when the chance comes.",
+    "interests": [
+      "gaming",
+      "outdoors",
+      "running"
+    ],
+    "manager": "U012Q2G9BK6",
+    "email": "connor@idkapp.co",
+    "birthday": "March 15",
+    "pronouns": "he/him",
+    "join_date": "April 26, 2020",
+    "twitter": "@connor",
+    "linkedin": "linkedin.com/in/connor",
+    "facebook": "facebook.com/connor",
+    "instagram": "@connor",
+    "personal_site": {
+      "url": "twtch.com/connnnnnor",
+      "description": "watch me streaming fortnite!"
+    },
+    "featured_posts": [
+    ],
+    "office": "NYC Building 1"
+  },
+
+  // // Omar fake email
+  // "U012BSJHNKG": {},
+  // // Omar another fake email
+  // "U012HSXKLKC": {},
   // Young Kim
-  "U012J3PCXFV": {},
+  "U012J3PCXFV": {
+    "title": "Co-founder",
+    "team": "Executive",
+    "department": "Engineering",
+    "blurb": "",
+    "interests": [
+      "gaming",
+      "reading",
+      "running",
+      "music"
+    ],
+    "manager": null,
+    "email": "young@idkapp.co",
+    "birthday": "November 18",
+    "pronouns": "he/him",
+    "join_date": "April 26, 2018",
+    "twitter": "@young",
+    "linkedin": "linkedin.com/in/young",
+    "facebook": "facebook.com/young",
+    "instagram": "@young",
+    "personal_site": {
+      "url": "youngkim.co",
+      "description": "I write cool essays"
+    },
+    "featured_posts": [
+      {
+        "title": "Summer in Seattle!",
+        "body": "Getting dinner with Omar, Yana, and Kevin",
+        "imageURL": "https://files.slack.com/files-pri/T012HSXD00J-F012BKJ9JJJ/cd1f8e21-64bc-40ef-bb28-59d5559b328c_1_105_c.jpeg"
+      }
+    ],
+    "office": "NYC Building 1"
+  },
   // TK Kong
-  "U012J3PKSJX": {},
+  "U012J3PKSJX": {
+    "title": "Co-founder",
+    "team": "Executive",
+    "department": "Design",
+    "blurb": "",
+    "interests": [
+      "gaming",
+      "music",
+      "running"
+    ],
+    "manager": null,
+    "email": "tk@idkapp.co",
+    "birthday": "January 7",
+    "pronouns": "he/him",
+    "join_date": "April 26, 2018",
+    "twitter": "@thetkkong",
+    "linkedin": "linkedin.com/in/tkkong",
+    "facebook": "facebook.com/kong.taekyung",
+    "instagram": "@tk_kong",
+    "personal_site": {
+      "url": "tkkong.com",
+      "description": "Check out my portfolio!"
+    },
+    "featured_posts": [
+    ],
+    "office": "NYC Building 1"
+  },
   // Connor Swenberg
-  "U012JJJV4GJ": {},
+  "U012JJJV4GJ": {
+    "title": "Product Intern",
+    "team": "Core Product",
+    "department": "Product",
+    "blurb": "Ayo, hope everyone is doing well during this time! I'm excited to join IDK as a Product Intern. Previously, I was the Product Lead for Cornell AppDev where I managed and shipped products for thousands of users at Cornell. Hopefully we will see each other in the office very soon!!",
+    "interests": [
+      "gaming",
+      "outdoors",
+      "running",
+      "cooking"
+    ],
+    "manager": "U012J3PCXFV",
+    "email": "conner@idkapp.co",
+    "birthday": "May 15",
+    "pronouns": "he/him",
+    "join_date": "April 26, 2020",
+    "twitter": "@connerswen",
+    "linkedin": "linkedin.com/in/connerswen",
+    "facebook": "facebook.com/connerswen",
+    "instagram": "@conner",
+    "personal_site": {
+      "url": "tryresponse.com",
+      "description": "i work at this startup"
+    },
+    "featured_posts": [
+    ],
+    "office": "NYC Building 1"
+  },
   // Megan Le
-  "U012JQM8Q91": {},
+  "U012JQM8Q91": {
+    "title": "Principal Software Engineer",
+    "team": "Core Product",
+    "department": "Engineering",
+    "blurb": "",
+    "interests": [
+      "gaming",
+      "reading",
+      "cooking"
+    ],
+    "manager": "U012J3PCXFV",
+    "email": "megan@idkapp.co",
+    "birthday": "April 26",
+    "pronouns": "she/her",
+    "join_date": "January 26, 2020",
+    "twitter": "@meganle",
+    "linkedin": "linkedin.com/in/meganle",
+    "facebook": "facebook.com/meganle",
+    "instagram": "@meggggan",
+    "personal_site": {
+      "url": "tiktok.com/megan",
+      "description": "I ocassionally make tik tok videos."
+    },
+    "featured_posts": [
+    ],
+    "office": "NYC Building 1"
+  },
   // kevin Chan
-  "U012Q2G9BK6": {},
+  "U012Q2G9BK6": {
+    "title": "Co-founder",
+    "team": "Executive",
+    "department": "Engineering",
+    "blurb": "",
+    "interests": [
+      "gaming",
+      "running",
+      "music"
+    ],
+    "manager": null,
+    "email": "kevin@idkapp.co",
+    "birthday": "September 11",
+    "pronouns": "he/him",
+    "join_date": "April 26, 2018",
+    "twitter": "@kevin",
+    "linkedin": "linkedin.com/in/kevinchan159",
+    "facebook": "facebook.com/kevinc",
+    "instagram": "@kevinc",
+    "personal_site": {
+      "url": "tiktok.com/kevinchan159",
+      "description": "I like to binge a lot of Tik Tok videos!"
+    },
+    "featured_posts": [
+      {
+        "title": "Summer in Seattle!",
+        "body": "Getting dinner with Omar, Yana, and Young",
+        "imageURL": "https://files.slack.com/files-pri/T012HSXD00J-F012BKJ9JJJ/cd1f8e21-64bc-40ef-bb28-59d5559b328c_1_105_c.jpeg"
+      }
+    ],
+    "office": "NYC Building 1"
+  },
   // Omar Rasheed real
-  "U012Q4T0PFW": {},
+  "U012Q4T0PFW": {
+    "title": "Co-founder",
+    "team": "Executive",
+    "department": "Engineering",
+    "blurb": "",
+    "interests": [
+      "gaming",
+      "running",
+      "music"
+    ],
+    "manager": null,
+    "email": "omar@idkapp.co",
+    "birthday": "February 7",
+    "pronouns": "he/him",
+    "join_date": "April 26, 2018",
+    "twitter": "@omar",
+    "linkedin": "linkedin.com/in/omar",
+    "facebook": "facebook.com/omar",
+    "instagram": "@omarrrrr",
+    "personal_site": {
+      "url": "omarrasheed.com",
+      "description": "I like to write essays on the weekends."
+    },
+    "featured_posts": [
+      {
+        "title": "Summer in Seattle!",
+        "body": "Getting dinner with Kevin, Yana, and Young.",
+        "imageURL": "https://files.slack.com/files-pri/T012HSXD00J-F012BKJ9JJJ/cd1f8e21-64bc-40ef-bb28-59d5559b328c_1_105_c.jpeg"
+      }
+    ],
+    "office": "NYC Building 1"
+  },
   // Yuna Shin
-  "U012X7GBWNM": {},
-  // Omar Rasheed another fake email
-  "U0138DZNXTJ": {}
+  "U012X7GBWNM": {
+    "title": "Software Engineer",
+    "team": "Growth",
+    "department": "Engineering",
+    "blurb": "",
+    "interests": [
+      "reading",
+      "cooking",
+      "music"
+    ],
+    "manager": "U012J3PCXFV",
+    "email": "yuna@idkapp.co",
+    "birthday": "May 15",
+    "pronouns": "she/her",
+    "join_date": "January 26, 2020",
+    "twitter": "@yunashiiinnnn",
+    "linkedin": "linkedin.com/in/yunashin",
+    "facebook": "facebook.com/yunashin",
+    "instagram": "@yunaa",
+    "personal_site": {
+      "url": "tiktok.com/yuna",
+      "description": "I frequently make tik tok videos and like to dance."
+    },
+    "featured_posts": [
+    ],
+    "office": "NYC Building 1"
+  },
+  // // Omar Rasheed another fake email
+  // "U0138DZNXTJ": {}
 }
