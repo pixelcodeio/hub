@@ -47,13 +47,17 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
       break;
   }
 
+  if (currentPage === "SignIn") {
+    return null
+  }
+
   return (
     <ContainerGrid container style={{ backgroundColor }}>
       <Grid item xs={12}>
         <Box display="flex" alignItems="center" px={5} justifyContent="space-between" style={{ height: "100%" }}>
           <Box display="flex" alignItems="center">
             <Box display="flex" alignItems="center" style={{ boxShadow: "0px 8px 16px rgba(161, 163, 166, 0.08), 0px 4px 24px rgba(161, 163, 166, 0.08)" }}>
-              <Image url={user.teamIconUrl} length={40} borderRadius={2} onClick={() => {
+              <Image url={user.teamIconUrl} length={40} borderRadius={2} style={{ cursor: "pointer" }} onClick={() => {
                 window.scrollTo(0, 0)
                 history.push("/home")
               }} />
@@ -83,7 +87,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
             }
             <Spacer ml={2} />
 
-            <Image url={user.imageURL} length={40} onClick={() => {
+            <Image url={user.imageURL} style={{ cursor: "pointer" }} length={40} onClick={() => {
               window.scrollTo(0, 0)
               history.push(`/profile/${user.id}`)
             }} />
