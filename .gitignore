@@ -25,3 +25,5 @@ yarn-error.log*
 # python files
 venv/
 *.pyc
+
+.envrc
