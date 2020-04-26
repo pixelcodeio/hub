@@ -2,7 +2,7 @@ import * as React from "react"
 
 export const SearchIcon: React.FC = (props) => {
   return (
-    <svg width="77" height="32" viewBox="0 0 77 32" fill="none">
+    <svg width="96.25" height="40" viewBox="0 0 77 32" fill="none">
     <rect x="0.5" y="0.5" width="76" height="31" rx="3.5" fill="white"/>
     <path d="M15.25 19.5C17.5972 19.5 19.5 17.5972 19.5 15.25C19.5 12.9028 17.5972 11 15.25 11C12.9028 11 11 12.9028 11 15.25C11 17.5972 12.9028 19.5 15.25 19.5Z" stroke="#707173" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M21.1001 21.1001L18.6001 18.6001" stroke="#707173" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>

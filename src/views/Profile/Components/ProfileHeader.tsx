@@ -100,7 +100,12 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
             <Box key={index}>
               <Text variant="overline" color={colors.gray4}>{field[0]}</Text>
               <Spacer mt={0.25} />
-              <Text variant="body1" underline={field[0] === "Manager"}>{field[1]}</Text>
+              <Text variant="body1" underline={field[0] === "Manager"} onClick={() => {
+                if (field[0] === "Manager" && profile.manager?.id) {
+                  window.scrollTo(0, 0)
+                  history.push(`/profile/${profile.manager?.id}`)
+                }
+              }}>{field[1]}</Text>
               <Spacer mt={1.5} />
             </Box>
           ))}
