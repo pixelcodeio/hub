@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux';
+import { useParams } from "react-router-dom"
 import { AppState } from 'redux/reducer';
 import { AppAction, Employee, DispatchProps } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
@@ -9,10 +10,16 @@ import { Button, Image, Text, Spacer } from "components"
 import { colors } from "theme/colors"
 
 export interface FeaturedComponentProps extends DispatchProps {
-  profile: Employee
+  allEmployees: Employee[]
 }
 
-export const FeaturedComponent: React.FC<FeaturedComponentProps> = ({ profile }) => {
+export const FeaturedComponent: React.FC<FeaturedComponentProps> = ({ allEmployees }) => {
+  const { profileID } = useParams()
+  const profile = allEmployees.find(employee => employee.id === profileID)
+  if (!profile) {
+    return null
+  }
+
   return (
     <Box display="flex" flexDirection="column">
       <Box display="flex" alignItems="center">
@@ -49,7 +56,7 @@ export const FeaturedPostBox = muiStyled(Box)({
 })
 
 const mapStateToProps = (state: AppState) => ({
-  profile: state.profile
+  allEmployees: state.allEmployees
 })
 const mapDispatchToProps = (dispatch: any) => ({
   dispatch: (action: AppAction) => dispatch(action),

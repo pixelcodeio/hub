@@ -5,6 +5,7 @@ export interface DispatchProps {
 export interface Employee {
   birthday: string
   blurb: string
+  dailyQuestions: DailyQuestion[]
   email: string
   facebook: string
   featuredPosts: FeaturedPost[]
@@ -105,6 +106,12 @@ export interface Poll {
   text: string
   votes: any // {option: [user ids]}
   sender: Employee
+}
+
+export interface DailyQuestion {
+  question: string
+  answer: string
+  date: string
 }
 
 export interface Homepage {

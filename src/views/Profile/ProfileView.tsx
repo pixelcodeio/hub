@@ -12,7 +12,7 @@ import { GridListContainer, Image, Text, Spacer } from "components"
 import { PageControl } from "assets"
 import { colors } from "theme/colors"
 import { fontWeight } from "styled-system";
-import { ProfileHeader, Featured, ProfileFeedPost, RecentThanks, } from "./Components"
+import { ProfileHeader, Featured, ProfileDailyQuestions, RecentThanks } from "./Components"
 
 export interface ProfileViewComponentProps extends DispatchProps {
   currentPage: Page
@@ -39,7 +39,6 @@ export const ProfileViewComponent: React.FC<ProfileViewComponentProps> = ({ curr
     return null
   }
 
-
   return (
     <Box>
       <Box style={{ backgroundColor: colors.lightYellow }} pb={5}>
@@ -59,9 +58,7 @@ export const ProfileViewComponent: React.FC<ProfileViewComponentProps> = ({ curr
             <Featured />
           </Grid>
           <Grid item xs={6}>
-            <ProfileFeedPost />
-            <ProfileFeedPost />
-            <ProfileFeedPost />
+            <ProfileDailyQuestions />
           </Grid>
           <Grid item xs={3}>
             <RecentThanks />

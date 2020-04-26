@@ -53,6 +53,7 @@ const featuredPosts = [
 ]
 
 const kevin = {
+  dailyQuestions: [],
   id: "1",
   name: "Kevin Chan",
   title: "Software Engineer",
@@ -75,6 +76,7 @@ const kevin = {
 }
 
 const omar = {
+  dailyQuestions: [],
   id: "1",
   name: "Omar Rasheed",
   title: "Software Engineer",
@@ -98,6 +100,7 @@ const omar = {
 }
 
 const young = {
+  dailyQuestions: [],
   id: "1",
   name: "Young Kim",
   title: "Software Engineer",
@@ -121,6 +124,7 @@ const young = {
 }
 
 const tk = {
+  dailyQuestions: [],
   id: "1",
   name: "TK Kong",
   title: "Product Designer",
