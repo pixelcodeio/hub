@@ -47,6 +47,10 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
       break;
   }
 
+  if (currentPage === "SignIn") {
+    return null
+  }
+
   return (
     <ContainerGrid container style={{ backgroundColor }}>
       <Grid item xs={12}>
