@@ -21,7 +21,7 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
   }
 
   const firstColumnFields = [
-    ["Manager", profile?.manager?.name],
+    ["Manager", profile.manager != undefined ? profile?.manager?.name : "N/A"],
     ["Email", profile.email],
     ["Office", profile.office],
     ["Birthday", profile.birthday],

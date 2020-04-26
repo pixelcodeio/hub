@@ -42,7 +42,7 @@ export const ProfileViewComponent: React.FC<ProfileViewComponentProps> = ({ curr
 
   return (
     <Box>
-      <Box style={{ backgroundColor: colors.lightYellow, height: "400px" }}>
+      <Box style={{ backgroundColor: colors.lightYellow }} pb={5}>
         <Box px={5}>
           <Grid container >
             <Grid item xs={12}>
