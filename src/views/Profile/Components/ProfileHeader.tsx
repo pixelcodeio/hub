@@ -97,7 +97,7 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
                 </>
               )
             }
-            <Button backgroundColor={colors.white100} borderRadius={4} padding={12} border={`1px solid ${colors.purple}`}>
+            <Button backgroundColor={colors.white100} borderRadius={4} padding={12} border={`1px solid ${colors.purple}`} style={{cursor: "auto", boxShadow: "none"}}>
               <Text color={colors.purple} variant="body1">{"View Calendar"}</Text>
             </Button>
           </Box>
