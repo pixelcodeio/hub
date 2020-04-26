@@ -27,3 +27,4 @@ venv/
 *.pyc
 
 .envrc
+app.yaml
