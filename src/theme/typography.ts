@@ -57,12 +57,12 @@ export default {
   body1: {
     fontWeight: 600,
     fontSize: "14px",
-    lineHeight: "18px",
+    lineHeight: "22px",
   },
   body2: {
     fontWeight: 400,
     fontSize: "12px",
-    lineHeight: "22px",
+    lineHeight: "17px",
   },
   button: {
     fontWeight: 700,
