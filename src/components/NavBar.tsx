@@ -53,7 +53,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
         <Box display="flex" alignItems="center" px={5} justifyContent="space-between" style={{ height: "100%" }}>
           <Box display="flex" alignItems="center">
             <Box display="flex" alignItems="center" style={{ boxShadow: "0px 8px 16px rgba(161, 163, 166, 0.08), 0px 4px 24px rgba(161, 163, 166, 0.08)" }}>
-              <Image url={user.teamIconUrl} length={32} borderRadius={2} onClick={() => {
+              <Image url={user.teamIconUrl} length={40} borderRadius={2} onClick={() => {
                 window.scrollTo(0, 0)
                 history.push("/home")
               }} />
