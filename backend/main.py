@@ -180,8 +180,14 @@ def profile():
 @app.route('/profiles', methods=['GET'])
 def get_users():
     ret = []
+    thanks_map = {}
+    for thank in thanks:
+        if thank.to.id in thanks_map:
+            thanks_map[thank.to.id].append(thank)
+        else:
+            thanks_map[thank.to.id] = [thank]
     for profile in profiles_dict.values():
-        received_thanks = [thank for thank in thanks if thank.to.id == profile.id]
+        received_thanks = thanks_map[profile.id] if profile.id in thanks_map else []
         ret.append(profile.serialize(profiles_dict, received_thanks))
     return make_response(ret)
 
