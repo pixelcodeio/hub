@@ -152,8 +152,6 @@ class Profile:
         self.team_icon_url = team_icon_url
         self.team_id = team_id
         self.daily_questions = []
-
-        # Private fields
         self.slack_internal_name = slack_internal_name
 
     def serialize(self, thanks = []):
@@ -180,6 +178,7 @@ class Profile:
             'team_icon_url': self.team_icon_url,
             'team_id': self.team_id,
             'daily_questions': [q.serialize() for q in self.daily_questions],
+            'slack_internal_name': self.slack_internal_name,
             'received_thanks': [thank.serialize() for thank in thanks]
         })
 
