@@ -21,7 +21,6 @@ export interface ProfileViewComponentProps extends DispatchProps {
 
 export const ProfileViewComponent: React.FC<ProfileViewComponentProps> = ({ currentPage, dispatch, allEmployees }) => {
   const { profileID } = useParams()
-  console.log("PROFILE ID:", profileID)
   useEffect(() => {
     dispatch(setCurrentPage("Profile"))
     if (allEmployees.length === 0) {
