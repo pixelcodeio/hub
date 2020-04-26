@@ -16,7 +16,7 @@ export const SearchResult: React.FC<SearchResultProps> = ({ employee }) => {
     history.push(`/profile/${employee.id}`)
   }
   return (
-    <Box onClick={goToEmployeeProfile}>
+    <Box onClick={goToEmployeeProfile} style={{ cursor: "pointer" }}>
       <Box display="flex" alignItems="center">
         <Text variant="h6" color={colors.purple} >{employee.name}</Text>
         <Spacer ml={1} />
