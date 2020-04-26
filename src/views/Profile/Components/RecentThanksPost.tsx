@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux';
 import { AppState } from 'redux/reducer';
-import { AppAction, Employee, DispatchProps } from "redux/types"
+import { AppAction, Employee, DispatchProps, Thanks } from "redux/types"
 import { Box, Grid, GridList, GridListTile, TextareaAutosize } from "@material-ui/core"
 import { styled as muiStyled } from '@material-ui/core/styles'
 import styled from "styled-components"
@@ -9,16 +9,15 @@ import { GridListContainer, Image, Text, Spacer } from "components"
 import { colors } from "theme/colors"
 
 export interface RecentThanksPostComponentProps extends DispatchProps {
-  companyName: string
-  recentHires: Employee[]
+  thanks: Thanks
 }
 
-export const RecentThanksPostComponent: React.FC<RecentThanksPostComponentProps> = ({ companyName, recentHires }) => {
+export const RecentThanksPostComponent: React.FC<RecentThanksPostComponentProps> = ({ thanks }) => {
   return (
     <Container py={1.5} px={2} mb={1}>
-      <Text variant="body1">TK Kong thanked Omar Rasheed</Text>
+      <Text variant="body1">{`${thanks.from.name} thanked ${thanks.to.name}`}</Text>
       <Spacer mt={1} />
-      <Text variant="body1" style={{ fontWeight: "400" }}>Thank you sir.</Text>
+      <Text variant="body1" style={{ fontWeight: "400" }}>{thanks.message}</Text>
     </Container>
   )
 }

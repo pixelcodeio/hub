@@ -29,6 +29,7 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
     ["Joined", profile.joinDate],
   ]
   const secondColumnFields = [
+    ["Slack", profile.slackInternalName],
     ["Twitter", profile.twitter],
     ["Linkedin", profile.linkedin],
     ["Facebook", profile.facebook],

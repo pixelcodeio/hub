@@ -53,7 +53,9 @@ const featuredPosts = [
 ]
 
 const kevin = {
+  slackInternalName: "oyr2",
   dailyQuestions: [],
+  receivedThanks: [],
   id: "1",
   name: "Kevin Chan",
   title: "Software Engineer",
@@ -76,7 +78,9 @@ const kevin = {
 }
 
 const omar = {
+  slackInternalName: "oyr2",
   dailyQuestions: [],
+  receivedThanks: [],
   id: "1",
   name: "Omar Rasheed",
   title: "Software Engineer",
@@ -100,7 +104,9 @@ const omar = {
 }
 
 const young = {
+  slackInternalName: "oyr2",
   dailyQuestions: [],
+  receivedThanks: [],
   id: "1",
   name: "Young Kim",
   title: "Software Engineer",
@@ -124,7 +130,9 @@ const young = {
 }
 
 const tk = {
+  slackInternalName: "oyr2",
   dailyQuestions: [],
+  receivedThanks: [],
   id: "1",
   name: "TK Kong",
   title: "Product Designer",
