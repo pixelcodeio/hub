@@ -24,7 +24,7 @@ class App extends React.Component {
   store = createStore(reducer, applyMiddleware(thunk))
 
   componentDidMount() {
-    document.title = "Hub";
+    document.title = "IDK Hub";
   }
 
   render() {
