@@ -1,9 +1,9 @@
 {
+  // Yana Sang
   "U012BSA4PQW": {
     "title": "CEO",
     "team": "IDK",
     "department": "Eng",
-    "imageURL": "https://....",
     "blurb": "Hi blah blah blah",
     "interests": [
       "nothiing",
@@ -29,8 +29,30 @@
         "imageURL": "https://files.slack.com/files-pri/T012HSXD00J-F012BKJ9JJJ/cd1f8e21-64bc-40ef-bb28-59d5559b328c_1_105_c.jpeg"
       }
     ],
-    "office": "Menlo Park",
-    "team_icon_url": "https://....",
-    "team_id": "A012B5CK12S"
-  }
+    "office": "Menlo Park"
+  },
+  // Cat Zhang
+  "U012BSECYEA": {},
+  // Connor Reinhold
+  "U012BSETG0N": {},
+  // Omar fake email
+  "U012BSJHNKG": {},
+  // Omar another fake email
+  "U012HSXKLKC": {},
+  // Young Kim
+  "U012J3PCXFV": {},
+  // TK Kong
+  "U012J3PKSJX": {},
+  // Connor Swenberg
+  "U012JJJV4GJ": {},
+  // Megan Le
+  "U012JQM8Q91": {},
+  // kevin Chan
+  "U012Q2G9BK6": {},
+  // Omar Rasheed real
+  "U012Q4T0PFW": {},
+  // Yuna Shin
+  "U012X7GBWNM": {},
+  // Omar Rasheed another fake email
+  "U0138DZNXTJ": {}
 }
