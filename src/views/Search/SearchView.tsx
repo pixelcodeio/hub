@@ -2,9 +2,9 @@ import { Box, Checkbox as MUICheckbox, Grid, Input } from "@material-ui/core";
 import { styled as muiStyled } from '@material-ui/core/styles';
 import { SearchBarIcon } from "assets";
 import { Spacer, Text } from "components";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux';
-import { setCurrentPage } from 'redux/actions';
+import { fetchAllProfiles, setCurrentPage } from 'redux/actions';
 import { AppState } from 'redux/reducer';
 import { AppAction, DispatchProps, Employee } from "redux/types";
 import { colors } from "theme/colors";
@@ -22,9 +22,24 @@ const teams_info = [
 ]
 
 export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispatch, allEmployees, user }) => {
+  const [query, setQuery] = useState("")
   useEffect(() => {
     dispatch(setCurrentPage("Search"))
+    if (allEmployees.length === 0) {
+      dispatch(fetchAllProfiles())
+    }
   }, [])
+
+  const onInputChange = (event: any) => {
+    setQuery(event.target.value.toLowerCase())
+  }
+
+  const filteredEmployees = query
+    ? allEmployees.filter(employee =>
+      employee.name.toLowerCase().includes(query) ||
+      employee.team.toLowerCase().includes(query)
+    )
+    : allEmployees
 
   return (
     <Box p={6}>
@@ -51,10 +66,14 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
           <Container py={2} px={4} display="flex" alignItems="center">
             <SearchBarIcon />
             <Spacer ml={1.5} />
-            <Input autoFocus={true} disableUnderline={true} style={{ color: colors.black100, fontSize: "14px", fontWeight: 400 }} />
+            <Input
+              autoFocus
+              disableUnderline
+              onChange={onInputChange}
+              style={{ color: colors.black100, fontSize: "14px", fontWeight: 400 }} />
           </Container>
           <Spacer mt={8} />
-          {allEmployees.map((employee, index) => (
+          {filteredEmployees.map((employee, index) => (
             <Box>
               <SearchResultComponent employee={employee} key={index} />
               <Spacer mt={5} />
