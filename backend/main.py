@@ -35,7 +35,7 @@ onboarding_questions = [
     "Give us an intro about yourself.",
     "What are some of your hobbies? (comma-separated)"
 ]
-daily_q_confirmation = "Thanks for your response! Checkout https://thehub.com to see other responses!
+daily_q_confirmation = "Thanks for your response! Checkout https://thehub.com to see other responses!"
 poll_confirmation = "Thanks for voting! Checkout https://thehub.com to see the results!"
 thanks = []
 all_polls = {}
