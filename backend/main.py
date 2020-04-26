@@ -245,7 +245,7 @@ def message(payload):
             poll.add_vote(last_two_messages[0]['text'], user_id)
             send_dm_to_user(user_id, poll_confirmation)
 
-@cron.interval_schedule(minutes=5)
+@cron.interval_schedule(minutes=1)
 def job_function():
     with app.app_context():
         for user_id in user_list:
