@@ -13,6 +13,7 @@ import requests
 from init_profiles import init_profiles
 from models import Anniversary, Birthday, DailyQuestion, NewHire, Poll, Thank
 from slackbot import *
+from daily_questions import daily_questions
 from slackeventsapi import SlackEventAdapter
 
 app = Flask(__name__)
@@ -22,11 +23,11 @@ cors = CORS(app)
 slack_events_adapter = SlackEventAdapter(
     'abfc6945359193db5006ee441bffefdd', "/slack/events", app)
 
-daily_questions = [
-    'What is your favorite TV Show?',
-    'Who is your favorite music artist?',
-    'What have you learned during quarantine?',
-]
+# daily_questions = [
+#     'What is your favorite TV Show?',
+#     'Who is your favorite music artist?',
+#     'What have you learned during quarantine?',
+# ]
 onboarding_questions = [
     "Give us an intro about yourself.",
     "What are some of your hobbies? (comma-separated)"
@@ -205,6 +206,7 @@ def thank():
 # Using reaction_added j cuz its easy to trigger
 @slack_events_adapter.on('team_join')
 def reaction_added(payload):
+    print("HELLO WE HIT")
     event = payload.get("event", {})
     user_id = event.get("user")
 
@@ -224,23 +226,27 @@ def message(payload):
         return make_boolean_response()
 
     last_messages = messages_in_channel(channel_id, 2)
-    last_bot_question = next(msg for msg in last_messages if 'bot_id' in msg)['text']
+    last_bot_question = next(msg for msg in last_messages if 'bot_id' in msg)
     answer = event['text']
 
-    if last_bot_question == onboarding_questions[0]:
+    if last_bot_question['text'] == onboarding_questions[0]:
         profiles_dict[user_id].blurb = answer
         send_dm_to_user(user_id, onboarding_questions[1])
-    elif last_bot_question == onboarding_questions[1]:
+    elif last_bot_question['text'] == onboarding_questions[1]:
         interests = answer.split(',')
         profiles_dict[user_id].interests = [interest.strip() for interest in interests]
-    elif last_bot_question == daily_questions[-1]:
+    elif last_bot_question['text'] in daily_questions:
         profiles_dict[user_id].daily_questions.append(DailyQuestion(daily_questions[-1], answer))
         send_dm_to_user(user_id, daily_q_confirmation)
     elif last_bot_question['blocks'][0]['block_id'] in all_polls:
-        poll = all_polls[last_question['blocks'][0]['block_id']]
-        if len(poll.options) == 0:
-            poll.add_vote(last_two_messages[0]['text'], user_id)
-            send_dm_to_user(user_id, poll_confirmation)
+        poll = all_polls[last_bot_question['blocks'][0]['block_id']]
+        poll.add_vote(answer, user_id)
+        send_dm_to_user(user_id, poll_confirmation)
+
+# Error events
+@slack_events_adapter.on("error")
+def error_handler(err):
+    print("ERROR: " + str(err))
 
 if __name__ == "__main__":
     app.run(debug=True)

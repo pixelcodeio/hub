@@ -2,12 +2,11 @@ from datetime import datetime
 import json
 
 from models import Profile
-from slackbot import *
-
+import slackbot
 
 def init_profiles():
     profiles_dict = {}
-    all_users = get_users()
+    all_users = slackbot.get_users()
     profiles_data = {}
     with open('data.json', 'r') as f:
         profiles_data = json.load(f)
@@ -36,8 +35,8 @@ def init_profiles():
                 profile_json['personal_site'],
                 profile_json['featured_posts'],
                 profile_json['office'],
-                get_team_icon(),
-                get_team_id(),
+                slackbot.get_team_icon(),
+                slackbot.get_team_id(),
                 user['name'],
             )
             profiles_dict[user['id']] = profile
