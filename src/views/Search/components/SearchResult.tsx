@@ -1,6 +1,7 @@
 import { Box } from "@material-ui/core"
 import { Spacer, Text } from "components"
 import React from "react"
+import { useHistory } from "react-router-dom";
 import { Employee } from "redux/types"
 import { colors } from "theme/colors"
 
@@ -9,6 +10,7 @@ export interface SearchResultProps {
 }
 
 export const SearchResultComponent: React.FC<SearchResultProps> = ({ employee }) => {
+  const history = useHistory()
   return (
     <Box>
       <Box display="flex" alignItems="center">
@@ -17,7 +19,10 @@ export const SearchResultComponent: React.FC<SearchResultProps> = ({ employee })
         <Text variant="body1">{employee.email}</Text>
       </Box>
       <Spacer mt={1} />
-      <Box display="flex" alignItems="center">
+      <Box display="flex" alignItems="center" onClick={() => {
+        window.scrollTo(0, 0)
+        history.push(`/profile/${employee.id}`)
+      }}>
         <Text variant="body2" color={colors.gray4}>Team</Text>
         <Spacer ml={0.5} />
         <Text variant="body1" color={colors.purple}>{employee.team}</Text>

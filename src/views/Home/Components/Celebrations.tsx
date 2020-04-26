@@ -32,7 +32,10 @@ export const CelebrationsComponent: React.FC<CelebrationsComponentProps> = ({ ho
       {birthdays.map((birthday, index) => {
         return (
           <Box key={index}>
-            <CelebrationBox px={2} py={1.5} onClick={() => history.push(`/profile/${birthday.userId}`)}>
+            <CelebrationBox px={2} py={1.5} onClick={() => {
+              window.scrollTo(0, 0)
+              history.push(`/profile/${birthday.userId}`)
+            }}>
               <Text variant="body2" color={colors.gray4}>
                 {"Birthday is today 🎂"}
               </Text>
