@@ -28,3 +28,6 @@ venv/
 
 .envrc
 app.yaml
+
+# Local Netlify folder
+.netlify
