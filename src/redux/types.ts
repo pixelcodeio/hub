@@ -76,7 +76,7 @@ export interface FeedPost {
   dailyUpdate?: DailyUpdate
 }
 
-export type Page = "Home" | "Profile"
+export type Page = "Home" | "Profile" | "Search"
 
 export type FeedPostType = "Thanks" | "DailyUpdate"
 

@@ -20,7 +20,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ recentHires }
         <Spacer ml={1} />
         <Text variant="h6">⭐️</Text>
         <Spacer ml={2} />
-        <Button backgroundColor={colors.purple} borderRadius={4} style={{ padding: "4px 8px" }}>
+        <Button backgroundColor={colors.purple} borderRadius={3} border={"none"} style={{ padding: "4px 8px" }}>
           <Text variant="body2" color={colors.white100} style={{ fontWeight: 600 }}>{"Get to know us!"}</Text>
         </Button>
       </Box>
@@ -37,7 +37,7 @@ export const RecentHiresComponent: React.FC<RecentHiresProps> = ({ recentHires }
                     <Box display="flex" alignItems="center" justifyContent="space-between" >
                       <Box>
                         <Text variant="h6" >{newHire.name}</Text>
-                        <Text variant="body1">{`${newHire.title} • ${newHire.team}`}</Text>
+                        <Text variant="body1" style={{ fontWeight: 400 }}>{`${newHire.title} • ${newHire.team}`}</Text>
                       </Box>
                     </Box>
                   </Box>
