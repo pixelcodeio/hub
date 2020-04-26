@@ -33,7 +33,7 @@ export const ProfileDailyQuestionsComponent: React.FC<ProfileDailyQuestionsCompo
               <Spacer mt={1} />
               <Text variant="h6" style={{ fontWeight: 600 }}>{dailyQuestion.question}</Text>
               <Spacer mt={0.75} />
-              <Text variant="body2" style={{ fontWeight: 400 }}>{dailyQuestion.answer}</Text>
+              <Text variant="body1" style={{ fontWeight: 400 }}>{dailyQuestion.answer}</Text>
             </Container >
             <Spacer mt={1} />
           </>
