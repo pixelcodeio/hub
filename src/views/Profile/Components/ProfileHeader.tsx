@@ -67,7 +67,7 @@ export const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ 
             </Link>
             <Spacer ml={1} />
             <Button backgroundColor={colors.white100} borderRadius={4} padding={12} border={`1px solid ${colors.purple}`}>
-              <Text color={colors.purple} variant="body1">{"View Calendar ↗"}</Text>
+              <Text color={colors.purple} variant="body1">{"View Calendar"}</Text>
             </Button>
           </Box>
         </Box>
