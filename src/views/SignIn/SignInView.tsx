@@ -25,10 +25,10 @@ export const SignInComponent: React.FC<SignInComponentProps> = ({ dispatch }) =>
       <Box display="flex" flexDirection="column" px={16} py={8.5} width={640} style={{ zIndex: 1 }}>
         <HubLogo />
         <Spacer mt={14} />
-        <Text variant="h3" style={{ fontWeight: 800 }}>Improve team culture</Text>
+        <Text variant="h3" style={{ fontWeight: 800 }}>Rekindle team culture</Text>
         <Spacer mt={3} />
         <Text variant="h6" style={{ fontWeight: 400, lineHeight: "180%" }}>
-          Hub is the place for people to learn about their colleagues and connect together. Strengthen personal connection and grow your company culture.
+          Hub is the place for people to learn about colleagues and cultivate connections.
         </Text>
         <Spacer mt={7} />
         <Button
