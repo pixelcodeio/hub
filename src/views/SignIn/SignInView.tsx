@@ -24,7 +24,7 @@ export const SignInComponent: React.FC<SignInComponentProps> = ({ dispatch }) =>
       <LandingPageBackground style={{ position: "fixed", left: 0, top: 0, right: 0, zIndex: -1 }} />
       <Box display="flex" flexDirection="column" px={16} py={8.5} width={640} style={{ zIndex: 1 }}>
         <HubLogo />
-        <Spacer mt={10} />
+        <Spacer mt={14} />
         <Text variant="h3" style={{ fontWeight: 800 }}>Improve team culture</Text>
         <Spacer mt={3} />
         <Text variant="h6" style={{ fontWeight: 400, lineHeight: "180%" }}>
@@ -34,15 +34,15 @@ export const SignInComponent: React.FC<SignInComponentProps> = ({ dispatch }) =>
         <Button
           backgroundColor={colors.purple}
           borderRadius={8}
-          style={{ padding: "16px 32px", width: "218px", height: "64px" }}
+          style={{ padding: "16px 32px", width: "240px", height: "64px" }}
           onClick={() => {
             window.scrollTo(0, 0)
             history.push("/home")
           }}
         >
           <Text style={{ fontSize: "18px", fontWeight: 500 }} color={colors.white100}>
-            Sign in with Slack
-        </Text>
+            Sign in with <b>Slack</b>
+          </Text>
         </Button>
       </Box>
     </>
