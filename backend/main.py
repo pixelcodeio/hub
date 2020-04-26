@@ -30,7 +30,6 @@ daily_questions = [
     'What is your favorite TV Show?',
     'Who is your favorite music artist?',
     'What have you learned during quarantine?',
-    'Does kevin suck ass?4'
 ]
 onboarding_questions = [
     "Give us an intro about yourself.",
