@@ -27,13 +27,13 @@ export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch, 
   useEffect(() => {
     dispatch(setCurrentPage("Home"))
     if (!user) {
-      dispatch(fetchProfile("U012HSXKLKC"))
+      dispatch(fetchProfile("U012Q2G9BK6"))
     }
     if (allEmployees.length === 0) {
       dispatch(fetchAllProfiles())
     }
     if (!homepage) {
-      dispatch(fetchHomepage("U012HSXKLKC"))
+      dispatch(fetchHomepage("U012Q2G9BK6"))
     }
   }, [])
 

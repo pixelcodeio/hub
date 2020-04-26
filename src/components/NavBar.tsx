@@ -26,7 +26,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
 
   useEffect(() => {
     if (!user) {
-      dispatch(fetchProfile("U012HSXKLKC"))
+      dispatch(fetchProfile("U012Q2G9BK6"))
     }
   }, [])
 

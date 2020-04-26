@@ -39,7 +39,7 @@ export const FeaturedComponent: React.FC<FeaturedComponentProps> = ({ allEmploye
         <Text variant="body1" style={{ fontWeight: 400 }}>{profile.personalSite.description}</Text>
       </FeaturedPostBox>
       {profile.featuredPosts.map((post, index) => (
-        <>
+        <React.Fragment key={index}>
           <Spacer mt={1} />
           <FeaturedPostBox overflow="hidden">
             <Image height={240} style={{ width: "100%" }} borderRadius={0} url={post.imageURL} />
@@ -49,7 +49,7 @@ export const FeaturedComponent: React.FC<FeaturedComponentProps> = ({ allEmploye
               <Text variant="body1" style={{ fontWeight: 400 }}>{post.body}</Text>
             </Box>
           </FeaturedPostBox>
-        </>
+        </React.Fragment>
       ))}
     </Box>
   )
