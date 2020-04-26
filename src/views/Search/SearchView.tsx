@@ -123,7 +123,7 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
               autoFocus
               disableUnderline
               onChange={onInputChange}
-              style={{ color: colors.black100, fontSize: "14px", fontWeight: 400 }} />
+              style={{ color: colors.black100, fontSize: "14px", fontWeight: 400, width: "100%" }} />
           </Container>
           <Spacer mt={8} />
           {filteredEmployees.map((employee, index) => (
