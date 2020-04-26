@@ -128,9 +128,9 @@ def homepage():
     similar_interests = [profile for profile in list(profiles_dict.values()) if similar_in_interest(profile, req_user_profile)]
 
     return make_response({
-        'anniversaries': [Anniversary(prof).serialize() for prof in random.sample(list(profiles_dict.values()), len(user_list) // 2)],
-        'birthdays': [Birthday(prof).serialize() for prof in random.sample(list(profiles_dict.values()), 4)],
-        'newHires': [NewHire(prof).serialize() for prof in random.sample(list(profiles_dict.values()), len(user_list) // 2)],
+        'anniversaries': [Anniversary(prof).serialize() for prof in list(profiles_dict.values())],
+        'birthdays': [Birthday(prof).serialize() for prof in list(profiles_dict.values())],
+        'newHires': [NewHire(prof).serialize() for prof in list(profiles_dict.values())],
         'polls': [poll.serialize() for poll in list(all_polls.values())],
         'similarInterests': [prof.serialize() for prof in similar_interests]
     })
