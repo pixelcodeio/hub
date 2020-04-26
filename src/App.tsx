@@ -4,7 +4,7 @@ import { applyMiddleware, createStore } from 'redux';
 import reducer from './redux/reducer';
 import thunk from 'redux-thunk';
 
-import { ProfileView, HomeView, TeamsView, ResourcesView, CalendarView, SignInView, SignUpView } from "views"
+import { ProfileView, HomeView, TeamsView, ResourcesView, CalendarView, SearchView, SignInView, SignUpView } from "views"
 import { theme } from "theme/theme"
 import { ThemeProvider as SCThemeProvider } from "styled-components"
 import { ThemeProvider } from "@material-ui/core"
@@ -44,6 +44,9 @@ class App extends React.Component {
                 </Route>
                 <Route path="/teams">
                   <TeamsView />
+                </Route>
+                <Route path="/search">
+                  <SearchView />
                 </Route>
                 <Route path="/Resources">
                   <ResourcesView />

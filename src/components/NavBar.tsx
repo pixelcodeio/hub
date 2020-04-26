@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { connect } from 'react-redux';
 import { Box, Button, Grid } from "@material-ui/core"
+import { SearchIcon } from "assets"
 import { Link, Spacer, Image, Text } from "components"
 import { styled } from '@material-ui/core/styles';
 import { colors } from "theme/colors"
@@ -65,7 +66,14 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ currentPage, dispatch, 
               </>
             ))}
           </Box>
-          <Box>
+          <Box display="flex" alignItems="center" justifyContent="space-between">
+            { currentPage !== "Search" &&
+              <Link to={"/search"}>
+                <SearchIcon />
+              </Link>
+            }
+            <Spacer ml={2} />
+
             <Link to={`profile/${user.id}`}>
               <Image url={user.imageURL} length={32} />
             </Link>
