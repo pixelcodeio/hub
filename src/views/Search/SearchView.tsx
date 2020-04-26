@@ -4,11 +4,12 @@ import { SearchBarIcon } from "assets";
 import { Spacer, Text } from "components";
 import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux';
+import { useParams, useHistory } from "react-router-dom"
 import { fetchAllProfiles, setCurrentPage } from 'redux/actions';
 import { AppState } from 'redux/reducer';
 import { AppAction, DispatchProps, Employee } from "redux/types";
 import { colors } from "theme/colors";
-import { SearchResultComponent } from "./components/SearchResult";
+import { SearchResult } from "./components";
 
 export interface SearchViewComponentProps extends DispatchProps {
   allEmployees: Employee[]
@@ -22,7 +23,8 @@ const teams_info = [
 ]
 
 export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispatch, allEmployees, user }) => {
-  const [query, setQuery] = useState("")
+  const { query: searchQuery } = useParams()
+  const [query, setQuery] = useState(searchQuery || "")
   useEffect(() => {
     dispatch(setCurrentPage("Search"))
     if (allEmployees.length === 0) {
@@ -36,11 +38,13 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
 
   const filteredEmployees = query
     ? allEmployees.filter(employee =>
-      employee.name.toLowerCase().includes(query) ||
-      employee.team.toLowerCase().includes(query)
+      employee.name.toLowerCase().includes(query.toLowerCase()) ||
+      employee.team.toLowerCase().includes(query.toLowerCase()) ||
+      employee.title.toLowerCase().includes(query.toLowerCase())
     )
     : allEmployees
 
+  console.log("QUERY", query)
   return (
     <Box p={6}>
       <Grid container>
@@ -69,13 +73,14 @@ export const SearchViewComponent: React.FC<SearchViewComponentProps> = ({ dispat
             <Input
               autoFocus
               disableUnderline
+              value={query}
               onChange={onInputChange}
               style={{ color: colors.black100, fontSize: "14px", fontWeight: 400 }} />
           </Container>
           <Spacer mt={8} />
           {filteredEmployees.map((employee, index) => (
             <Box>
-              <SearchResultComponent employee={employee} key={index} />
+              <SearchResult employee={employee} key={index} />
               <Spacer mt={5} />
             </Box>
           ))}

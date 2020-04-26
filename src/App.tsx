@@ -50,6 +50,9 @@ class App extends React.Component {
                 <Route path="/teams">
                   <TeamsView />
                 </Route>
+                <Route path="/search/:query">
+                  <SearchView />
+                </Route>
                 <Route path="/search">
                   <SearchView />
                 </Route>
