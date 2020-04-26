@@ -1,5 +1,4 @@
 {
-  // Yana Sang
   "U012BSA4PQW": {
     "title": "Software Engineering Intern",
     "team": "Growth",
@@ -32,8 +31,6 @@
     ],
     "office": "NYC Building 1"
   },
-
-  // Cat Zhang
   "U012BSECYEA": {
     "title": "Marketing Intern",
     "team": "Marketing",
@@ -57,12 +54,9 @@
       "url": "youtube.com/cattttttzhang",
       "description": "watch my cooking videos on youtube!"
     },
-    "featured_posts": [
-    ],
+    "featured_posts": [],
     "office": "NYC Building 2"
   },
-
-  // Connor Reinhold
   "U012BSETG0N": {
     "title": "Software Engineering Intern",
     "team": "Core Product",
@@ -86,16 +80,9 @@
       "url": "twtch.com/connnnnnor",
       "description": "watch me streaming fortnite!"
     },
-    "featured_posts": [
-    ],
+    "featured_posts": [],
     "office": "NYC Building 1"
   },
-
-  // // Omar fake email
-  // "U012BSJHNKG": {},
-  // // Omar another fake email
-  // "U012HSXKLKC": {},
-  // Young Kim
   "U012J3PCXFV": {
     "title": "Co-founder",
     "team": "Executive",
@@ -129,7 +116,6 @@
     ],
     "office": "NYC Building 1"
   },
-  // TK Kong
   "U012J3PKSJX": {
     "title": "Co-founder",
     "team": "Executive",
@@ -153,11 +139,9 @@
       "url": "tkkong.com",
       "description": "Check out my portfolio!"
     },
-    "featured_posts": [
-    ],
+    "featured_posts": [],
     "office": "NYC Building 1"
   },
-  // Connor Swenberg
   "U012JJJV4GJ": {
     "title": "Product Intern",
     "team": "Core Product",
@@ -182,11 +166,9 @@
       "url": "tryresponse.com",
       "description": "i work at this startup"
     },
-    "featured_posts": [
-    ],
+    "featured_posts": [],
     "office": "NYC Building 1"
   },
-  // Megan Le
   "U012JQM8Q91": {
     "title": "Principal Software Engineer",
     "team": "Core Product",
@@ -210,11 +192,9 @@
       "url": "tiktok.com/megan",
       "description": "I ocassionally make tik tok videos."
     },
-    "featured_posts": [
-    ],
+    "featured_posts": [],
     "office": "NYC Building 1"
   },
-  // kevin Chan
   "U012Q2G9BK6": {
     "title": "Co-founder",
     "team": "Executive",
@@ -247,7 +227,6 @@
     ],
     "office": "NYC Building 1"
   },
-  // Omar Rasheed real
   "U012Q4T0PFW": {
     "title": "Co-founder",
     "team": "Executive",
@@ -280,7 +259,6 @@
     ],
     "office": "NYC Building 1"
   },
-  // Yuna Shin
   "U012X7GBWNM": {
     "title": "Software Engineer",
     "team": "Growth",
@@ -304,10 +282,7 @@
       "url": "tiktok.com/yuna",
       "description": "I frequently make tik tok videos and like to dance."
     },
-    "featured_posts": [
-    ],
+    "featured_posts": [],
     "office": "NYC Building 1"
-  },
-  // // Omar Rasheed another fake email
-  // "U0138DZNXTJ": {}
+  }
 }

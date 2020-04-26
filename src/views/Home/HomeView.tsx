@@ -1,27 +1,21 @@
-import React, { useEffect } from "react"
+import { Box, Grid } from "@material-ui/core";
+import { Spacer } from "components";
+import React, { useEffect } from "react";
 import { connect } from 'react-redux';
-import { Box, Grid } from "@material-ui/core"
-import { fetchHomepage, fetchProfile, fetchAllProfiles, setCurrentPage } from 'redux/actions';
-import { AppAction, DispatchProps, Employee, Homepage } from "redux/types"
+import { fetchAllProfiles, fetchHomepage, fetchProfile, setCurrentPage } from 'redux/actions';
 import { AppState } from 'redux/reducer';
-
+import { AppAction, DispatchProps, Employee, Homepage } from "redux/types";
+import { colors } from "theme/colors";
 import {
-  Announcements,
-  Anniversaries,
-  Birthdays,
-  Calendar,
-  FeedPost,
-  Filters,
-  RecentlyJoined,
-  RecentHires,
   Celebrations,
-  FeedPoll,
-  FeedPolls,
-  SimilarInterests,
-} from "./Components"
-import { Spacer, Text } from "components"
-import { FeedPostComponent } from "./Components/FeedPost"
-import { colors } from "theme/colors"
+
+  FeedPolls, RecentHires,
+
+
+
+  SimilarInterests
+} from "./Components";
+
 
 export interface HomeViewComponentProps extends DispatchProps {
   allEmployees: Employee[]
@@ -33,13 +27,13 @@ export const HomeViewComponent: React.FC<HomeViewComponentProps> = ({ dispatch, 
   useEffect(() => {
     dispatch(setCurrentPage("Home"))
     if (!user) {
-      dispatch(fetchProfile("U012HSXKLKC"))
+      dispatch(fetchProfile("U012BSA4PQW"))
     }
     if (allEmployees.length === 0) {
       dispatch(fetchAllProfiles())
     }
     if (!homepage) {
-      dispatch(fetchHomepage("U012HSXKLKC"))
+      dispatch(fetchHomepage("U012BSA4PQW"))
     }
   }, [])
 

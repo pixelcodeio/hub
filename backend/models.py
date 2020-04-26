@@ -93,10 +93,10 @@ class Poll:
         else:
             self.voters[option] = [voter_id]
 
-    def serialize(self):
+    def serialize(self, profiles_dict):
         return convert({
             'id': self.id,
-            'sender': self.sender.serialize(),
+            'sender': self.sender.serialize(profiles_dict),
             'text': self.text,
             'options': self.options,
             'votes': self.voters
@@ -156,7 +156,7 @@ class Profile:
         self.daily_questions = []
         self.slack_internal_name = slack_internal_name
 
-    def serialize(self, thanks = []):
+    def serialize(self, profiles_dict, thanks = []):
         return convert({
             'id': self.id,
             'name': self.name,
@@ -166,11 +166,11 @@ class Profile:
             'imageURL': self.image_url,
             'blurb': self.blurb,
             'interests': self.interests,
-            'manager': self.manager,
+            'manager': profiles_dict[self.manager].serialize(profiles_dict) if self.manager else None,
             'email': self.email,
-            'birthday': self.birthday.strftime("%B %-d"),
+            'birthday': self.birthday,
             'pronouns': self.pronouns,
-            'join_date': self.join_date.strftime("%B %-d, %Y"),
+            'join_date': self.join_date,
             'twitter': self.twitter,
             'linkedin': self.linkedin,
             'facebook': self.facebook,
@@ -182,7 +182,7 @@ class Profile:
             'team_id': self.team_id,
             'daily_questions': [q.serialize() for q in self.daily_questions],
             'slack_internal_name': self.slack_internal_name,
-            'received_thanks': [thank.serialize() for thank in thanks]
+            'received_thanks': [thank.serialize(profiles_dict) for thank in thanks]
         })
 
 
@@ -193,10 +193,10 @@ class Thank:
         self.message = message
         self.date = datetime.now()
 
-    def serialize(self):
+    def serialize(self, profiles_dict):
         return convert({
-            'from': self.sender.serialize(),
-            'to': self.to.serialize(),
+            'from': self.sender.serialize(profiles_dict),
+            'to': self.to.serialize(profiles_dict),
             'message': self.message,
             'date': self.date.strftime("%B %-d, %Y")
         })

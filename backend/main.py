@@ -37,6 +37,7 @@ thanks = []
 all_polls = {}
 profiles_dict = init_profiles()
 user_list = list(profiles_dict.keys())
+print(len(profiles_dict))
 
 ############################################### HELPERS
 
@@ -128,8 +129,8 @@ def homepage():
         'anniversaries': [Anniversary(prof).serialize() for prof in list(profiles_dict.values())],
         'birthdays': [Birthday(prof).serialize() for prof in list(profiles_dict.values())],
         'newHires': [NewHire(prof).serialize() for prof in list(profiles_dict.values())],
-        'polls': [poll.serialize() for poll in list(all_polls.values())],
-        'similarInterests': [prof.serialize() for prof in similar_interests]
+        'polls': [poll.serialize(profiles_dict) for poll in list(all_polls.values())],
+        'similarInterests': [prof.serialize(profiles_dict) for prof in similar_interests]
     })
 
 @app.route('/poll', methods=['POST'])
@@ -145,19 +146,19 @@ def poll():
 
 @app.route('/polls', methods=['GET'])
 def polls():
-    return make_response([poll.serialize() for poll in list(all_polls.values())])
+    return make_response([poll.serialize(profiles_dict) for poll in list(all_polls.values())])
 
 # Get user's profile
 @app.route('/profile', methods=['GET'])
 def profile():
     profile_id = request.args.get('user_id')
     received_thanks = [thank for thank in thanks if thank.to.id == profile_id]
-    return make_response(profiles_dict[profile_id].serialize(received_thanks) if profile_id in profiles_dict else None)
+    return make_response(profiles_dict[profile_id].serialize(profiles_dict, received_thanks) if profile_id in profiles_dict else None)
 
 # Get list of all users?
 @app.route('/profiles', methods=['GET'])
 def get_users():
-    return make_response([profile.serialize() for profile in profiles_dict.values()])
+    return make_response([profile.serialize(profiles_dict) for profile in profiles_dict.values()])
 
 # Send slack message to a specific user?
 @app.route('/slack/message', methods=['POST'])
@@ -242,4 +243,4 @@ def message(payload):
             send_dm_to_user(user_id, poll_confirmation)
 
 if __name__ == "__main__":
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True)
