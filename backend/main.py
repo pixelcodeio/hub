@@ -20,7 +20,7 @@ from slackeventsapi import SlackEventAdapter
 app = Flask(__name__)
 app.debug = True
 cors = CORS(app)
-cron = Scheduler()
+cron = Scheduler(daemon=True)
 cron.start()
 
 slack_events_adapter = SlackEventAdapter(
