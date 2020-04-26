@@ -33,7 +33,10 @@ def get_users():
     users = response["members"]
 
     # return all non-bot users
-    return [u for u in users if (not u["is_bot"] and u["real_name"] != "Slackbot")]
+    # for u in users:
+    #     print(u)
+    #     print(u['profile']["real_name"])
+    return [u for u in users if (not u["is_bot"] and u['profile']["real_name"] != "Slackbot")]
 
 
 def get_user_id_for_name(name, user_list):

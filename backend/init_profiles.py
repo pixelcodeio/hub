@@ -10,7 +10,7 @@ def init_profiles():
     for user in all_users:
         profile = Profile(
             user['id'],
-            user['real_name'],
+            user['profile']['real_name'],
             'CEO',
             'IDK',
             'Engineering',
