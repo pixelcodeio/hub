@@ -20,6 +20,6 @@ six==1.14.0
 slackclient==2.5.0
 slackeventsapi==2.1.0
 tzlocal==2.0.0
-urllib3==1.25.9
+urllib3==1.26.5
 Werkzeug==1.0.1
 yarl==1.4.2
